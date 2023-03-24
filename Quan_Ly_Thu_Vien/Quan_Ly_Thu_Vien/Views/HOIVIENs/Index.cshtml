@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Quan_Ly_Thu_Vien.Models.HOIVIEN>
+
+@{
+    ViewBag.Title = "Danh Mục Hội Viên";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    <link rel="stylesheet" href="~/Content/MyLayout/css/style.css">
+
+    <!-- nhúng icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+
+    <link href=" ~/Content/MyLayout/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="~/Content/MyLayout/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link href="~/Content/MyLayout/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+}
+
+<main>
+
+    <div class="page-header ml-5">
+        <div>
+            <h1>Danh mục hội viên</h1>
+            <small>Trang chủ / Danh mục hội viên</small>
+        </div>
+    </div>
+
+    <div class="page-content ml-5">
+        <a class="link-button" href="Create">Thêm hội viên</a>
+    </div>
+
+    <div class="container-fluid ml-4 mt-2">
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Tên hội viên</th>
+                                <th>Số điện thoại</th>
+                                <th>Ngày lập thẻ</th>
+                                <th>Tình trạng</th>
+                                <th>Số lượng đang mượn</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-list">
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TenHV)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.SDT)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NgayLapThe)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TinhTrang)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DangMuon)
+                                    </td>
+                                    @*<td>
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.MaHV }) |
+                                            @Html.ActionLink("Details", "Details", new { id = item.MaHV }) |
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.MaHV })
+                                        </td>*@
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</main>
+
+<script src="~/Content/MyLayout/js/app.js"></script>
+
+

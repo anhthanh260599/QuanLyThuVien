@@ -1,0 +1,166 @@
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\Quan_Ly_Thu_Vien.dll.config
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\Quan_Ly_Thu_Vien.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\Quan_Ly_Thu_Vien.pdb
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\csc.exe
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\csc.exe.config
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\csc.rsp
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\csi.exe
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\csi.exe.config
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\csi.rsp
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\Microsoft.Managed.Core.targets
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\Microsoft.Win32.Primitives.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.AppContext.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Collections.Immutable.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Console.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Globalization.Calendars.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.IO.Compression.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.IO.Compression.ZipFile.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.IO.FileSystem.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Net.Http.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Net.Sockets.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Reflection.Metadata.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Security.Cryptography.Primitives.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Threading.Tasks.Extensions.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.ValueTuple.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Xml.ReaderWriter.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Xml.XmlDocument.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Xml.XPath.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Xml.XPath.XDocument.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\vbc.exe
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\vbc.exe.config
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\vbc.rsp
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\VBCSCompiler.exe
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\VBCSCompiler.exe.config
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\Antlr3.Runtime.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\EntityFramework.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\EntityFramework.SqlServer.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\Microsoft.Web.Infrastructure.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\Newtonsoft.Json.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\System.Web.Helpers.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\System.Web.Mvc.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\System.Web.Optimization.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\System.Web.Razor.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\System.Web.WebPages.Deployment.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\System.Web.WebPages.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\System.Web.WebPages.Razor.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\WebGrease.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\EntityFramework.xml
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\EntityFramework.SqlServer.xml
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\System.Web.Helpers.xml
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\System.Web.Mvc.xml
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\System.Web.Optimization.xml
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\System.Web.Razor.xml
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\System.Web.WebPages.xml
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\System.Web.WebPages.Deployment.xml
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\System.Web.WebPages.Razor.xml
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\Newtonsoft.Json.xml
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\Antlr3.Runtime.pdb
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\obj\Debug\Quan_Ly_Thu_Vien.csproj.AssemblyReference.cache
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\obj\Debug\Quan_Ly_Thu_Vien.csproj.CoreCompileInputs.cache
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\obj\Debug\Quan_Ly_Thu_Vien.csproj.CopyComplete
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\obj\Debug\Quan_Ly_Thu_Vien.dll
+D:\Công Nghệ PM\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\obj\Debug\Quan_Ly_Thu_Vien.pdb
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\Quan_Ly_Thu_Vien.dll.config
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\Quan_Ly_Thu_Vien.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\Quan_Ly_Thu_Vien.pdb
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\csc.exe
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\csc.exe.config
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\csc.rsp
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\csi.exe
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\csi.exe.config
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\csi.rsp
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\Microsoft.Managed.Core.targets
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\Microsoft.Win32.Primitives.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.AppContext.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Collections.Immutable.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Console.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Globalization.Calendars.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.IO.Compression.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.IO.Compression.ZipFile.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.IO.FileSystem.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Net.Http.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Net.Sockets.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Reflection.Metadata.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Security.Cryptography.Primitives.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Threading.Tasks.Extensions.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.ValueTuple.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Xml.ReaderWriter.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Xml.XmlDocument.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Xml.XPath.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\System.Xml.XPath.XDocument.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\vbc.exe
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\vbc.exe.config
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\vbc.rsp
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\VBCSCompiler.exe
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\roslyn\VBCSCompiler.exe.config
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\Antlr3.Runtime.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\EntityFramework.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\EntityFramework.SqlServer.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\Microsoft.Web.Infrastructure.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\Newtonsoft.Json.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\System.Web.Helpers.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\System.Web.Mvc.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\System.Web.Optimization.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\System.Web.Razor.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\System.Web.WebPages.Deployment.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\System.Web.WebPages.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\System.Web.WebPages.Razor.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\WebGrease.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\EntityFramework.xml
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\EntityFramework.SqlServer.xml
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\System.Web.Helpers.xml
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\System.Web.Mvc.xml
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\System.Web.Optimization.xml
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\System.Web.Razor.xml
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\System.Web.WebPages.xml
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\System.Web.WebPages.Deployment.xml
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\System.Web.WebPages.Razor.xml
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\Newtonsoft.Json.xml
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\Antlr3.Runtime.pdb
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\obj\Debug\Quan_Ly_Thu_Vien.csproj.AssemblyReference.cache
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\obj\Debug\Quan_Ly_Thu_Vien.csproj.CoreCompileInputs.cache
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\obj\Debug\Quan_Ly_Thu_Vien.csproj.CopyComplete
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\obj\Debug\Quan_Ly_Thu_Vien.dll
+D:\CNPMNC\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\Quan_Ly_Thu_Vien\obj\Debug\Quan_Ly_Thu_Vien.pdb

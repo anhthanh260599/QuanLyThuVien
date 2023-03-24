@@ -1,0 +1,241 @@
+﻿@model Quan_Ly_Thu_Vien.Models.DOANHTHU
+
+@{
+    ViewBag.Title = "Thống Kê Doanh Thu";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    <link rel="stylesheet" href="~/Content/MyLayout/css/style.css">
+    @*<link rel="stylesheet" href="~/Content/MyLayout/css/StyleCss.css">*@
+    <!-- nhúng icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+
+    <link rel="license" href="https://www.opensource.org/licenses/mit-license/">
+
+}
+
+@*<h2>Create</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>DOANHTHU</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.NgayTK, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.NgayTK, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NgayTK, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.KhoangThoiGian, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.KhoangThoiGian, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.KhoangThoiGian, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TongTien, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TongTien, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TongTien, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
+
+
+<main>
+
+    <div class="page-header ml-5">
+        <div>
+            <h1>Thống kê doanh thu</h1>
+            <small>Trang chủ / Thống kê doanh thu</small>
+        </div>
+    </div>
+
+    <!-- Thông tin mượn sách -->
+    <div class="page-content ml-5" style="display:flex; justify-content:space-between;">
+        <div class="">
+            <a class="link-button active" href="./thong-ke.html">Thống kê doanh thu</a>
+            <a class="link-button" href="./bao-cao-ve-sach.html">Báo cáo về sách</a>
+        </div>
+        <div class="">
+            <button class="btn btn-update-book" id="" style="margin-right:72px;">In</button>
+        </div>
+    </div>
+
+    <div class="page-content ml-5" style="display: flex;">
+        <div class="" style="margin-right: 8px;">
+            <label for="">Ngày thống kê</label>
+            <input type="date">
+        </div>
+        <div class="" style="margin-right: 8px;">
+            <label for="">Từ ngày</label>
+            <input type="date">
+        </div>
+        <div class="" style="margin-left: 8px;">
+            <label for="">Đến ngày</label>
+            <input type="date">
+        </div>
+    </div>
+
+    <div class="page-content ml-5">
+        <div>
+            <table width="100%">
+                <thead>
+                    <tr>
+                        <th><span></span></th>
+                        <th><span></span>Số lượng</th>
+                        <th><span></span>Đơn giá</th>
+                        <th><span></span>Thành tiền</th>
+                        <th><span></span>Ghi chú</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td class="thong-ke-td" style="color:#444; background-color:#e9edf2;">Đăng ký độc giả</td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="thong-ke-td" style="color:#444; background-color:#e9edf2;">Mượn sách quá hạn</td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="thong-ke-td" style="color:#444; background-color:#e9edf2;">Làm hư hỏng sách/tài liệu</td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="thong-ke-td" style="color:#444; background-color:#e9edf2;">Phí thuê phòng họp</td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr style="background-color:#fadcdc;">
+                        <td class="thong-ke-td" style=" color: #444;">Tổng tiền</td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+    @*<div class="page-content">
+        <article>
+                <table class="meta">
+                    <tr>
+                        <th><span contenteditable>Invoice #</span></th>
+                        <td><span contenteditable>101138</span></td>
+                    </tr>
+                    <tr>
+                        <th><span contenteditable>Date</span></th>
+                        <td><span contenteditable>January 1, 2012</span></td>
+                    </tr>
+                    <tr>
+                        <th><span contenteditable>Amount Due</span></th>
+                        <td><span>600.000</span><span id="prefix" contenteditable>VND</span></td>
+                    </tr>
+                </table>
+           
+            <table class="inventory" width="100%">
+                <thead>
+                    <tr>
+                        <th><span>Khoản Thu</span></th>
+                        <th><span>Description</span></th>
+                        <th><span>Đơn Giá</span></th>
+                        <th><span>Số Lượng</span></th>
+                        <th><span>Tổng Tiền</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <a class="cut">-</a><span contenteditable>Front End Consultation</span>
+                        </td>
+                        <td>
+                            <span contenteditable>Experience Review</span>
+                        </td>
+                        <td>
+                            <span contenteditable>150.000</span><span data-prefix>$</span>
+                        </td>
+                        <td>
+                            <span contenteditable>4</span>
+                        </td>
+                        <td>
+                            <span>600.000</span><span data-prefix>$</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <a class="add">+</a>
+            <table class="balance" width="100%">
+                <tr>
+                    <th><span contenteditable>Tổng Tiền</span></th>
+                    <td><span data-prefix>VND</span></td>
+                </tr>
+                <tr>
+                    <th><span contenteditable>Phí Nhập Sách</span></th>
+                    <td><span contenteditable>0.000</span><span data-prefix>VND</span></td>
+                </tr>
+                <tr>
+                    <th><span contenteditable>Doanh Thu</span></th>
+                    <td><span>600.000</span><span data-prefix>VND</span></td>
+                </tr>
+            </table>
+        </article>
+    </div>*@
+
+</main>
+@*<script src="~/Content/MyLayout/js/script.js"></script>*@
+

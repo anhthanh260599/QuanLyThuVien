@@ -1,0 +1,58 @@
+﻿@model Quan_Ly_Thu_Vien.Models.DAUSACH
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DAUSACH</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenSach)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenSach)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Theloai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Theloai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NXB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NXB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayXuatBan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayXuatBan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenTG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenTG)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaDS }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
