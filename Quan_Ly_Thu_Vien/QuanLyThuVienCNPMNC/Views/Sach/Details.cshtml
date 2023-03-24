@@ -1,0 +1,81 @@
+﻿@model QuanLyThuVienCNPMNC.Models.SACH
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chi tiết</h2>
+
+<div>
+    <h4>Sách</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaSach)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaSach)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TinhTrang)
+        </dt>
+
+        <dd>
+            @{
+                if (Model.TinhTrang == 1)
+                {
+                    @Html.Raw("Mới");
+                }
+                else if (Model.TinhTrang == 2)
+                {
+                    @Html.Raw("Đang sử dụng");
+                }
+                else if (Model.TinhTrang == 3)
+                {
+                    @Html.Raw("Đang mượn");
+                }
+                else if (Model.TinhTrang == 4)
+                {
+                    @Html.Raw("Quá hạn");
+                }
+                else if (Model.TinhTrang == 5)
+                {
+                    @Html.Raw("Hư hỏng");
+                }
+                else if (Model.TinhTrang == 6)
+                {
+                    @Html.Raw("Cũ");
+                }
+                else if (Model.TinhTrang == 7)
+                {
+                    @Html.Raw("Thanh lý");
+                }
+            }
+            @*@Html.DisplayFor(model => model.TinhTrang)*@
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaDS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaDS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GhiChu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GhiChu)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaSach  }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

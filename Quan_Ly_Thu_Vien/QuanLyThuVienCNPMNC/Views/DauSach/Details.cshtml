@@ -1,0 +1,75 @@
+﻿@model QuanLyThuVienCNPMNC.Models.DAUSACH
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DAUSACH</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaDS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaDS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenSach)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenSach)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Theloai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Theloai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NXB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NhaXuatBan.TenNXB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayXuatBan)
+        </dt>
+
+        <dd>
+            @ViewBag.NgayXuatBan
+        </dd>
+
+        @*<dd>
+            @Html.DisplayFor(model => model.NgayXuatBan)
+        </dd>*@
+
+        @*<span>Ngày xuất bản: @ViewBag.NgayXuatBan</span>
+        <input type="text" name="NgayXuatBan" value="@ViewBag.NgayXuatBan" />*@
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GhiChu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GhiChu)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new {  id = Model.MaDS }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
