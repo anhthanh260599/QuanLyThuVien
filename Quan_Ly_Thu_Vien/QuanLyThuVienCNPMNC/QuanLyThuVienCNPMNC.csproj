@@ -191,6 +191,7 @@
     <Compile Include="Models\SACH.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Test01.cs" />
     <Compile Include="Models\THAMSOQUYDINH.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
