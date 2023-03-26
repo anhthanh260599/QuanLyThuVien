@@ -17,36 +17,21 @@ namespace QuanLyThuVienCNPMNC.Controllers
         public object ListtoDataConverter { get; private set; }
         Quan_Ly_Thu_VienEntities databases = new Quan_Ly_Thu_VienEntities();
         // GET: Sach
-        public ActionResult Index(string currentFilter, string SearchString, int? page)
+        public ActionResult Index()
         {
-            var lstProduct = new List<SACH>();
-            // Phân trang
-            if (SearchString != null)
+            NHANVIEN nvSession = (NHANVIEN)Session["user"];
+            var count = databases.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && (s.MaChucNang == "CN01" || s.MaChucNang == "CN03"));
+            if (count == 0)
             {
-                page = 1;
-            }
-            else
-            {
-                SearchString = currentFilter;
-            }
-            if (!string.IsNullOrEmpty(SearchString))
-            {
-                // lấy ds sản phẩm theo từ khóa tìm kiếm
-                lstProduct = databases.SACHes.Where(n => n.MaDS.Contains(SearchString)).ToList();
-            }
-            else
-            {
-                // lấy tất cả sản phẩm trong bảng Product
-                lstProduct = databases.SACHes.ToList();
-            }
-            ViewBag.CurrentFilter = SearchString;
-            // Số lượng item của 1 trang = 4
-            int pageSize = 5;
-            int pageNumber = (page ?? 1);
-            // sắp xếp theo id sản phẩm, sản phẩm mới lên đầu tiên
-            lstProduct = lstProduct.OrderByDescending(n => n.MaDS).ToList();
+                TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
+                return RedirectToAction("Index", "TrangChu");
 
-            return View(lstProduct.ToPagedList(pageNumber, pageSize));
+            }
+            else
+            {    
+                return View(databases.SACHes.ToList());
+            }
+
         }
 
         void LoadData()
@@ -67,38 +52,25 @@ namespace QuanLyThuVienCNPMNC.Controllers
 
             TinhTrang objProductType = new TinhTrang();
             objProductType.Id = 1;
-            objProductType.Name = "Mới";
+            objProductType.Name = "Còn";
             lstProductType.Add(objProductType);
 
             objProductType = new TinhTrang();
             objProductType.Id = 2;
-            objProductType.Name = "Đang sử dụng";
+            objProductType.Name = "Cho mượn";
             lstProductType.Add(objProductType);
 
             objProductType = new TinhTrang();
             objProductType.Id = 3;
-            objProductType.Name = "Đang mượn";
+            objProductType.Name = "Mất";
             lstProductType.Add(objProductType);
 
             objProductType = new TinhTrang();
             objProductType.Id = 4;
-            objProductType.Name = "Quá hạn";
+            objProductType.Name = "Hỏng";
             lstProductType.Add(objProductType);
 
-            objProductType = new TinhTrang();
-            objProductType.Id = 5;
-            objProductType.Name = "Hư hỏng";
-            lstProductType.Add(objProductType);
-
-            objProductType = new TinhTrang();
-            objProductType.Id = 6;
-            objProductType.Name = "Cũ";
-            lstProductType.Add(objProductType);
-
-            objProductType = new TinhTrang();
-            objProductType.Id = 7;
-            objProductType.Name = "Thanh lý";
-            lstProductType.Add(objProductType);
+          
 
 
 
@@ -113,13 +85,48 @@ namespace QuanLyThuVienCNPMNC.Controllers
         //</ script >
         //@Html.DropDownListFor(model => model.TinhTrang, ViewBag.TinhTrang as SelectList, new { @class = "form-control list-searchable" })
 
+        //Tu tao key
+        public string CapNhatKey()
+        {
 
+            int newNumber = 1;
+            var list = databases.SACHes.OrderByDescending(s => s.MaSach);
+            if (list == null)
+            {
+                newNumber = 1;
+            }
+            else
+            {
+                string convertNewNumber = "SVH" + newNumber.ToString("00");
+                while (databases.SACHes.Any(p => p.MaSach == convertNewNumber))
+                {
+                    newNumber++;
+                    convertNewNumber = "SVH" + newNumber.ToString("00");
+                }
+            }
+            string newMaPms = "SVH" + newNumber.ToString("00");
+            return newMaPms;
+
+        }
         //Thêm 
         [HttpGet]
         public ActionResult Create()
         {
-            this.LoadData();
-            return View();
+            NHANVIEN nvSession = (NHANVIEN)Session["user"];
+            var count = databases.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && s.MaChucNang == "CN01");
+            if (count == 0)
+            {
+                TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
+                return RedirectToAction("Index", "TrangChu");
+
+            }
+            else
+            {
+                ViewBag.newkey = CapNhatKey();
+                this.LoadData();
+                return View();
+            }
+
         }
 
         [ValidateInput(false)]
@@ -131,8 +138,10 @@ namespace QuanLyThuVienCNPMNC.Controllers
             {
                 try
                 {
+                    sach.MaSach = CapNhatKey();
                     databases.SACHes.Add(sach);
                     databases.SaveChanges();
+                    TempData["Message"] = "Them thanh cong !!!";
                     return RedirectToAction("Index");
                 }
                 catch
@@ -147,19 +156,43 @@ namespace QuanLyThuVienCNPMNC.Controllers
         [HttpGet]
         public ActionResult Details(string id)
         {
-            var objProduct = databases.SACHes.Where(n => n.MaSach == id).FirstOrDefault();
-            return View(objProduct);
+            NHANVIEN nvSession = (NHANVIEN)Session["user"];
+            var count = databases.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && s.MaChucNang == "CN01");
+            if (count == 0)
+            {
+                TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
+                return RedirectToAction("Index", "TrangChu");
+
+            }
+            else
+            {
+                var objProduct = databases.SACHes.Where(n => n.MaSach == id).FirstOrDefault();
+                return View(objProduct);
+            }
+
         }
 
         [HttpGet]
         public ActionResult Delete(string id)
         {
-            SACH item = databases.SACHes.Find(id);
-            if (item == null)
+            NHANVIEN nvSession = (NHANVIEN)Session["user"];
+            var count = databases.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && s.MaChucNang == "CN01");
+            if (count == 0)
             {
-                return HttpNotFound();
+                TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
+                return RedirectToAction("Index", "TrangChu");
+
             }
-            return View(item);
+            else
+            {
+                SACH item = databases.SACHes.Find(id);
+                if (item == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(item);
+            }
+
         }
 
         [HttpPost, ActionName("Delete")]
@@ -169,6 +202,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             SACH item = databases.SACHes.Find(id);
             databases.SACHes.Remove(item);
             databases.SaveChanges();
+            TempData["Message"] = "Xoa thanh cong !!!";
             return RedirectToAction("Index");
         }
 
@@ -176,9 +210,21 @@ namespace QuanLyThuVienCNPMNC.Controllers
         [HttpGet]
         public ActionResult Edit(string id)
         {
-            this.LoadData();
-            var objProduct = databases.SACHes.Where(n => n.MaSach == id).FirstOrDefault();
-            return View(objProduct);
+            NHANVIEN nvSession = (NHANVIEN)Session["user"];
+            var count = databases.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && s.MaChucNang == "CN01");
+            if (count == 0)
+            {
+                TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
+                return RedirectToAction("Index", "TrangChu");
+
+            }
+            else
+            {
+                this.LoadData();
+                var objProduct = databases.SACHes.Where(n => n.MaSach == id).FirstOrDefault();
+                return View(objProduct);
+            }
+
         }
 
         [HttpPost]
@@ -187,8 +233,8 @@ namespace QuanLyThuVienCNPMNC.Controllers
         {
             databases.Entry(objProduct).State = EntityState.Modified;
             databases.SaveChanges();
+            TempData["Message"] = "Chinh sua thanh cong !!!";
             return RedirectToAction("Index");
-
         }
     }
 }

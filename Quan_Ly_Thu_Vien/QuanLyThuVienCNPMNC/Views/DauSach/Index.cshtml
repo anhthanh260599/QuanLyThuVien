@@ -1,336 +1,117 @@
-﻿@*@model IEnumerable<QuanLyThuVienCNPMNC.Models.DAUSACH>*@
-@* import Phân trang *@
-@using PagedList;
-@using PagedList.Mvc;
-@model PagedList.IPagedList<QuanLyThuVienCNPMNC.Models.DAUSACH>
+﻿@model IEnumerable<QuanLyThuVienCNPMNC.Models.DAUSACH>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@*<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.js"></script>*@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.js" defer></script>
 
-<style>
-    .btn-tao-moi {
-        border-radius: 36px;
-        font-size: 16px;
-        /*background-color: #76BC21;*/
-        border: none;
-    }
 
-    .search-input {
-        background-color: #76BC21;
-        border: none;
-        color: #fff;
-        width: 80px;
-        border-radius: 36px;
-        font-size: 16px;
-        height: 36px;
-    }
+<script>
 
-    .search-field {
-        border: 1px solid #e8eaef;
-        border-radius: 36px;
-        padding: 6px 12px;
-       
-    }
-
-    .search-field:focus {
-            border: 1px solid #929baa;
-            color: #64728c;
-            outline: 0;
-
-    }
-
-    .action-item {
-        position: relative;
-    }
-    .icon-delete {
-        position: absolute;
-        left: 13px;
-        top: 3px;
-        color: #666
-    }
-
-    .delete-item {
-        width: 40px;
-        height: 40px;
-        background-color: rgba(100,114,140,.1);
-        border-radius: 50%;
-        border: 1px solid rgba(100,114,140,.2);
-    }
-
-    table {
-        margin-top: 20px !important;
-        margin: auto;
-        padding: 10px 50px 50px 50px;
-        width: 500px;
-        background: white;
-        border-radius: 20px;
-        box-shadow: 0 2px 0px;
-    }
-
-    .pagination {
-        display: inline-block;
-        padding-left: 0;
-        margin: 20px 0;
-        border-radius: 4px;
-    }
-
-        .pagination > li {
-            display: inline;
-        }
-
-            .pagination > li > a,
-            .pagination > li > span {
-                position: relative;
-                float: left;
-                padding: 6px 12px;
-                margin-left: -1px;
-                line-height: 1.428;
-                text-decoration: none;
-                background-color: #fff;
-                border: 1px solid #ddd;
-            }
-
-            .pagination > li:first-child > a,
-            .pagination > li:first-child > span {
-                margin-left: 0;
-                border-bottom-left-radius: 4px;
-                border-top-left-radius: 4px;
-            }
-
-            .pagination > li:last-child > a,
-            .pagination > li:last-child > span {
-                margin-left: 0;
-                border-bottom-right-radius: 4px;
-                border-top-right-radius: 4px;
-            }
-
-            .pagination > li > a:hover,
-            .pagination > li > span:hover,
-            .pagination > li > a:focus,
-            .pagination > li > span:focus,
-            {
-                background-color: #eee;
-            }
-
-        .pagination > .active > a,
-        .pagination > .active > span,
-        .pagination > .active > a:hover,
-        .pagination > .active > span:hover,
-        .pagination > .active > a:focus,
-        .pagination > .active > span:focus {
-            z-index: 2;
-            color: #fff;
-            cursor: default;
-            background-color: #428bca;
-            border-color: #428bca;
-        }
-
-        .pagination > .disabled > span,
-        .pagination > .disabled > a,
-        .pagination > .disabled > a:hover,
-        .pagination > .disabled > a:focus {
-            color: #999;
-            cursor: not-allowed;
-            background-color: #fff;
-            border-color: #ddd;
-        }
-
-    .pagination-lg > li > a,
-    .pagination-lg > li > span {
-        padding: 10px 16px;
-        font-size: 18px;
-    }
-
-    .pagination-lg > li:first-child > a,
-    .pagination-lg > li:first-child > span {
-        border-bottom-left-radius: 6px;
-        border-top-left-radius: 6px;
-    }
-
-    .pagination-lg > li:last-child > a,
-    .pagination-lg > li:last-child > span {
-        border-bottom-right-radius: 6px;
-        border-top-right-radius: 6px;
-    }
-
-    .pagination-sm > li > a,
-    .pagination-sm > li > span {
-        padding: 5px 10px;
-        font-size: 12px;
-    }
-
-    .pagination-sm > li:first-child > a,
-    .pagination-sm > li:first-child > span {
-        border-bottom-left-radius: 3px;
-        border-top-left-radius: 3px;
-    }
-
-    .pagination-sm > li:last-child > a,
-    .pagination-sm > li:last-child > span {
-        border-bottom-right-radius: 3px;
-        border-top-right-radius: 3px;
-    }
-
-    .pager {
-        padding-left: 0;
-        margin: 20px 0;
-        text-align: center;
-        list-style: none;
-    }
-
-        .pager:before,
-        .pager:after {
-            display: table;
-            content: " ";
-        }
-
-        .pager::after {
-            clear: both;
-        }
-
-        .pager li {
-            display: inline;
-        }
-
-            .pager li > a,
-            .pager li > span {
-                display: inline-block;
-                padding: 5px 14px;
-                background-color: #fff;
-                border: 1px solid #ddd;
-                border-radius: 15px;
-            }
-
-                .pager li > a:hover,
-                .pager li > span:hover {
-                    text-decoration: none;
-                    background-color: #eee;
-                }
-
-        .pager .next > a,
-        .pager .next > span {
-            float: right;
-        }
-
-        .pager .previous > a,
-        .pager .previous > span {
-            float: left;
-        }
-
-        .pager .disabled > a,
-        .pager .disabled > a:hover,
-        .pager .disabled > a:focus,
-        .pager .disabled > span {
-            color: #999;
-            cursor: not-allowed;
-            background-color: #fff;
-        }
-</style>
+</script>
 
 <h2>Đầu sách</h2>
-
+<hr />
 <p>
-    @Html.ActionLink("+ Tạo mới", "Create",null, new {@class = "btn btn-success btn-tao-moi" })
+    <a href="@Url.Action("Create","DauSach")" class="add-item">
+        <i class="fa-solid fa-plus add-icon"></i> Thêm
+    </a>
+
 </p>
 
-@*Tìm kiếm*@
-@using (Html.BeginForm("Index", "DAUSACH", FormMethod.Get))
+
+<table id="myTable" class="display">
+    <thead>
+        <tr>
+            <th>
+                Mã đầu sách
+            </th>
+            <th>
+                Tên sách
+            </th>
+            <th>
+                Thể loại
+            </th>
+            <th>
+                Nhà xuất bản
+            </th>
+
+            <th>
+                Ghi chú
+            </th>
+            <th>
+                Hành động
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaDS)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenSach)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Theloai)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.NhaXuatBan.TenNXB)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GhiChu)
+                </td>
+                <td>
+                    @*@Html.ActionLink("Details", "Details", new { id = item.MaDS })*@
+                    <a href="@Url.Action("Details","DauSach", new {id = item.MaDS})" class="action-item">
+                        <i class="fa-solid fa-book action-icon"></i>
+                    </a>
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.MaDS })*@
+                    <a href="@Url.Action("Edit","DauSach", new {id = item.MaDS})" class="action-item">
+                        <i class="fa-solid fa-pen-to-square action-icon"></i>
+                    </a>
+                    <a href="@Url.Action("Delete","DauSach", new {id = item.MaDS})" class="action-item">
+                        <i class="fa-solid fa-trash action-icon"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+@if (ViewBag.Message != null)
 {
-    <p>
-        Tìm tên sản phẩm:  @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new {@class = "search-field"})
-        <input type="submit" value="Tìm kiếm" class="search-input" />
-    </p>
+    <script type="text/javascript">
+               document.addEventListener('DOMContentLoaded', function () {
+                    Swal.fire({
+                    title: 'Thành công',
+                    text: '@ViewBag.Message',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                    });
+                    });
+    </script>
+}
+@if (TempData["Message"] != null)
+{
+    <script type="text/javascript">
+               document.addEventListener('DOMContentLoaded', function () {
+                Swal.fire({
+                title: 'Thành công',
+                text: '@TempData["Message"]',
+                icon: 'success',
+                confirmButtonText: 'OK'
+                });
+                });
+    </script>
 }
 
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().MaDS)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().TenSach)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().Theloai)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().NXB)
-        </th>
-
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().GhiChu)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaDS)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TenSach)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Theloai)
-            </td>
-            
-            <td>
-                @Html.DisplayFor(modelItem => item.NhaXuatBan.TenNXB)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GhiChu)
-            </td>
-            <td>
-                
-
-
-                @Html.ActionLink("Edit", "Edit", new { id = item.MaDS }) |
-
-                @Html.ActionLink("Details", "Details", new { id = item.MaDS }) |
-                <span class="action-item">
-                    @Html.ActionLink(" ", "Delete", new { id = item.MaDS }, new { @class = "btn delete-item" })
-                    <i class="fa-solid fa-trash icon-delete"></i>
-                </span>
-            </td>
-        </tr>
-    }
-
-    @if (ViewBag.TotalPages > 1)
-    {
-        <div class="pagination">
-            @if (ViewBag.CurrentPage > 1)
-            {
-                @Html.ActionLink("<<", "Index", new { page = 1 })
-                @Html.ActionLink("<", "Index", new { page = ViewBag.CurrentPage - 1 })
-            }
-
-            @for (int i = 1; i <= ViewBag.TotalPages; i++)
-            {
-                if (i == ViewBag.CurrentPage)
-                {
-                    <span>@i</span>
-                }
-                else
-                {
-                    @Html.ActionLink(i.ToString(), "Index", new { page = i })
-                }
-            }
-
-            @if (ViewBag.CurrentPage < ViewBag.TotalPages)
-            {
-                @Html.ActionLink(">", "Index", new { page = ViewBag.CurrentPage + 1 })
-                @Html.ActionLink(">>", "Index", new { page = ViewBag.TotalPages })
-            }
-        </div>
-    }
-
-</table>
-
-Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-
-@Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.CurrentFilter }))

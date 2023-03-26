@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Thông tin chi tiết</h2>
 
 <div>
-    <h4>BAOCAO</h4>
+    <h4>Báo cáo</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -20,16 +20,54 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.MaNhanVien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaNhanVien)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Description)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Description)
+            @Html.Raw(Model.Description)
+            @*@Html.DisplayFor(model => model.Description)*@
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayLapBaoCao)
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.NgayLapBaoCaoFormatted)
+        </dd>
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+
+    <button class="btn btn-primary">In báo cáo</button> |
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.Id }, new { @class = "btn btn-secondary" }) |
+    @Html.ActionLink("Trở về trang danh sách", "Index", null, new { @class = "btn btn-outline-dark" }) 
+
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")*@
 </p>
+
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>
+}
+@if (TempData["Message"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@TempData["Message"]");
+            };
+    </script>
+}

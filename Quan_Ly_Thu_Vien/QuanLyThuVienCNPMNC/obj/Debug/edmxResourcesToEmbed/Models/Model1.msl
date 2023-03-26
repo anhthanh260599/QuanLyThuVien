@@ -4,11 +4,38 @@
     <EntitySetMapping Name="BAOCAOs">
       <EntityTypeMapping TypeName="Quan_Ly_Thu_VienModel.BAOCAO">
         <MappingFragment StoreEntitySet="BAOCAO">
-          <ScalarProperty Name="NgayLapBaoCao" ColumnName="NgayLapBaoCao" />
-          <ScalarProperty Name="MaNhanVien" ColumnName="MaNhanVien" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Ten" ColumnName="Ten" />
           <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="MaNhanVien" ColumnName="MaNhanVien" />
+          <ScalarProperty Name="NgayLapBaoCao" ColumnName="NgayLapBaoCao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BOITHUONGs">
+      <EntityTypeMapping TypeName="Quan_Ly_Thu_VienModel.BOITHUONG">
+        <MappingFragment StoreEntitySet="BOITHUONG">
+          <ScalarProperty Name="MaHV" ColumnName="MaHV" />
+          <ScalarProperty Name="MaSach" ColumnName="MaSach" />
+          <ScalarProperty Name="GiaTien" ColumnName="GiaTien" />
+          <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CHITIETPHIEUMUONs">
+      <EntityTypeMapping TypeName="Quan_Ly_Thu_VienModel.CHITIETPHIEUMUON">
+        <MappingFragment StoreEntitySet="CHITIETPHIEUMUON">
+          <ScalarProperty Name="MaPhieu" ColumnName="MaPhieu" />
+          <ScalarProperty Name="MaSach" ColumnName="MaSach" />
+          <ScalarProperty Name="NgayLapPhieu" ColumnName="NgayLapPhieu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChucNangs">
+      <EntityTypeMapping TypeName="Quan_Ly_Thu_VienModel.ChucNang">
+        <MappingFragment StoreEntitySet="ChucNang">
+          <ScalarProperty Name="MaChucNang" ColumnName="MaChucNang" />
+          <ScalarProperty Name="TenChucNang" ColumnName="TenChucNang" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -27,11 +54,12 @@
     <EntitySetMapping Name="HOIVIENs">
       <EntityTypeMapping TypeName="Quan_Ly_Thu_VienModel.HOIVIEN">
         <MappingFragment StoreEntitySet="HOIVIEN">
-          <ScalarProperty Name="NgayHetHan" ColumnName="NgayHetHan" />
+          <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
           <ScalarProperty Name="MaHV" ColumnName="MaHV" />
           <ScalarProperty Name="TenHV" ColumnName="TenHV" />
           <ScalarProperty Name="SDT" ColumnName="SDT" />
           <ScalarProperty Name="NgayLapThe" ColumnName="NgayLapThe" />
+          <ScalarProperty Name="NgayHetHan" ColumnName="NgayHetHan" />
           <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
           <ScalarProperty Name="DangMuon" ColumnName="DangMuon" />
         </MappingFragment>
@@ -53,6 +81,15 @@
         <MappingFragment StoreEntitySet="NhaXuatBan">
           <ScalarProperty Name="NXB" ColumnName="NXB" />
           <ScalarProperty Name="TenNXB" ColumnName="TenNXB" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PhanQuyens">
+      <EntityTypeMapping TypeName="Quan_Ly_Thu_VienModel.PhanQuyen">
+        <MappingFragment StoreEntitySet="PhanQuyen">
+          <ScalarProperty Name="MaNhanVien" ColumnName="MaNhanVien" />
+          <ScalarProperty Name="MaChucNang" ColumnName="MaChucNang" />
+          <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -87,40 +124,35 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="CHITIETPHIEUMUON" TypeName="Quan_Ly_Thu_VienModel.CHITIETPHIEUMUON" StoreEntitySet="CHITIETPHIEUMUON">
-      <EndProperty Name="PHIEUMUONSACH">
-        <ScalarProperty Name="MaPhieu" ColumnName="MaPhieu" />
-      </EndProperty>
-      <EndProperty Name="SACH">
-        <ScalarProperty Name="MaSach" ColumnName="MaSach" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <EntitySetMapping Name="BOITHUONGs">
-      <EntityTypeMapping TypeName="Quan_Ly_Thu_VienModel.BOITHUONG">
-        <MappingFragment StoreEntitySet="BOITHUONG">
-          <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
-          <ScalarProperty Name="GiaTien" ColumnName="GiaTien" />
-          <ScalarProperty Name="MaSach" ColumnName="MaSach" />
-          <ScalarProperty Name="MaHV" ColumnName="MaHV" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ChucNangs">
-      <EntityTypeMapping TypeName="Quan_Ly_Thu_VienModel.ChucNang">
-        <MappingFragment StoreEntitySet="ChucNang">
-          <ScalarProperty Name="TenChucNang" ColumnName="TenChucNang" />
-          <ScalarProperty Name="MaChucNang" ColumnName="MaChucNang" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="PhanQuyens">
-      <EntityTypeMapping TypeName="Quan_Ly_Thu_VienModel.PhanQuyen">
-        <MappingFragment StoreEntitySet="PhanQuyen">
-          <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
-          <ScalarProperty Name="MaChucNang" ColumnName="MaChucNang" />
+    <FunctionImportMapping FunctionImportName="sp_BaoCao" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_BaoCao" />
+    <FunctionImportMapping FunctionImportName="sp_CapNhatSoLuongSachHoiVienMuon" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_CapNhatSoLuongSachHoiVienMuon" />
+    <FunctionImportMapping FunctionImportName="sp_CapNhatTinhTrangTheHoiVien" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_CapNhatTinhTrangTheHoiVien" />
+    <FunctionImportMapping FunctionImportName="sp_DoanhThu" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_DoanhThu" />
+    <FunctionImportMapping FunctionImportName="sp_DSBaoCao" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_DSBaoCao">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Quan_Ly_Thu_VienModel.sp_DSBaoCao_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Ten" ColumnName="Ten" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="MaNhanVien" ColumnName="MaNhanVien" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
+          <ScalarProperty Name="NgayLapBaoCao" ColumnName="NgayLapBaoCao" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_DSPhongHopTheoTinhTrang" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_DSPhongHopTheoTinhTrang" />
+    <FunctionImportMapping FunctionImportName="sp_GiaHan" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_GiaHan" />
+    <FunctionImportMapping FunctionImportName="sp_LayThongTinNhanVien" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_LayThongTinNhanVien">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Quan_Ly_Thu_VienModel.sp_LayThongTinNhanVien_Result">
+          <ScalarProperty Name="MaNV" ColumnName="MaNV" />
+          <ScalarProperty Name="TenNV" ColumnName="TenNV" />
+          <ScalarProperty Name="ChucVu" ColumnName="ChucVu" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ThemNhanVien" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_ThemNhanVien" />
+    <FunctionImportMapping FunctionImportName="CapNhatTinhTrangSach" FunctionName="Quan_Ly_Thu_VienModel.Store.CapNhatTinhTrangSach" />
   </EntityContainerMapping>
 </Mapping>

@@ -1,0 +1,241 @@
+﻿@model QuanLyThuVienCNPMNC.Context.HomeModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css' rel='stylesheet' />
+<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js'></script>
+
+<style>
+    .todo-form {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    button.btn.btn-success.todo-button {
+        margin: 5px 0;
+    }
+
+    .todo-input {
+        outline: none;
+        border: 1px solid #dbdbdb;
+        border-radius: 12px;
+        padding-left: 12px;
+        margin-top: 4px;
+        height: 40px;
+        margin-right: 8px;
+        width: 100%;
+    }
+
+    .todo-list > li {
+        list-style-type: none;
+        display: flex;
+        justify-content: space-between;
+        
+    }
+
+        .todo-list > li > button {
+            background-color: red;
+            border: none;
+            color: #fff;
+            border-radius: 8px;
+            font-size: 16px;
+            padding: 4px;
+            width: 70px;
+        }
+</style>
+
+<h2>Trang chủ</h2>
+<h4>Dashboard</h4>
+<hr />
+<div class="row">
+    <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-info">
+            <div class="inner">
+                <h3>@ViewBag.TotalBookCount</h3>
+
+                <p>Tổng số lượng sách</p>
+            </div>
+            <div class="icon">
+                <i class="fa-solid fa-book"></i>
+            </div>
+            <a href="@Url.Action("Index","DauSach")" class="small-box-footer">Xem thêm <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-success">
+            <div class="inner">
+                <h3>@ViewBag.TotalMemberCount</h3>
+
+                <p>Tổng số hội viên</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-person-add"></i>
+            </div>
+            <a href="@Url.Action("Index","DocGia")" class="small-box-footer">Xem thêm <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-warning">
+            <div class="inner">
+                <h3>@ViewBag.TotalPhieuMuon</h3>
+
+                <p>Tổng số phiếu mượn</p>
+            </div>
+            <div class="icon">
+                <i class="fa-solid fa-file"></i>
+            </div>
+            <a href="@Url.Action("Index","PhieuMuon")" class="small-box-footer">Xem thêm <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-danger">
+            <div class="inner">
+                <h3>@ViewBag.TotalBaoCao</h3>
+
+                <p>Tổng số báo cáo</p>
+            </div>
+            <div class="icon">
+                <i class="fa-solid fa-pen"></i>
+            </div>
+            <a href="@Url.Action("Index","BaoCao")" class="small-box-footer">Xem thêm <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+</div>
+<!-- /.row -->
+
+<div class="row">
+    <div class="col-6 text-justify">
+        <h5>Biểu đồ Donut tỉ lệ</h5>
+        <canvas width="400" height="400" id="myChart"></canvas>
+    </div>
+
+
+    <div class="col-6 text-justify" id="todolist">
+        <h5>To do List</h5>
+        <form class="todo-form">
+            <input class="todo-input" type="text" id="new-todo" placeholder="Thêm công việc....">
+            <button type="button" class="btn btn-success todo-button" onclick="addTodo()">Thêm</button>
+        </form>
+        <ul class="todo-list" id="todo-list"></ul>
+    </div>
+
+
+
+</div>
+
+<script>
+    // Lấy các phần tử HTML cần thiết
+    const todoList = document.getElementById("todo-list");
+    const newTodoInput = document.getElementById("new-todo");
+
+    // Khởi tạo danh sách các mục
+    let todos = JSON.parse(localStorage.getItem("todos")) || [];
+
+    // Hàm để thêm mục mới
+    function addTodo() {
+        // Lấy giá trị của trường input
+        const newTodoText = newTodoInput.value;
+
+        // Thêm mục mới vào danh sách nếu trường input không trống
+        if (newTodoText.trim() !== "") {
+            todos.push(newTodoText);
+            newTodoInput.value = "";
+            renderTodos();
+            saveTodos();
+        }
+    }
+
+    // Hàm để hiển thị các mục
+    function renderTodos() {
+        // Xóa danh sách các mục cũ
+        todoList.innerHTML = "";
+
+        // Thêm các mục mới vào danh sách
+        todos.forEach((todo, index) => {
+            const li = document.createElement("li");
+            li.innerText = todo;
+
+            // Tạo nút Xóa và thêm sự kiện click để xóa mục
+            const deleteButton = document.createElement("button");
+            deleteButton.innerText = "Xóa";
+            deleteButton.addEventListener("click", () => {
+                todos.splice(index, 1);
+                renderTodos();
+                saveTodos();
+            });
+
+            li.appendChild(deleteButton);
+            todoList.appendChild(li);
+        });
+    }
+
+    // Hàm để lưu danh sách các mục vào LocalStorage
+    function saveTodos() {
+        localStorage.setItem("todos", JSON.stringify(todos));
+    }
+
+    // Hiển thị danh sách các mục lần đầu tiên
+    renderTodos();
+</script>
+
+
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Tổng số lượng sách', 'Tổng số lượng hội viên', 'Tổng số phiếu mượn', 'Tổng số báo cáo'],
+            datasets: [{
+                label: 'Tỉ lệ',
+                data: [@ViewBag.TotalBookCountPercent, @ViewBag.TotalMemberCountPercent, @ViewBag.TotalPhieuMuonPercent, @ViewBag.TotalBaoCaoPercent],
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(255, 99, 132, 1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: false,
+            cutoutPercentage: 50,
+            legend: {
+                position: 'right',
+                labels: {
+                    fontColor: 'black',
+                    fontSize: 30
+                }
+            },
+            animation: {
+                animateScale: true,
+                animateRotate: true
+            }
+        },
+        tooltips: {
+            callbacks: {
+                label: function (tooltipItem, data) {
+                    return data.labels[tooltipItem.index] + ': ' + data.datasets[0].data[tooltipItem.index] + '%';
+                }
+            }
+        }
+    });
+
+</script>

@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
+
 using static QuanLyThuVienCNPMNC.Common;
 
 namespace QuanLyThuVienCNPMNC.Controllers
@@ -21,36 +22,22 @@ namespace QuanLyThuVienCNPMNC.Controllers
         public object ListtoDataConverter { get; private set; }
         Quan_Ly_Thu_VienEntities databases = new Quan_Ly_Thu_VienEntities();
         // GET: DauSach
-        public ActionResult Index(string currentFilter, string SearchString, int? page)
+        public ActionResult Index()
         {
-            var lstProduct = new List<DAUSACH>();
-            // Phân trang
-            if (SearchString != null)
+            NHANVIEN nvSession = (NHANVIEN)Session["user"];
+            var count = databases.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && s.MaChucNang == "CN01");
+            if (count == 0)
             {
-                page = 1;
-            }
-            else
-            {
-                SearchString = currentFilter;
-            }
-            if (!string.IsNullOrEmpty(SearchString))
-            {
-                // lấy ds sản phẩm theo từ khóa tìm kiếm
-                lstProduct = databases.DAUSACHes.Where(n => n.TenSach.Contains(SearchString)).ToList();
-            }
-            else
-            {
-                // lấy tất cả sản phẩm trong bảng Product
-                lstProduct = databases.DAUSACHes.ToList();
-            }
-            ViewBag.CurrentFilter = SearchString;
-            // Số lượng item của 1 trang = 4
-            int pageSize = 5;
-            int pageNumber = (page ?? 1);
-            // sắp xếp theo id sản phẩm, sản phẩm mới lên đầu tiên
-            lstProduct = lstProduct.OrderByDescending(n => n.MaDS).ToList();
+                TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
+                return RedirectToAction("Index", "TrangChu");
 
-            return View(lstProduct.ToPagedList(pageNumber, pageSize));
+            }
+            else
+            {
+               
+                return View(databases.DAUSACHes.ToList());
+            }
+           
         }
 
         void LoadData()
@@ -65,13 +52,50 @@ namespace QuanLyThuVienCNPMNC.Controllers
             ViewBag.ListNXB = objCommon.ToSelectList(dtNXB, "NXB", "TenNXB");
         }
 
+        //Hàm tự cập nhật mã 
+        public string CapNhatKey()
+        {
 
+            int newNumber = 1;
+            var list = databases.DAUSACHes.OrderByDescending(s => s.MaDS);
+            if (list == null)
+            {
+                newNumber = 1;
+            }
+            else
+            {
+                string convertNewNumber = "DSA" + newNumber.ToString("000");
+                while (databases.DAUSACHes.Any(p => p.MaDS == convertNewNumber))
+                {
+                    newNumber++;
+                    convertNewNumber = "DSA" + newNumber.ToString("000");
+                }
+            }
+            string newMaPms = "DSA" + newNumber.ToString("000");
+            return newMaPms;
+
+        }
         // Tạo sản phẩm
         [HttpGet]
         public ActionResult Create()
-        {
-            this.LoadData();
-            return View();
+        {   
+            NHANVIEN nvSession = (NHANVIEN)Session["user"];
+            var count = databases.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && s.MaChucNang == "CN01");
+            if (count == 0)
+            {
+                TempData["Message"] = "Bạn không có quyền truy cập chức năng này";
+
+                return RedirectToAction("Index", "TrangChu");
+
+            }
+            else
+            {
+                ViewBag.newkey = CapNhatKey();
+                this.LoadData();
+
+                return View();
+            }
+           
         }
 
         [ValidateInput(false)]
@@ -84,21 +108,38 @@ namespace QuanLyThuVienCNPMNC.Controllers
             //        return RedirectToAction("Index");
             //}
             //return View(dausach);
-            this.LoadData();
-            if (ModelState.IsValid)
+            NHANVIEN nvSession = (NHANVIEN)Session["user"];
+            var count = databases.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && s.MaChucNang == "CN01");
+            if (count == 0)
             {
-                try
-                {
-                    databases.DAUSACHes.Add(dausach);
-                    databases.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-                catch
-                {
-                    return View();
-                }
+                TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
+                return RedirectToAction("LichSuNhapHang");
+
             }
-            return View(dausach);
+            else
+            {
+                this.LoadData();
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        dausach.MaDS = CapNhatKey();
+                        databases.DAUSACHes.Add(dausach);
+                        databases.SaveChanges();
+
+                        TempData["Message"] = "Tao dau sach thanh cong";
+
+
+                        return RedirectToAction("Index");
+                    }
+                    catch
+                    {
+                        return View();
+                    }
+                }
+                return View(dausach);
+            }
+           
             //try
             //{
             //    databases.DAUSACHes.Add(dausach);
@@ -111,31 +152,55 @@ namespace QuanLyThuVienCNPMNC.Controllers
             //}
         }
 
+
+
         // Xem chi tiết đầu sách
         [HttpGet]
         public ActionResult Details(string id)
         {
-            var objProduct = databases.DAUSACHes.Where(n => n.MaDS == id).FirstOrDefault();
+            NHANVIEN nvSession = (NHANVIEN)Session["user"];
+            var count = databases.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && s.MaChucNang == "CN01");
+            if (count == 0)
+            {
+                TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
+                return RedirectToAction("Index", "TrangChu");
 
-            // Chuyển đổi giá trị kiểu DateTime thành chuỗi theo định dạng "dd/MM/yyyy"
-            string ngayNhapString = objProduct.NgayXuatBan.ToString("dd/MM/yyyy");
+            }
+            else
+            {
+                var objProduct = databases.DAUSACHes.Where(n => n.MaDS == id).FirstOrDefault();
 
-            // Truyền giá trị chuỗi vào ViewBag để hiển thị trên view
-            ViewBag.NgayXuatBan = ngayNhapString;
+                // Chuyển đổi giá trị kiểu DateTime thành chuỗi theo định dạng "dd/MM/yyyy"
+                string ngayNhapString = objProduct.NgayXuatBan.ToString("dd/MM/yyyy");
 
-
-            return View(objProduct);
+                // Truyền giá trị chuỗi vào ViewBag để hiển thị trên view
+                ViewBag.NgayXuatBan = ngayNhapString;
+                return View(objProduct);
+            }
+          
         }
 
         [HttpGet]
         public ActionResult Delete(string id)
         {
-            DAUSACH item = databases.DAUSACHes.Find(id);
-            if (item == null)
+            NHANVIEN nvSession = (NHANVIEN)Session["user"];
+            var count = databases.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && s.MaChucNang == "CN01");
+            if (count == 0)
             {
-                return HttpNotFound();
+                TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
+                return RedirectToAction("Index", "TrangChu");
+
             }
-            return View(item);
+            else
+            {
+                DAUSACH item = databases.DAUSACHes.Find(id);
+                if (item == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(item);
+            }
+
         }
 
         [HttpPost, ActionName("Delete")]
@@ -145,18 +210,30 @@ namespace QuanLyThuVienCNPMNC.Controllers
             DAUSACH item = databases.DAUSACHes.Find(id);
             databases.DAUSACHes.Remove(item);
             databases.SaveChanges();
+            TempData["Message"] = "Xoa thanh cong";
             return RedirectToAction("Index");
-        }
 
-       
+        }
 
         //Chỉnh sửa sản phẩm
         [HttpGet]
         public ActionResult Edit(string id)
         {
-            this.LoadData();
-            var objProduct = databases.DAUSACHes.Where(n => n.MaDS == id).FirstOrDefault();
-            return View(objProduct);
+            NHANVIEN nvSession = (NHANVIEN)Session["user"];
+            var count = databases.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && s.MaChucNang == "CN01");
+            if (count == 0)
+            {
+                TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
+                return RedirectToAction("Index", "TrangChu");
+
+            }
+            else
+            {
+                this.LoadData();
+                var objProduct = databases.DAUSACHes.Where(n => n.MaDS == id).FirstOrDefault();
+                return View(objProduct);
+            }
+         
         }
 
         [HttpPost]
@@ -165,8 +242,8 @@ namespace QuanLyThuVienCNPMNC.Controllers
         {
             databases.Entry(objProduct).State = EntityState.Modified;
             databases.SaveChanges();
+            TempData["Message"] = "";
             return RedirectToAction("Index");
-
         }
     }
 }

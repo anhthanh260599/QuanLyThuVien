@@ -27,6 +27,7 @@
     </Key>
     <Property Name="MaPhieu" Type="char" MaxLength="5" Nullable="false" />
     <Property Name="MaSach" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="NgayLapPhieu" Type="date" />
   </EntityType>
   <EntityType Name="ChucNang">
     <Key>
@@ -57,6 +58,7 @@
     <Property Name="NgayHetHan" Type="date" Nullable="false" />
     <Property Name="TinhTrang" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="DangMuon" Type="int" Nullable="false" />
+    <Property Name="TrangThai" Type="int" />
   </EntityType>
   <EntityType Name="NHANVIEN">
     <Key>
@@ -148,7 +150,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_CHITIET">
+  <Association Name="FK_CHITIETPHIEUMUON_CHITIETPHIEUMUON1">
     <End Role="PHIEUMUONSACH" Type="Self.PHIEUMUONSACH" Multiplicity="1" />
     <End Role="CHITIETPHIEUMUON" Type="Self.CHITIETPHIEUMUON" Multiplicity="*" />
     <ReferentialConstraint>
@@ -160,7 +162,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_CHITIET_2">
+  <Association Name="FK_CHITIETPHIEUMUON_SACH">
     <End Role="SACH" Type="Self.SACH" Multiplicity="1" />
     <End Role="CHITIETPHIEUMUON" Type="Self.CHITIETPHIEUMUON" Multiplicity="*" />
     <ReferentialConstraint>
@@ -232,6 +234,44 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="CapNhatTinhTrangSach" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="maphieu" Type="char" Mode="In" />
+    <Parameter Name="masach" Type="char" Mode="In" />
+  </Function>
+  <Function Name="sp_BaoCao" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MABC" Type="char" Mode="In" />
+    <Parameter Name="TENBC" Type="nvarchar" Mode="In" />
+    <Parameter Name="Ngay" Type="date" Mode="In" />
+    <Parameter Name="MANV" Type="char" Mode="In" />
+  </Function>
+  <Function Name="sp_CapNhatSoLuongSachHoiVienMuon" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="mahv" Type="char" Mode="In" />
+  </Function>
+  <Function Name="sp_CapNhatTinhTrangTheHoiVien" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="mahoivien" Type="char" Mode="In" />
+  </Function>
+  <Function Name="sp_DoanhThu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Ngay" Type="date" Mode="In" />
+    <Parameter Name="KhoanTG" Type="nvarchar" Mode="In" />
+    <Parameter Name="TongTien" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_DSBaoCao" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_DSPhongHopTheoTinhTrang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TinhTrang" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_GiaHan" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MAPHIEU" Type="char" Mode="In" />
+    <Parameter Name="SoNgay" Type="int" Mode="In" />
+    <Parameter Name="ThoiHan" Type="date" Mode="In" />
+  </Function>
+  <Function Name="sp_LayThongTinNhanVien" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_ThemNhanVien" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MANV" Type="char" Mode="In" />
+    <Parameter Name="TenNV" Type="char" Mode="In" />
+    <Parameter Name="CHUCVU" Type="nvarchar" Mode="In" />
+    <Parameter Name="Email" Type="varchar" Mode="In" />
+    <Parameter Name="Matkhau" Type="char" Mode="In" />
+  </Function>
   <EntityContainer Name="Quan_Ly_Thu_VienModelStoreContainer">
     <EntitySet Name="BAOCAO" EntityType="Self.BAOCAO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BOITHUONG" EntityType="Self.BOITHUONG" Schema="dbo" store:Type="Tables" />
@@ -257,11 +297,11 @@
       <End Role="SACH" EntitySet="SACH" />
       <End Role="BOITHUONG" EntitySet="BOITHUONG" />
     </AssociationSet>
-    <AssociationSet Name="FK_CHITIET" Association="Self.FK_CHITIET">
+    <AssociationSet Name="FK_CHITIETPHIEUMUON_CHITIETPHIEUMUON1" Association="Self.FK_CHITIETPHIEUMUON_CHITIETPHIEUMUON1">
       <End Role="PHIEUMUONSACH" EntitySet="PHIEUMUONSACH" />
       <End Role="CHITIETPHIEUMUON" EntitySet="CHITIETPHIEUMUON" />
     </AssociationSet>
-    <AssociationSet Name="FK_CHITIET_2" Association="Self.FK_CHITIET_2">
+    <AssociationSet Name="FK_CHITIETPHIEUMUON_SACH" Association="Self.FK_CHITIETPHIEUMUON_SACH">
       <End Role="SACH" EntitySet="SACH" />
       <End Role="CHITIETPHIEUMUON" EntitySet="CHITIETPHIEUMUON" />
     </AssociationSet>

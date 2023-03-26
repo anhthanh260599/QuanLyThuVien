@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -46,10 +47,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
@@ -136,13 +137,18 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="Context\DauSachModel.cs" />
+    <Compile Include="Context\HomeModel.cs" />
     <Compile Include="Controllers\BaoCaoController.cs" />
+    <Compile Include="Controllers\BoiThuongController.cs" />
+    <Compile Include="Controllers\DangNhapController.cs" />
     <Compile Include="Controllers\DauSachController.cs" />
     <Compile Include="Controllers\DocGiaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NhanVienController.cs" />
     <Compile Include="Controllers\PhieuMuonController.cs" />
     <Compile Include="Controllers\SachController.cs" />
+    <Compile Include="Controllers\SweetController.cs" />
+    <Compile Include="Controllers\TrangChuController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -150,6 +156,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BOITHUONG.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CHITIETPHIEUMUON.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ChucNang.cs">
@@ -191,7 +200,12 @@
     <Compile Include="Models\SACH.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Test01.cs" />
+    <Compile Include="Models\sp_DSBaoCao_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_LayThongTinNhanVien_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\THAMSOQUYDINH.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -2099,15 +2113,67 @@
     <Content Include="Content\css\alt\adminlte.plugins.min.css" />
     <Content Include="Content\css\docs.css" />
     <Content Include="Content\css\highlighter.css" />
+    <Content Include="Content\dangnhap\login.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\css\dataTables.bootstrap.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\css\dataTables.bootstrap.min.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\css\dataTables.bootstrap4.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\css\dataTables.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\css\dataTables.bootstrap5.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\css\dataTables.bootstrap5.min.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\css\dataTables.bulma.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\css\dataTables.bulma.min.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\css\dataTables.dataTables.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\css\dataTables.dataTables.min.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\css\dataTables.foundation.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\css\dataTables.foundation.min.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\css\dataTables.jqueryui.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\css\dataTables.jqueryui.min.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\css\dataTables.semanticui.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\css\dataTables.semanticui.min.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\css\jquery.dataTables.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\css\jquery.dataTables.min.css" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\images\sort_asc.png" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\images\sort_asc_disabled.png" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\images\sort_both.png" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\images\sort_desc.png" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\images\sort_desc_disabled.png" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\js\dataTables.bootstrap.js" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\js\dataTables.bootstrap.min.js" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\js\dataTables.bootstrap4.js" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\js\dataTables.bootstrap4.min.js" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\js\dataTables.bootstrap5.js" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\js\dataTables.bootstrap5.min.js" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\js\dataTables.bulma.js" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\js\dataTables.bulma.min.js" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\js\dataTables.dataTables.js" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\js\dataTables.dataTables.min.js" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\js\dataTables.foundation.js" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\js\dataTables.foundation.min.js" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\js\dataTables.jqueryui.js" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\js\dataTables.jqueryui.min.js" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\js\dataTables.semanticui.js" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\js\dataTables.semanticui.min.js" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\js\jquery.dataTables.js" />
+    <Content Include="Content\DataTables\DataTables-1.13.4\js\jquery.dataTables.min.js" />
+    <Content Include="Content\DataTables\datatables.css" />
+    <Content Include="Content\DataTables\datatables.js" />
+    <Content Include="Content\DataTables\datatables.min.css" />
+    <Content Include="Content\DataTables\datatables.min.js" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\sweetalert\bootstrap-sweetalert.png" />
+    <Content Include="Content\sweetalert\docs.css" />
+    <Content Include="Content\sweetalert\sweet-alert.css" />
+    <Content Include="Content\sweetalert\thumbs-up.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\bg.jpg" />
+    <Content Include="images\img_avatar.png" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
       <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -2229,6 +2295,11 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\sweetalert\sweet-alert.less" />
+    <Content Include="Content\sweetalert\sweet-alert-combine.less" />
+    <Content Include="Content\sweetalert\sweet-alert-animations.less" />
+    <Content Include="Content\bootstrap\variables.less" />
+    <Content Include="Content\bootstrap\mixins.less" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />
     <Content Include="Scripts\ckeditor\build-config.js" />
@@ -2554,6 +2625,7 @@
     <Content Include="Scripts\js\jquery-2.0.0.min.js" />
     <Content Include="Scripts\js\script.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\sweetalert.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2592,9 +2664,21 @@
     <Content Include="Views\NhanVien\Delete.cshtml" />
     <Content Include="Views\NhanVien\Edit.cshtml" />
     <Content Include="Views\PhieuMuon\Index.cshtml" />
-    <Content Include="Views\PhieuMuon\Create.cshtml" />
     <Content Include="Views\BaoCao\Create.cshtml" />
     <Content Include="Views\BaoCao\Index.cshtml" />
+    <Content Include="Views\DangNhap\DangNhap.cshtml" />
+    <Content Include="Views\Shared\_LayoutLogin.cshtml" />
+    <Content Include="Views\PhieuMuon\Create.cshtml" />
+    <Content Include="Views\PhieuMuon\Details.cshtml" />
+    <Content Include="Views\PhieuMuon\Edit.cshtml" />
+    <Content Include="Views\PhieuMuon\Delete.cshtml" />
+    <Content Include="Views\TrangChu\Index.cshtml" />
+    <Content Include="Views\Sweet\Alert.cshtml" />
+    <Content Include="Views\BoiThuong\Create.cshtml" />
+    <Content Include="Views\BoiThuong\Delete.cshtml" />
+    <Content Include="Views\BoiThuong\Details.cshtml" />
+    <Content Include="Views\BoiThuong\Edit.cshtml" />
+    <Content Include="Views\BoiThuong\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2648,7 +2732,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

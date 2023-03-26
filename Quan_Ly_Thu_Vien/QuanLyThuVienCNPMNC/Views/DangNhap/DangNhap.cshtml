@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "DangNhap";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<style>
+     input[type =submit] {
+         margin-top: 20px;
+         border-radius: 15px;
+         width: 200px !important;
+     }
+
+</style>
+
+<div class="container" id="main">
+
+    <div class="quen-mk">
+        @using (Html.BeginForm())
+        {<h1>Xin Chàoooo ! </h1>
+            <div class="">
+                Chào mừng bạn đến với thư viện HUFLIT 
+            </div>         
+        }
+    </div>
+
+    <div class="dang-nhap">
+        @using (Html.BeginForm("DangNhap", "DangNhap"))
+        {<h1>PHẦN MỀN <br />QUẢN LÝ THƯ VIỆN</h1>
+            <div class="social-container">
+                <a href="#" class="social"><i class="fas fa-solid fa-address-card"></i></a>
+            </div>
+            <p><strong>Vui lòng sử dụng tài khoản Gmail do công ty cấp!</strong></p>
+            <input type="email" name="userLogin" placeholder="Nhập tài khoản Gmail" required>
+            <input type="password" name="passwordLogin" placeholder="Nhập mật khẩu" required>
+            <input type="submit" value="Đăng nhập" class="btn btn-primary" />
+        }
+    </div>
+
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-left">
+                <button class="fas fa-sign-in-alt" id="DangNhap"> Đăng nhập tài khoản</button>
+            </div>
+            <div class="overlay-right">
+                <button id="Quenmk">Về chúng tôiii  &#10084;</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>
+}

@@ -14,37 +14,20 @@ namespace QuanLyThuVienCNPMNC.Controllers
         // GET: BaoCao
         public object ListtoDataConverter { get; private set; }
         Quan_Ly_Thu_VienEntities databases = new Quan_Ly_Thu_VienEntities();
-        public ActionResult Index(string currentFilter, string SearchString, int? page)
+        public ActionResult Index()
         {
-            var lstProduct = new List<BAOCAO>();
-
-            // Phân trang
-            if (SearchString != null)
+            NHANVIEN nvSession = (NHANVIEN)Session["user"];
+            var count = databases.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && s.MaChucNang == "CN01");
+            if (count == 1)
             {
-                page = 1;
+                return View(databases.BAOCAOs.ToList());
+
             }
             else
             {
-                SearchString = currentFilter;
+                return View(databases.BAOCAOs.Where(s => s.MaNhanVien == nvSession.MaNV).ToList());
             }
-            if (!string.IsNullOrEmpty(SearchString))
-            {
-                // lấy ds sản phẩm theo từ khóa tìm kiếm
-                lstProduct = databases.BAOCAOs.Where(n => n.Ten.Contains(SearchString)).ToList();
-            }
-            else
-            {
-                // lấy tất cả sản phẩm trong bảng Product
-                lstProduct = databases.BAOCAOs.ToList();
-            }
-            ViewBag.CurrentFilter = SearchString;
-            // Số lượng item của 1 trang = 4
-            int pageSize = 5;
-            int pageNumber = (page ?? 1);
-            // sắp xếp theo id sản phẩm, sản phẩm mới lên đầu tiên
-            lstProduct = lstProduct.OrderByDescending(n => n.Id).ToList();
 
-            return View(lstProduct.ToPagedList(pageNumber, pageSize));
         }
 
         //Thêm 
@@ -56,15 +39,19 @@ namespace QuanLyThuVienCNPMNC.Controllers
 
         [ValidateInput(false)]
         [HttpPost]
-        public ActionResult Create(BAOCAO baocao)
+        public ActionResult Create( BAOCAO baocao)
         {
+            NHANVIEN nvSession = (NHANVIEN)Session["user"];
 
+            baocao.MaNhanVien = nvSession.MaNV;
+            baocao.Ten = nvSession.TenNV;
             if (ModelState.IsValid)
             {
                 try
                 {
                     databases.BAOCAOs.Add(baocao);
                     databases.SaveChanges();
+                    TempData["Message"] = "Them thanh cong !!!";
                     return RedirectToAction("Index");
                 }
                 catch
@@ -100,6 +87,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             BAOCAO item = databases.BAOCAOs.Find(id);
             databases.BAOCAOs.Remove(item);
             databases.SaveChanges();
+            TempData["Message"] = "Xoa thanh cong !!!";
             return RedirectToAction("Index");
         }
 
@@ -118,8 +106,8 @@ namespace QuanLyThuVienCNPMNC.Controllers
         {
             databases.Entry(objProduct).State = EntityState.Modified;
             databases.SaveChanges();
+            TempData["Message"] = "Chinh sua thanh cong !!!";
             return RedirectToAction("Index");
-
         }
     }
 }

@@ -17,21 +17,22 @@ namespace QuanLyThuVienCNPMNC.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public HOIVIEN()
         {
-            this.PHIEUMUONSACHes = new HashSet<PHIEUMUONSACH>();
             this.BOITHUONGs = new HashSet<BOITHUONG>();
+            this.PHIEUMUONSACHes = new HashSet<PHIEUMUONSACH>();
         }
     
         public string MaHV { get; set; }
         public string TenHV { get; set; }
         public string SDT { get; set; }
         public System.DateTime NgayLapThe { get; set; }
+        public System.DateTime NgayHetHan { get; set; }
         public string TinhTrang { get; set; }
         public int DangMuon { get; set; }
-        public System.DateTime NgayHetHan { get; set; }
+        public Nullable<int> TrangThai { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PHIEUMUONSACH> PHIEUMUONSACHes { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BOITHUONG> BOITHUONGs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PHIEUMUONSACH> PHIEUMUONSACHes { get; set; }
     }
 }

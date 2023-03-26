@@ -16,87 +16,132 @@ namespace QuanLyThuVienCNPMNC.Controllers
         public object ListtoDataConverter { get; private set; }
         Quan_Ly_Thu_VienEntities databases = new Quan_Ly_Thu_VienEntities();
         // GET: DocGia
-        public ActionResult Index(string currentFilter, string SearchString, int? page)
+        public ActionResult Index()
         {
-            var lstProduct = new List<HOIVIEN>();
-
-            // Phân trang
-            if (SearchString != null)
+            NHANVIEN nvSession = (NHANVIEN)Session["user"];
+            var count = databases.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && (s.MaChucNang == "CN01" || s.MaChucNang == "CN02"));
+            if (count == 0)
             {
-                page = 1;
+                TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
+                return RedirectToAction("Index", "TrangChu");
+
             }
             else
             {
-                SearchString = currentFilter;
+                return View(databases.HOIVIENs.ToList());
             }
-            if (!string.IsNullOrEmpty(SearchString))
-            {
-                // lấy ds sản phẩm theo từ khóa tìm kiếm
-                lstProduct = databases.HOIVIENs.Where(n => n.MaHV.Contains(SearchString)).ToList();
-            }
-            else
-            {
-                // lấy tất cả sản phẩm trong bảng Product
-                lstProduct = databases.HOIVIENs.ToList();
-            }
-            ViewBag.CurrentFilter = SearchString;
-            // Số lượng item của 1 trang = 4
-            int pageSize = 5;
-            int pageNumber = (page ?? 1);
 
-          
-
-            // sắp xếp theo id sản phẩm, sản phẩm mới lên đầu tiên
-            lstProduct = lstProduct.OrderByDescending(n => n.MaHV).ToList();
-
-            return View(lstProduct.ToPagedList(pageNumber, pageSize));
         }
+        //Tu tao key
+        public string CapNhatKey()
+        {
 
+            int newNumber = 1;
+            var list = databases.HOIVIENs.OrderByDescending(s => s.MaHV);
+            if (list == null)
+            {
+                newNumber = 1;
+            }
+            else
+            {
+                string convertNewNumber = "HVS" + newNumber.ToString("00");
+                while (databases.HOIVIENs.Any(p => p.MaHV == convertNewNumber))
+                {
+                    newNumber++;
+                    convertNewNumber = "HVS" + newNumber.ToString("00");
+                }
+            }
+            string newMaPms = "HVS" + newNumber.ToString("00");
+            return newMaPms;
+
+        }
         //Thêm 
         [HttpGet]
         public ActionResult Create()
         {
-            return View();
+            NHANVIEN nvSession = (NHANVIEN)Session["user"];
+            var count = databases.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && s.MaChucNang == "CN02");
+            if (count == 0)
+            {
+                TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
+                return RedirectToAction("Index", "TrangChu");
+
+            }
+            else
+            {
+                ViewBag.newkey = CapNhatKey();
+                return View();
+
+            }
         }
 
-        [ValidateInput(false)]
         [HttpPost]
         public ActionResult Create(HOIVIEN hoivien)
         {
-            
-            if (ModelState.IsValid)
-            {
+
                 try
                 {
+                    hoivien.MaHV = CapNhatKey();
+                    hoivien.DangMuon = 0;
                     databases.HOIVIENs.Add(hoivien);
                     databases.SaveChanges();
+
+                    using (var context1 = new Quan_Ly_Thu_VienEntities())
+                    {
+                        context1.sp_CapNhatTinhTrangTheHoiVien(hoivien.MaHV);
+                    }
+
+                    TempData["Message"] = "Them thanh cong !!!";
                     return RedirectToAction("Index");
                 }
                 catch
                 {
                     return View();
                 }
-            }
-            return View(hoivien);
+         
         }
 
         // Xem chi tiết
         [HttpGet]
         public ActionResult Details(string id)
         {
-            var objProduct = databases.HOIVIENs.Where(n => n.MaHV == id).FirstOrDefault();
-            return View(objProduct);
+            NHANVIEN nvSession = (NHANVIEN)Session["user"];
+            var count = databases.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && (s.MaChucNang == "CN01" || s.MaChucNang == "CN02"));
+            if (count == 0)
+            {
+                TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
+                return RedirectToAction("Index", "TrangChu");
+
+            }
+            else
+            {
+                var objProduct = databases.HOIVIENs.Where(n => n.MaHV == id).FirstOrDefault();
+                return View(objProduct);
+            }
+
         }
 
         [HttpGet]
         public ActionResult Delete(string id)
         {
-            HOIVIEN item = databases.HOIVIENs.Find(id);
-            if (item == null)
+            NHANVIEN nvSession = (NHANVIEN)Session["user"];
+            var count = databases.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && s.MaChucNang == "CN02");
+            if (count == 0)
             {
-                return HttpNotFound();
+                TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
+                return RedirectToAction("Index", "TrangChu");
+
             }
-            return View(item);
+            else
+            {
+                HOIVIEN item = databases.HOIVIENs.Find(id);
+                if (item == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(item);
+            }
+
         }
 
         [HttpPost, ActionName("Delete")]
@@ -106,6 +151,12 @@ namespace QuanLyThuVienCNPMNC.Controllers
             HOIVIEN item = databases.HOIVIENs.Find(id);
             databases.HOIVIENs.Remove(item);
             databases.SaveChanges();
+            using (var context1 = new Quan_Ly_Thu_VienEntities())
+            {
+                context1.sp_CapNhatSoLuongSachHoiVienMuon(id);
+            }
+
+            TempData["Message"] = "Xoa thanh cong !!!";
             return RedirectToAction("Index");
         }
 
@@ -113,19 +164,35 @@ namespace QuanLyThuVienCNPMNC.Controllers
         [HttpGet]
         public ActionResult Edit(string id)
         {
-           
-            var objProduct = databases.HOIVIENs.Where(n => n.MaHV == id).FirstOrDefault();
-            return View(objProduct);
+            NHANVIEN nvSession = (NHANVIEN)Session["user"];
+            var count = databases.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && s.MaChucNang == "CN02");
+            if (count == 0)
+            {
+                TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
+                return RedirectToAction("Index", "TrangChu");
+
+            }
+            else
+            {
+                var objProduct = databases.HOIVIENs.Where(n => n.MaHV == id).FirstOrDefault();
+                return View(objProduct);
+            }
+
         }
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Edit(HOIVIEN objProduct)
+        public ActionResult Edit(DateTime ngayhethan, HOIVIEN objProduct)
         {
+
             databases.Entry(objProduct).State = EntityState.Modified;
             databases.SaveChanges();
+            using (var context1 = new Quan_Ly_Thu_VienEntities())
+            {
+                context1.sp_CapNhatTinhTrangTheHoiVien(objProduct.MaHV);
+            }
+            TempData["Message"] = "Chinh sua thanh cong !!!";
             return RedirectToAction("Index");
-
         }
     }
 }

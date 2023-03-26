@@ -27,32 +27,21 @@
             @{
                 if (Model.TinhTrang == 1)
                 {
-                    @Html.Raw("Mới");
+                    @Html.Raw("Còn");
                 }
                 else if (Model.TinhTrang == 2)
                 {
-                    @Html.Raw("Đang sử dụng");
+                    @Html.Raw("Cho mượn");
                 }
                 else if (Model.TinhTrang == 3)
                 {
-                    @Html.Raw("Đang mượn");
+                    @Html.Raw("Mất");
                 }
                 else if (Model.TinhTrang == 4)
                 {
-                    @Html.Raw("Quá hạn");
+                    @Html.Raw("Hỏng");
                 }
-                else if (Model.TinhTrang == 5)
-                {
-                    @Html.Raw("Hư hỏng");
-                }
-                else if (Model.TinhTrang == 6)
-                {
-                    @Html.Raw("Cũ");
-                }
-                else if (Model.TinhTrang == 7)
-                {
-                    @Html.Raw("Thanh lý");
-                }
+               
             }
             @*@Html.DisplayFor(model => model.TinhTrang)*@
         </dd>
@@ -76,6 +65,28 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MaSach  }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MaSach }, new { @class = "btn btn-secondary" }) |
+    @Html.ActionLink("Trở về trang danh sách", "Index", null, new { @class = "btn btn-outline-dark" })
+
+
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.MaSach }) |
+    @Html.ActionLink("Back to List", "Index")*@
 </p>
+
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>
+}
+@if (TempData["Message"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@TempData["Message"]");
+            };
+    </script>
+}

@@ -1,0 +1,107 @@
+﻿@model QuanLyThuVienCNPMNC.Models.PHIEUMUONSACH
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Xóa</h2>
+
+<p class="alert alert-danger" role="alert"><strong>Bạn có chắc muốn xóa nội dung này?</strong></p>
+<div>
+    <h4>Phiếu mượn sách</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaPhieu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaPhieu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaHV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaHV)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayMuon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayMuon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayTra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayTra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThoiHan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThoiHan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoLuong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoLuong)
+        </dd>
+        <dt>
+            Tên sách
+        </dt>
+        @foreach (var item in ViewBag.danhsachSach)
+        {
+            <dd>
+                @item
+            </dd>
+        }
+
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-danger" onclick="return confirm('Bạn có chắc là muốn xóa chứ ??')"/>
+            @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-outline-dark" })
+        </div>
+
+        @*<div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" onclick="return confirm('Bạn có chắc là muốn xóa chứ ??')" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>*@
+    }
+</div>
+
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>
+}
+@if (TempData["Message"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@TempData["Message"]");
+            };
+    </script>
+}

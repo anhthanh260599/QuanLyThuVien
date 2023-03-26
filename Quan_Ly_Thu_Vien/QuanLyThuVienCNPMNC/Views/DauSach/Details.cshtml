@@ -5,10 +5,29 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>DAUSACH</h4>
+<style>
+    .test-css {
+        margin-top: 20px !important;
+        margin: auto;
+        padding: 10px 50px 50px 50px;
+        width: 500px;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 6px 4px 8px;
+    }
+
+    .test-css .dl-horizontal dt {
+        font-size: 20px;
+    }
+
+        .test-css .dl-horizontal dd {
+            font-size: 16px;
+        }
+</style>
+
+<div class="test-css">
+    <h2 style="text-align:center;">Chi tiết đầu sách</h2>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -52,11 +71,11 @@
         </dd>
 
         @*<dd>
-            @Html.DisplayFor(model => model.NgayXuatBan)
-        </dd>*@
+                @Html.DisplayFor(model => model.NgayXuatBan)
+            </dd>*@
 
         @*<span>Ngày xuất bản: @ViewBag.NgayXuatBan</span>
-        <input type="text" name="NgayXuatBan" value="@ViewBag.NgayXuatBan" />*@
+            <input type="text" name="NgayXuatBan" value="@ViewBag.NgayXuatBan" />*@
 
 
         <dt>
@@ -68,8 +87,30 @@
         </dd>
 
     </dl>
+
+    <p style="text-align:center; padding-top: 16px;">
+
+
+        @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MaDS }, new { @class = "btn btn-secondary" })
+        @Html.ActionLink("Trở về trang danh sách", "Index", null, new { @class = "btn btn-outline-dark" })
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new {  id = Model.MaDS }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>
+}
+@if (TempData["Message"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@TempData["Message"]");
+            };
+    </script>
+}

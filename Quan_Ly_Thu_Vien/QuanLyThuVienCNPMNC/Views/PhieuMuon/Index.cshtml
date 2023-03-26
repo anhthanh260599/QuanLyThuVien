@@ -1,273 +1,108 @@
-﻿@*@model IEnumerable<QuanLyThuVienCNPMNC.Models.PHIEUMUONSACH>*@
-@using PagedList;
-@using PagedList.Mvc;
-@model PagedList.IPagedList<QuanLyThuVienCNPMNC.Models.PHIEUMUONSACH>
+﻿@model IEnumerable<QuanLyThuVienCNPMNC.Models.PHIEUMUONSACH>
+@*@using PagedList;
+    @using PagedList.Mvc;
+    @model PagedList.IPagedList<QuanLyThuVienCNPMNC.Models.PHIEUMUONSACH>*@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<style>
-    .pagination {
-        display: inline-block;
-        padding-left: 0;
-        margin: 20px 0;
-        border-radius: 4px;
-    }
-
-        .pagination > li {
-            display: inline;
-        }
-
-            .pagination > li > a,
-            .pagination > li > span {
-                position: relative;
-                float: left;
-                padding: 6px 12px;
-                margin-left: -1px;
-                line-height: 1.428;
-                text-decoration: none;
-                background-color: #fff;
-                border: 1px solid #ddd;
-            }
-
-            .pagination > li:first-child > a,
-            .pagination > li:first-child > span {
-                margin-left: 0;
-                border-bottom-left-radius: 4px;
-                border-top-left-radius: 4px;
-            }
-
-            .pagination > li:last-child > a,
-            .pagination > li:last-child > span {
-                margin-left: 0;
-                border-bottom-right-radius: 4px;
-                border-top-right-radius: 4px;
-            }
-
-            .pagination > li > a:hover,
-            .pagination > li > span:hover,
-            .pagination > li > a:focus,
-            .pagination > li > span:focus,
-            {
-                background-color: #eee;
-            }
-
-        .pagination > .active > a,
-        .pagination > .active > span,
-        .pagination > .active > a:hover,
-        .pagination > .active > span:hover,
-        .pagination > .active > a:focus,
-        .pagination > .active > span:focus {
-            z-index: 2;
-            color: #fff;
-            cursor: default;
-            background-color: #428bca;
-            border-color: #428bca;
-        }
-
-        .pagination > .disabled > span,
-        .pagination > .disabled > a,
-        .pagination > .disabled > a:hover,
-        .pagination > .disabled > a:focus {
-            color: #999;
-            cursor: not-allowed;
-            background-color: #fff;
-            border-color: #ddd;
-        }
-
-    .pagination-lg > li > a,
-    .pagination-lg > li > span {
-        padding: 10px 16px;
-        font-size: 18px;
-    }
-
-    .pagination-lg > li:first-child > a,
-    .pagination-lg > li:first-child > span {
-        border-bottom-left-radius: 6px;
-        border-top-left-radius: 6px;
-    }
-
-    .pagination-lg > li:last-child > a,
-    .pagination-lg > li:last-child > span {
-        border-bottom-right-radius: 6px;
-        border-top-right-radius: 6px;
-    }
-
-    .pagination-sm > li > a,
-    .pagination-sm > li > span {
-        padding: 5px 10px;
-        font-size: 12px;
-    }
-
-    .pagination-sm > li:first-child > a,
-    .pagination-sm > li:first-child > span {
-        border-bottom-left-radius: 3px;
-        border-top-left-radius: 3px;
-    }
-
-    .pagination-sm > li:last-child > a,
-    .pagination-sm > li:last-child > span {
-        border-bottom-right-radius: 3px;
-        border-top-right-radius: 3px;
-    }
-
-    .pager {
-        padding-left: 0;
-        margin: 20px 0;
-        text-align: center;
-        list-style: none;
-    }
-
-        .pager:before,
-        .pager:after {
-            display: table;
-            content: " ";
-        }
-
-        .pager::after {
-            clear: both;
-        }
-
-        .pager li {
-            display: inline;
-        }
-
-            .pager li > a,
-            .pager li > span {
-                display: inline-block;
-                padding: 5px 14px;
-                background-color: #fff;
-                border: 1px solid #ddd;
-                border-radius: 15px;
-            }
-
-                .pager li > a:hover,
-                .pager li > span:hover {
-                    text-decoration: none;
-                    background-color: #eee;
-                }
-
-        .pager .next > a,
-        .pager .next > span {
-            float: right;
-        }
-
-        .pager .previous > a,
-        .pager .previous > span {
-            float: left;
-        }
-
-        .pager .disabled > a,
-        .pager .disabled > a:hover,
-        .pager .disabled > a:focus,
-        .pager .disabled > span {
-            color: #999;
-            cursor: not-allowed;
-            background-color: #fff;
-        }
-</style>
 
 
-<h2>Index</h2>
+<h2>Danh sách phiếu mượn</h2>
+<hr />
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href="@Url.Action("Create","PhieuMuon")" class="add-item">
+        <i class="fa-solid fa-plus add-icon"></i> Thêm
+    </a>
+
 </p>
 
-@*Tìm kiếm*@
-@using (Html.BeginForm("Index", "PHIEUMUON", FormMethod.Get))
-{
-    <p>
-        Tìm tên sản phẩm: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-        <input type="submit" value="Tìm kiếm" />
-    </p>
-}
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().MaPhieu)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().MaHV)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().NgayMuon)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().NgayTra)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().ThoiHan)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().SoLuong)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<table id="myTable" class="display">
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaPhieu)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaHV)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NgayMuonFormatted)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NgayTraFormatted)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ThoiHanFormatted)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SoLuong)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.MaPhieu }) |
-                @Html.ActionLink("Details", "Details", new { id = item.MaPhieu }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.MaPhieu })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().MaPhieu)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().MaHV)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().NgayMuon)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().NgayTra)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().ThoiHan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().SoLuong)
+            </th>
+            <th>
+                Hành động
+            </th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaPhieu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaHV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayMuon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayTra)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThoiHan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoLuong)
+                </td>
+                <td>
 
-    @if (ViewBag.TotalPages > 1)
-    {
-        <div class="pagination">
-            @if (ViewBag.CurrentPage > 1)
-            {
-                @Html.ActionLink("<<", "Index", new { page = 1 })
-                @Html.ActionLink("<", "Index", new { page = ViewBag.CurrentPage - 1 })
-            }
+                    @*@Html.ActionLink("Details", "Details", new { id = item.MaDS })*@
+                    <a href="@Url.Action("Details","PhieuMuon", new { maphieu = item.MaPhieu, mahoivien = item.MaHV })" class="action-item">
+                        <i class="fa-solid fa-book action-icon"></i>
+                    </a>
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.MaDS })*@
+                    <a href="@Url.Action("Edit","PhieuMuon", new { maphieu = item.MaPhieu, mahoivien = item.MaHV })" class="action-item">
+                        <i class="fa-solid fa-pen-to-square action-icon"></i>
+                    </a>
+                    <a href="@Url.Action("Delete","PhieuMuon",new { maphieu = item.MaPhieu, mahoivien = item.MaHV })" class="action-item">
+                        <i class="fa-solid fa-trash action-icon"></i>
+                    </a>
 
-            @for (int i = 1; i <= ViewBag.TotalPages; i++)
-            {
-                if (i == ViewBag.CurrentPage)
-                {
-                    <span>@i</span>
-                }
-                else
-                {
-                    @Html.ActionLink(i.ToString(), "Index", new { page = i })
-                }
-            }
-
-            @if (ViewBag.CurrentPage < ViewBag.TotalPages)
-            {
-                @Html.ActionLink(">", "Index", new { page = ViewBag.CurrentPage + 1 })
-                @Html.ActionLink(">>", "Index", new { page = ViewBag.TotalPages })
-            }
-        </div>
-    }
-
+                    @*@Html.ActionLink("Edit", "Edit", new { maphieu = item.MaPhieu, mahoivien = item.MaHV }) |
+                    @Html.ActionLink("Details", "Details", new { maphieu = item.MaPhieu }) |
+                    @Html.ActionLink("Delete", "Delete", new { maphieu = item.MaPhieu, mahoivien = item.MaHV })*@
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
 
-
-Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-
-@Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.CurrentFilter }))
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>
+}
+@if (TempData["Message"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@TempData["Message"]");
+            };
+    </script>
+}

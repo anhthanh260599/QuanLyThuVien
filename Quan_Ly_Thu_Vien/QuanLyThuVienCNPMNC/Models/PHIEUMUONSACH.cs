@@ -17,7 +17,7 @@ namespace QuanLyThuVienCNPMNC.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PHIEUMUONSACH()
         {
-            this.SACHes = new HashSet<SACH>();
+            this.CHITIETPHIEUMUONs = new HashSet<CHITIETPHIEUMUON>();
         }
     
         public string MaPhieu { get; set; }
@@ -27,8 +27,8 @@ namespace QuanLyThuVienCNPMNC.Models
         public System.DateTime ThoiHan { get; set; }
         public int SoLuong { get; set; }
     
-        public virtual HOIVIEN HOIVIEN { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SACH> SACHes { get; set; }
+        public virtual ICollection<CHITIETPHIEUMUON> CHITIETPHIEUMUONs { get; set; }
+        public virtual HOIVIEN HOIVIEN { get; set; }
     }
 }

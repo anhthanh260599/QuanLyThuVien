@@ -4,10 +4,47 @@
     ViewBag.Title = "Delete";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script type="text/javascript">
+    function confirmDelete(id) {
+        Swal.fire({
+            title: 'Bạn có chắc muốn xóa không?',
+            text: "Bạn sẽ không thể khôi phục dữ liệu này sau khi xóa!",
+            icon: 'warning',
+            showCancelButton: true,
+            closeOnConfirm: false,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Xóa',
+            cancelButtonText: 'Hủy bỏ'
+        },
+            function () {
+                $.ajax({
+                    url: "/DauSach/DeleteConfirmed/",
+                    data: { "id": id },
+                    type: "POST"
+                })
+                    .done(function (data) {
+                        sweetAlert
+                            ({
+                                title: "Đã xóa",
+                                text: "Dữ liệu của bạn đã được xóa",
+                                icon: "success"
+                            },
+                                function () {
+                                    window.location.href = "/DauSach/Index"
+                                });
+                    })
+                    .error(function (data) {
+                        swal("Oops", "Không thể kết nối tới máy chủ", "error");
+                    })
+            }
+        )
+    }
+</script>
 
 <h2>Xóa</h2>
 
-<h3 style="color:red;">Are you sure you want to delete this?</h3>
+<p class="alert alert-danger" role="alert"><strong>Bạn có chắc muốn xóa nội dung này?</strong></p>
 <div>
     <h4>Đầu sách</h4>
     <hr />
@@ -54,12 +91,16 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @*<input id="Delete" onclick="confirmDelete('@Model.MaDS')" type="submit" value="Xóa" class="btn btn-danger" />*@
+
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Trở lại", "Index")
+            <input type="submit" value="Xóa" class="btn btn-danger" />
+            @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-outline-dark" })
         </div>
     }
 </div>
+
