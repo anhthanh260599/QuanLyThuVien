@@ -32,6 +32,32 @@ namespace QuanLyThuVienCNPMNC.Controllers
             }
 
         }
+
+        void LoadData()
+        {
+
+            Common objCommon = new Common();
+            // Lấy dữ liệu danh mục dưới DB, Parse (từ kiểu int sang kiểu chuỗi) (xem class Common)
+            // Convert sang select list dạng value, text
+            ListtoDataTableConverter converter = new ListtoDataTableConverter();
+
+            //Loại sản phẩm (code cứng)
+            List<TinhTrang> lstProductType = new List<TinhTrang>();
+
+            TinhTrang objProductType = new TinhTrang();
+            objProductType.Id = 1;
+            objProductType.Name = "Khóa";
+            lstProductType.Add(objProductType);
+
+            objProductType = new TinhTrang();
+            objProductType.Id = 2;
+            objProductType.Name = "Bình thường";
+            lstProductType.Add(objProductType);
+
+            DataTable dtProductType = converter.ToDataTable(lstProductType);
+            ViewBag.TinhTrang = objCommon.ToSelectList(dtProductType, "Id", "Name");
+        }
+
         //Tu tao key
         public string CapNhatKey()
         {
@@ -174,7 +200,10 @@ namespace QuanLyThuVienCNPMNC.Controllers
             }
             else
             {
+                this.LoadData();
                 var objProduct = databases.HOIVIENs.Where(n => n.MaHV == id).FirstOrDefault();
+                
+
                 return View(objProduct);
             }
 

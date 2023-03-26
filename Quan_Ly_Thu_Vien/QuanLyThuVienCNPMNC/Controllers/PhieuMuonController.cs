@@ -88,7 +88,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
                 
                 // Nếu tình trạng = 1 (Còn) thì mới được cho phép mượn, còn lại thì không
                 ViewBag.sachdrop = databases.SACHes.Where(s => s.TinhTrang == 1).Select(x => new SelectListItem { Text = x.DAUSACH.TenSach, Value = x.MaSach.ToString() }).ToList();
-                ViewBag.mahoivien = databases.HOIVIENs.Select(x => new SelectListItem { Text = x.TenHV, Value = x.MaHV.ToString() }).ToList();
+                ViewBag.mahoivien = databases.HOIVIENs.Where(s=>s.TinhTrang == "Sử dụng được").Select(x => new SelectListItem { Text = x.TenHV, Value = x.MaHV.ToString() }).ToList();
                 ViewBag.newkey = CapNhatKey();
                 return View();
             }
