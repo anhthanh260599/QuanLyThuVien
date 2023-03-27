@@ -55,7 +55,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             lstProductType.Add(objProductType);
 
             DataTable dtProductType = converter.ToDataTable(lstProductType);
-            ViewBag.TinhTrang = objCommon.ToSelectList(dtProductType, "Id", "Name");
+            ViewBag.TrangThai = objCommon.ToSelectList(dtProductType, "Id", "Name");
         }
 
         //Tu tao key

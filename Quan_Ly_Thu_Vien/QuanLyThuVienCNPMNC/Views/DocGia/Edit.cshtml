@@ -64,10 +64,10 @@
 
 
     <div class="form-group">
-        @Html.LabelFor(model => model.TinhTrang, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.TrangThai, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownListFor(model => model.TinhTrang, ViewBag.TinhTrang as SelectList, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.TinhTrang, "", new { @class = "text-danger" })
+            @Html.DropDownListFor(model => model.TrangThai, ViewBag.TrangThai as SelectList, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.TrangThai, "", new { @class = "text-danger" })
         </div>
     </div>
 

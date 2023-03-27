@@ -56,7 +56,7 @@
 
         <dd>
             @{
-                var tinhTrang = Model.NgayHetHan < DateTime.Today ? "Hết hạn" : "Còn hạn";
+                var tinhTrang = Model.NgayHetHan < DateTime.Today ? "Không sử dụng" : "Sử dụng được";
                 @tinhTrang
 
             }
@@ -72,7 +72,26 @@
             @Html.DisplayFor(model => model.DangMuon)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.TrangThai)
+        </dt>
 
+        <dd>
+            @{
+                if (Model.TrangThai == 1)
+                {
+                    @Html.Raw("Khóa");
+                }
+                else if (Model.TrangThai == 2)
+                {
+                    @Html.Raw("Bình thường");
+                }
+                else if (Model.TrangThai == null)
+                {
+                    @Html.Raw("Bình thường");
+                }
+            }
+        </dd>
 
 
 

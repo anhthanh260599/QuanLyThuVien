@@ -27,7 +27,6 @@
         <AssociationConnector Association="Quan_Ly_Thu_VienModel.FK_SACH" ManuallyRouted="false" />
         <AssociationConnector Association="Quan_Ly_Thu_VienModel.FK_PHIEUMUONSACH" ManuallyRouted="false" />
         <AssociationConnector Association="Quan_Ly_Thu_VienModel.FK_PhanQuyen_NHANVIEN" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="Quan_Ly_Thu_VienModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

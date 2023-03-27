@@ -104,12 +104,17 @@
                     {
                         <text> Khóa </text>
                     }
-                    else
+                    else if (item.TrangThai == 2)
                     {
-                        <text>  </text>
+                        <text> Bình thường </text>
 
                     }
+                    else if (item.TinhTrang == null)
+                    {
+                        <text> Bình thường </text>
+                    }
                 </td>
+              
                 <td>
                     @*@Html.ActionLink("Details", "Details", new { id = item.MaDS })*@
                     <a href="@Url.Action("Details","DocGia", new {id = item.MaHV})" class="action-item">

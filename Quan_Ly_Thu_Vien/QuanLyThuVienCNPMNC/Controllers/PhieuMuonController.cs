@@ -89,7 +89,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
                 // Nếu tình trạng = 1 (Còn) thì mới được cho phép mượn, còn lại thì không
                 ViewBag.sachdrop = databases.SACHes.Where(s => (s.TinhTrang == 1)).Select(x => new SelectListItem { Text = x.DAUSACH.TenSach, Value = x.MaSach.ToString() }).ToList();
 
-                ViewBag.mahoivien = databases.HOIVIENs.Where(s=>s.TinhTrang == "Sử dụng được").Select(x => new SelectListItem { Text = x.TenHV, Value = x.MaHV.ToString() }).ToList();
+                ViewBag.mahoivien = databases.HOIVIENs.Where(s=>(s.TinhTrang == "Sử dụng được") && (s.DangMuon == 0)).Select(x => new SelectListItem { Text = x.TenHV, Value = x.MaHV.ToString() }).ToList();
                 ViewBag.newkey = CapNhatKey();
                 return View();
             }
@@ -100,7 +100,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
         public ActionResult Create(string[] masach, string mahoivien, DateTime ngaymuon, int soluong)
         {
             //fix loi null dropdown list
-            ViewBag.mahoivien = databases.HOIVIENs.Where(s=> s.TinhTrang == "Sử dụng được").Select(x => new SelectListItem { Text = x.TenHV, Value = x.MaHV.ToString() }).ToList();
+            ViewBag.mahoivien = databases.HOIVIENs.Where(s=> (s.TinhTrang == "Sử dụng được") && (s.DangMuon == 0)).Select(x => new SelectListItem { Text = x.TenHV, Value = x.MaHV.ToString() }).ToList();
             //ViewBag.sachdrop = databases.SACHes.Select(x => new SelectListItem { Text = x.DAUSACH.TenSach, Value = x.MaSach.ToString() }).ToList();
             ViewBag.sachdrop = databases.SACHes.Where(s => (s.TinhTrang == 1)  ).Select(x => new SelectListItem { Text = x.DAUSACH.TenSach, Value = x.MaSach.ToString() }).ToList();
 
@@ -153,7 +153,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
                     //Gọi strore procedure phải gọi sau savechange
                     for (int i = 0;i < soluong; i++)
                     {
-                        context1.sp_CapNhatTinhTrangSach(listCTPM[i].MaPhieu, masach[i]);
+                        context1.CapNhatTinhTrangSach(listCTPM[i].MaPhieu, masach[i]);
                     }
                     context1.sp_CapNhatSoLuongSachHoiVienMuon(mahoivien);
                     TempData["Message"] = "Them thanh cong !!!";
