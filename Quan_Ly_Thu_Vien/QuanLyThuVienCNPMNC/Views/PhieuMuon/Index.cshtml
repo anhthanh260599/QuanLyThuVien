@@ -26,7 +26,7 @@
                 @Html.DisplayNameFor(model => model.FirstOrDefault().MaPhieu)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().MaHV)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().HOIVIEN.TenHV)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().NgayMuon)
@@ -53,16 +53,16 @@
                     @Html.DisplayFor(modelItem => item.MaPhieu)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.MaHV)
+                    @Html.DisplayFor(modelItem => item.HOIVIEN.TenHV)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NgayMuon)
+                    @Html.DisplayFor(modelItem => item.NgayMuonFormatted)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NgayTra)
+                    @Html.DisplayFor(modelItem => item.NgayTraFormatted)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ThoiHan)
+                    @Html.DisplayFor(modelItem => item.ThoiHanFormatted)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.SoLuong)
@@ -82,8 +82,8 @@
                     </a>
 
                     @*@Html.ActionLink("Edit", "Edit", new { maphieu = item.MaPhieu, mahoivien = item.MaHV }) |
-                    @Html.ActionLink("Details", "Details", new { maphieu = item.MaPhieu }) |
-                    @Html.ActionLink("Delete", "Delete", new { maphieu = item.MaPhieu, mahoivien = item.MaHV })*@
+                        @Html.ActionLink("Details", "Details", new { maphieu = item.MaPhieu }) |
+                        @Html.ActionLink("Delete", "Delete", new { maphieu = item.MaPhieu, mahoivien = item.MaHV })*@
                 </td>
             </tr>
         }
@@ -93,16 +93,26 @@
 @if (ViewBag.Message != null)
 {
     <script type="text/javascript">
-            window.onload = function () {
-                alert("@ViewBag.Message");
-            };
+               document.addEventListener('DOMContentLoaded', function () {
+                    Swal.fire({
+                    title: 'Thành công',
+                    text: '@ViewBag.Message',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                    });
+                    });
     </script>
 }
 @if (TempData["Message"] != null)
 {
     <script type="text/javascript">
-            window.onload = function () {
-                alert("@TempData["Message"]");
-            };
+               document.addEventListener('DOMContentLoaded', function () {
+                Swal.fire({
+                title: 'Thành công',
+                text: '@TempData["Message"]',
+                icon: 'success',
+                confirmButtonText: 'OK'
+                });
+                });
     </script>
 }

@@ -207,12 +207,19 @@ namespace QuanLyThuVienCNPMNC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            DAUSACH item = databases.DAUSACHes.Find(id);
-            databases.DAUSACHes.Remove(item);
-            databases.SaveChanges();
-            TempData["Message"] = "Xoa thanh cong";
-            return RedirectToAction("Index");
-
+            try
+            {
+                DAUSACH item = databases.DAUSACHes.Find(id);
+                databases.DAUSACHes.Remove(item);
+                databases.SaveChanges();
+                TempData["Message"] = "Xoa thanh cong";
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                TempData["Error"] = "Khong the xoa, do da ton tai sach thuoc dau sach nay";
+                return RedirectToAction("Index");
+            }
         }
 
         //Chỉnh sửa sản phẩm

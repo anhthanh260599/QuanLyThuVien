@@ -520,6 +520,8 @@ E:\BTnam3\CongNghePhanMem-NC\DeAnGithub\QuanLyThuVien\Quan_Ly_Thu_Vien\QuanLyThu
 E:\BTnam3\CongNghePhanMem-NC\DeAnGithub\QuanLyThuVien\Quan_Ly_Thu_Vien\QuanLyThuVienCNPMNC\obj\Debug\QuanLyThuVienCNPMNC.csproj.CopyComplete
 E:\BTnam3\CongNghePhanMem-NC\DeAnGithub\QuanLyThuVien\Quan_Ly_Thu_Vien\QuanLyThuVienCNPMNC\obj\Debug\QuanLyThuVienCNPMNC.dll
 E:\BTnam3\CongNghePhanMem-NC\DeAnGithub\QuanLyThuVien\Quan_Ly_Thu_Vien\QuanLyThuVienCNPMNC\obj\Debug\QuanLyThuVienCNPMNC.pdb
+D:\CNPMNC\QuanLyThuVien\Quan_Ly_Thu_Vien\QuanLyThuVienCNPMNC\bin\EntityFramework.dll
+D:\CNPMNC\QuanLyThuVien\Quan_Ly_Thu_Vien\QuanLyThuVienCNPMNC\bin\EntityFramework.xml
 D:\CNPMNC\QuanLyThuVien\Quan_Ly_Thu_Vien\QuanLyThuVienCNPMNC\bin\QuanLyThuVienCNPMNC.dll.config
 D:\CNPMNC\QuanLyThuVien\Quan_Ly_Thu_Vien\QuanLyThuVienCNPMNC\bin\QuanLyThuVienCNPMNC.dll
 D:\CNPMNC\QuanLyThuVien\Quan_Ly_Thu_Vien\QuanLyThuVienCNPMNC\bin\QuanLyThuVienCNPMNC.pdb
@@ -573,7 +575,6 @@ D:\CNPMNC\QuanLyThuVien\Quan_Ly_Thu_Vien\QuanLyThuVienCNPMNC\bin\roslyn\vbc.rsp
 D:\CNPMNC\QuanLyThuVien\Quan_Ly_Thu_Vien\QuanLyThuVienCNPMNC\bin\roslyn\VBCSCompiler.exe
 D:\CNPMNC\QuanLyThuVien\Quan_Ly_Thu_Vien\QuanLyThuVienCNPMNC\bin\roslyn\VBCSCompiler.exe.config
 D:\CNPMNC\QuanLyThuVien\Quan_Ly_Thu_Vien\QuanLyThuVienCNPMNC\bin\Antlr3.Runtime.dll
-D:\CNPMNC\QuanLyThuVien\Quan_Ly_Thu_Vien\QuanLyThuVienCNPMNC\bin\EntityFramework.dll
 D:\CNPMNC\QuanLyThuVien\Quan_Ly_Thu_Vien\QuanLyThuVienCNPMNC\bin\EntityFramework.SqlServer.dll
 D:\CNPMNC\QuanLyThuVien\Quan_Ly_Thu_Vien\QuanLyThuVienCNPMNC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 D:\CNPMNC\QuanLyThuVien\Quan_Ly_Thu_Vien\QuanLyThuVienCNPMNC\bin\Microsoft.Web.Infrastructure.dll
@@ -588,7 +589,6 @@ D:\CNPMNC\QuanLyThuVien\Quan_Ly_Thu_Vien\QuanLyThuVienCNPMNC\bin\System.Web.WebP
 D:\CNPMNC\QuanLyThuVien\Quan_Ly_Thu_Vien\QuanLyThuVienCNPMNC\bin\System.Web.WebPages.dll
 D:\CNPMNC\QuanLyThuVien\Quan_Ly_Thu_Vien\QuanLyThuVienCNPMNC\bin\System.Web.WebPages.Razor.dll
 D:\CNPMNC\QuanLyThuVien\Quan_Ly_Thu_Vien\QuanLyThuVienCNPMNC\bin\WebGrease.dll
-D:\CNPMNC\QuanLyThuVien\Quan_Ly_Thu_Vien\QuanLyThuVienCNPMNC\bin\EntityFramework.xml
 D:\CNPMNC\QuanLyThuVien\Quan_Ly_Thu_Vien\QuanLyThuVienCNPMNC\bin\EntityFramework.SqlServer.xml
 D:\CNPMNC\QuanLyThuVien\Quan_Ly_Thu_Vien\QuanLyThuVienCNPMNC\bin\PagedList.xml
 D:\CNPMNC\QuanLyThuVien\Quan_Ly_Thu_Vien\QuanLyThuVienCNPMNC\bin\PagedList.Mvc.xml

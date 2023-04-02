@@ -10,9 +10,8 @@
 <style>
     .tinhtrang__hethan,
     .tinhtrang__conhan {
-        
         border-radius: 6px;
-        
+        font-size: 16px;
     }
 
     .tinhtrang__hethan {
@@ -49,9 +48,6 @@
                 Ngày lập thẻ
             </th>
             <th>
-                Ngày hết hạn
-            </th>
-            <th>
                 Tình Trạng
             </th>
             <th>
@@ -79,24 +75,22 @@
                     @Html.DisplayFor(modelItem => item.SDT)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NgayLapThe)
+                    @Html.DisplayFor(modelItem => item.NgayLapTheFormatted)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NgayHetHan)
-                </td>
+
                 <td style="">
-                   
+
                     @if (item.TinhTrang == "Không sử dụng")
                     {
-                        <span class="bg-gradient-danger tinhtrang__hethan">@Html.DisplayFor(modelItem => item.TinhTrang)</span>
+                        <div class="bg-gradient-danger tinhtrang__hethan text-center">@Html.DisplayFor(modelItem => item.TinhTrang)</div>
                     }
                     else
                     {
-                        <span  class="bg-gradient-success tinhtrang__conhan">@Html.DisplayFor(modelItem => item.TinhTrang)</span>
+                        <div class="bg-gradient-success tinhtrang__conhan text-center">@Html.DisplayFor(modelItem => item.TinhTrang)</div>
                     }
 
                 </td>
-                <td>
+                <td class="pl-4">
                     @Html.DisplayFor(modelItem => item.DangMuon) Cuốn
                 </td>
                 <td>
@@ -114,7 +108,7 @@
                         <text> Bình thường </text>
                     }
                 </td>
-              
+
                 <td>
                     @*@Html.ActionLink("Details", "Details", new { id = item.MaDS })*@
                     <a href="@Url.Action("Details","DocGia", new {id = item.MaHV})" class="action-item">
@@ -136,16 +130,26 @@
 @if (ViewBag.Message != null)
 {
     <script type="text/javascript">
-            window.onload = function () {
-                alert("@ViewBag.Message");
-            };
+               document.addEventListener('DOMContentLoaded', function () {
+                    Swal.fire({
+                    title: 'Thành công',
+                    text: '@ViewBag.Message',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                    });
+                    });
     </script>
 }
 @if (TempData["Message"] != null)
 {
     <script type="text/javascript">
-            window.onload = function () {
-                alert("@TempData["Message"]");
-            };
+               document.addEventListener('DOMContentLoaded', function () {
+                Swal.fire({
+                title: 'Thành công',
+                text: '@TempData["Message"]',
+                icon: 'success',
+                confirmButtonText: 'OK'
+                });
+                });
     </script>
 }

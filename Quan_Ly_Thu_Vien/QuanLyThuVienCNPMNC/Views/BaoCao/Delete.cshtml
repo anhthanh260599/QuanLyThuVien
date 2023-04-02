@@ -28,6 +28,13 @@
             @Html.Raw(Model.Description)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayLapBaoCaoFormatted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayLapBaoCaoFormatted)
+        </dd>
     </dl>
 
     @using (Html.BeginForm())

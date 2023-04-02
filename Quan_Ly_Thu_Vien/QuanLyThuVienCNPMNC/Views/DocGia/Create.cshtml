@@ -5,6 +5,41 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script type="text/javascript">
+    function validateData() {
+
+        if ($("#TenHV").val() == "") {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Vui lòng nhập tên hội viên'
+            });
+            return false;
+        } else if ($("#SDT").val() == "") {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Vui lòng nhập số điện thoại'
+            });
+            return false;
+        } else if ($("#NgayLapThe").val() == "") {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Vui lòng chọn ngày lập thẻ'
+            });
+            return false;
+        }
+        else if ($("#NgayHetHan").val() == "") {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Vui lòng chọn ngày hết hạn'
+            });
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+</script>
+
 <h2>Thêm hội viên</h2>
 
 @using (Html.BeginForm())
@@ -18,7 +53,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.MaHV, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10 text-bold">
-               @ViewBag.newkey
+                @ViewBag.newkey
             </div>
         </div>
 
@@ -75,7 +110,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Thêm mới" class="btn" style="background-color: #210cae; color:#fff;" />
+                <input type="submit" value="Thêm mới" class="btn" style="background-color: #210cae; color:#fff;" onclick="return validateData()" />
             </div>
         </div>
     </div>
@@ -84,21 +119,3 @@
 <div>
     @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-outline-dark" })
 </div>
-
-
-@if (ViewBag.Message != null)
-{
-    <script type="text/javascript">
-            window.onload = function () {
-                alert("@ViewBag.Message");
-            };
-    </script>
-}
-@if (TempData["Message"] != null)
-{
-    <script type="text/javascript">
-            window.onload = function () {
-                alert("@TempData["Message"]");
-            };
-    </script>
-}

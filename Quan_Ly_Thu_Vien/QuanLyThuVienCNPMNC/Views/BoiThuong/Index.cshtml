@@ -5,13 +5,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SACH.MaSach)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.HOIVIEN.TenHV)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.GiaTien)
         </th>
@@ -19,16 +24,19 @@
             @Html.DisplayNameFor(model => model.TinhTrang)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.HOIVIEN.TenHV)
+            Hành động
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SACH.MaDS)
-        </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.SACH.MaDS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HOIVIEN.TenHV)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.GiaTien)
         </td>
@@ -36,15 +44,9 @@
             @Html.DisplayFor(modelItem => item.TinhTrang)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.HOIVIEN.TenHV)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SACH.MaDS)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "Edit", new { id = item.MaHV, id1 = item.MaSach }) |
+            @Html.ActionLink("Details", "Details", new { id = item.MaHV, id1 = item.MaSach }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.MaHV, id1 = item.MaSach })
         </td>
     </tr>
 }

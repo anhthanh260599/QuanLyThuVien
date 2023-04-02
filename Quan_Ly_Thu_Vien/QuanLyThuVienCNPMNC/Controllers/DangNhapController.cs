@@ -54,7 +54,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             }
             else
             {
-                ViewBag.Message = string.Format("Tài khoản hoặc mật khẩu không đúng");
+                ViewBag.Message = string.Format("Tai khoan hoac mat khau khong dung");
                 return View();
             }
         }

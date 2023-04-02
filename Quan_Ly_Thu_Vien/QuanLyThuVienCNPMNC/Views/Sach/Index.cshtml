@@ -59,7 +59,7 @@
                         <text> Hỏng </text>
                     }
 
-                 
+
 
 
                     @*@Html.DisplayFor(modelItem => item.TinhTrang)*@
@@ -91,16 +91,39 @@
 @if (ViewBag.Message != null)
 {
     <script type="text/javascript">
-            window.onload = function () {
-                alert("@ViewBag.Message");
-            };
+               document.addEventListener('DOMContentLoaded', function () {
+                    Swal.fire({
+                    title: 'Thành công',
+                    text: '@ViewBag.Message',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                    });
+                    });
     </script>
 }
 @if (TempData["Message"] != null)
 {
     <script type="text/javascript">
-            window.onload = function () {
-                alert("@TempData["Message"]");
-            };
+               document.addEventListener('DOMContentLoaded', function () {
+                Swal.fire({
+                title: 'Thành công',
+                text: '@TempData["Message"]',
+                icon: 'success',
+                confirmButtonText: 'OK'
+                });
+                });
+    </script>
+}
+@if (TempData["Error"] != null)
+{
+    <script type="text/javascript">
+               document.addEventListener('DOMContentLoaded', function () {
+                Swal.fire({
+                title: 'Thất bại',
+                text: '@TempData["Error"]',
+                    icon: 'error',
+                confirmButtonText: 'OK'
+                });
+                });
     </script>
 }

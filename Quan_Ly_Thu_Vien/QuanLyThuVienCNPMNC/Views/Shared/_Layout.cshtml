@@ -285,7 +285,11 @@
                                                 new { Text = "Sách",Icon = "fa-book", Controller = "Sach", Action = "Index", Roles = new[] { "Hiệu trưởng", "Thủ thư", "Nhân viên quản lý" } },
                                                 new { Text = "Độc giả",Icon = "fa-user", Controller = "DocGia", Action = "Index", Roles = new[] { "Hiệu trưởng", "Thủ thư", "Nhân viên hỗ trợ" } },
                                                 new { Text = "Quản lý mượn trả",Icon = "fa-file-lines", Controller = "PhieuMuon", Action = "Index", Roles = new[] { "Hiệu trưởng", "Nhân viên quản lý" } },
-                                                new { Text = "Báo cáo",Icon = "fa-newspaper", Controller = "BaoCao", Action = "Index", Roles = new[] { "Hiệu trưởng", "Thủ thư" } },
+                                                new { Text = "Báo cáo",Icon = "fa-newspaper", Controller = "BaoCao", Action = "Index", Roles = new[] { "Hiệu trưởng", "Thủ thư","Nhân viên quản lý", "Nhân viên hỗ trợ" } },
+                                                new { Text = "Bồi thường",Icon = "fa-money-bill", Controller = "BoiThuong", Action = "Index", Roles = new[] { "Hiệu trưởng", "Nhân viên hỗ trợ" } },
+
+                                                new { Text = "Cập nhật thông tin",Icon = "fa-user-pen", Controller = "ThongTinCaNhan", Action = "Index", Roles = new[] { $"{user.ChucVu}" } },
+
                                                 new { Text = "Quản lý nhân viên",Icon = "fa-users", Controller = "NhanVien", Action = "Index", Roles = new[] { "Hiệu trưởng", "Quản trị web" } },
 
                                 };

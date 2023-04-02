@@ -38,7 +38,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             else
             {
 
-                return View(databases.PHIEUMUONSACHes.ToList());
+                return View(databases.PHIEUMUONSACHes.ToList().OrderByDescending(s => s.NgayMuonFormatted));
             }
 
         }
@@ -87,9 +87,8 @@ namespace QuanLyThuVienCNPMNC.Controllers
                 //ViewBag.sachdrop = databases.SACHes.Select(x => new SelectListItem { Text = x.DAUSACH.TenSach, Value = x.MaSach.ToString() }).ToList();
 
                 // Nếu tình trạng = 1 (Còn) thì mới được cho phép mượn, còn lại thì không
-                ViewBag.sachdrop = databases.SACHes.Where(s => (s.TinhTrang == 1)).Select(x => new SelectListItem { Text = x.DAUSACH.TenSach, Value = x.MaSach.ToString() }).ToList();
-
-                ViewBag.mahoivien = databases.HOIVIENs.Where(s=>(s.TinhTrang == "Sử dụng được") && (s.DangMuon == 0)).Select(x => new SelectListItem { Text = x.TenHV, Value = x.MaHV.ToString() }).ToList();
+                ViewBag.sachdrop = databases.SACHes.Where(s => (s.TinhTrang == 1)).Select(x => new SelectListItem { Text = x.MaSach + " - " + x.DAUSACH.TenSach, Value = x.MaSach.ToString() }).ToList();
+                ViewBag.mahoivien = databases.HOIVIENs.Where(s => (s.TinhTrang == "Sử dụng được") && (s.DangMuon == 0)).Select(x => new SelectListItem { Text = x.MaHV + " - " + x.TenHV , Value = x.MaHV.ToString() }).ToList();
                 ViewBag.newkey = CapNhatKey();
                 return View();
             }
@@ -100,9 +99,10 @@ namespace QuanLyThuVienCNPMNC.Controllers
         public ActionResult Create(string[] masach, string mahoivien, DateTime ngaymuon, int soluong)
         {
             //fix loi null dropdown list
-            ViewBag.mahoivien = databases.HOIVIENs.Where(s=> (s.TinhTrang == "Sử dụng được") && (s.DangMuon == 0)).Select(x => new SelectListItem { Text = x.TenHV, Value = x.MaHV.ToString() }).ToList();
+            ViewBag.mahoivien = databases.HOIVIENs.Where(s => (s.TinhTrang == "Sử dụng được") && (s.DangMuon == 0)).Select(x => new SelectListItem { Text = x.MaHV + " - " + x.TenHV, Value = x.MaHV.ToString() }).ToList();
+
             //ViewBag.sachdrop = databases.SACHes.Select(x => new SelectListItem { Text = x.DAUSACH.TenSach, Value = x.MaSach.ToString() }).ToList();
-            ViewBag.sachdrop = databases.SACHes.Where(s => (s.TinhTrang == 1)  ).Select(x => new SelectListItem { Text = x.DAUSACH.TenSach, Value = x.MaSach.ToString() }).ToList();
+            ViewBag.sachdrop = databases.SACHes.Where(s => (s.TinhTrang == 1)  ).Select(x => new SelectListItem { Text = x.MaSach + " - " + x.DAUSACH.TenSach, Value = x.MaSach.ToString() }).ToList();
 
             //Kiem tra trong phieu muon hien tai co muon sach nay chua
             /*            int demPMS = databases.PHIEUMUONSACHes.Count(s => s.MaPhieu.ToLower() == maphieumuon.ToLower());
@@ -200,10 +200,11 @@ namespace QuanLyThuVienCNPMNC.Controllers
             return View(databases.PHIEUMUONSACHes.Where(s => s.MaPhieu == maphieu && s.MaHV == mahoivien).FirstOrDefault());
         }
         [HttpPost]
-        public ActionResult Edit(string maphieu, DateTime? ngaytra, PHIEUMUONSACH pms) //DateTime ? -> cho giá trị date == null
+        public ActionResult Edit(string maphieu, DateTime? ngaytra, DateTime thoihan ,PHIEUMUONSACH pms) //DateTime ? -> cho giá trị date == null
         {
             pms = databases.PHIEUMUONSACHes.Where(s => s.MaPhieu == maphieu).FirstOrDefault();
             pms.NgayTra = ngaytra;
+            pms.ThoiHan = thoihan;
             List<string> listCtpmMaSach = new List<string>();
             listCtpmMaSach = databases.CHITIETPHIEUMUONs.Where(s => s.MaPhieu == maphieu).Select(s => s.MaSach).ToList();
 
@@ -218,10 +219,10 @@ namespace QuanLyThuVienCNPMNC.Controllers
                 context1.sp_CapNhatSoLuongSachHoiVienMuon(pms.MaHV);
                 for (int i = 0; i < pms.SoLuong; i++)
                 {
-                    context1.sp_CapNhatTinhTrangSach(pms.MaPhieu, listCtpmMaSach[i]);
+                    context1.CapNhatTinhTrangSach(pms.MaPhieu, listCtpmMaSach[i]);
                 }
             }
-            TempData["Message"] = "Chinh sua thanh cong !!!";
+            TempData["Message"] = "Cap nhat thanh cong !!!";
             return RedirectToAction("Index");
 
         }
@@ -266,7 +267,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
                     context1.sp_CapNhatSoLuongSachHoiVienMuon(mahoivien);
                     for (int i = 0; i < pms.SoLuong; i++)
                     {
-                        context1.sp_CapNhatTinhTrangSach(pms.MaPhieu, listCtpmMaSach[i]);
+                        context1.CapNhatTinhTrangSach(pms.MaPhieu, listCtpmMaSach[i]);
                     }
                 }
                 TempData["Message"] = "Xoa thanh cong !!!";

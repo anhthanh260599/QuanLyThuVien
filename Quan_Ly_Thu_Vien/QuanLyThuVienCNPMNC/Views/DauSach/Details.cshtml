@@ -7,7 +7,7 @@
 
 
 <style>
-    .test-css {
+    .bill {
         margin-top: 20px !important;
         margin: auto;
         padding: 10px 50px 50px 50px;
@@ -17,16 +17,16 @@
         box-shadow: 6px 4px 8px;
     }
 
-    .test-css .dl-horizontal dt {
+    .bill .dl-horizontal dt {
         font-size: 20px;
     }
 
-        .test-css .dl-horizontal dd {
-            font-size: 16px;
-        }
+    .bill .dl-horizontal dd {
+        font-size: 16px;
+    }
 </style>
 
-<div class="test-css">
+<div class="bill">
     <h2 style="text-align:center;">Chi tiết đầu sách</h2>
     <hr />
     <dl class="dl-horizontal">
@@ -63,11 +63,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NgayXuatBan)
+            @Html.DisplayNameFor(model => model.NgayXuatBanFormatted)
         </dt>
 
         <dd>
-            @ViewBag.NgayXuatBan
+            @Html.DisplayFor(model => model.NgayXuatBanFormatted)
         </dd>
 
         @*<dd>

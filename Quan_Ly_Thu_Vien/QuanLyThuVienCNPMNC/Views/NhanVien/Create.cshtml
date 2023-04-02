@@ -4,6 +4,39 @@
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script type="text/javascript">
+    function validateData() {
+
+        if ($("#TenNV").val() == "") {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Vui lòng nhập tên nhân viên'
+            });
+            return false;
+        } else if ($("#ChucVu").val() == "") {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Vui lòng chọn chức vụ'
+            });
+            return false;
+        } else if ($("#Email").val() == "") {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Vui lòng nhập email'
+            });
+            return false;
+        } else if ($("#MatKhau").val() == "") {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Vui lòng nhập mật khẩu'
+            });
+            return false;
+        
+        } else {
+            return true;
+        }
+    }
+</script>
 
 <h2>Thêm nhân viên</h2>
 
@@ -58,7 +91,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Thêm mới" class="btn" style="background-color: #210cae; color:#fff;" />
+                <input type="submit" value="Thêm mới" class="btn" style="background-color: #210cae; color:#fff;" onclick="return validateData()" />
             </div>
         </div>
     </div>
@@ -68,20 +101,3 @@
     @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-outline-dark" })
 </div>
 
-
-@if (ViewBag.Message != null)
-{
-    <script type="text/javascript">
-            window.onload = function () {
-                alert("@ViewBag.Message");
-            };
-    </script>
-}
-@if (TempData["Message"] != null)
-{
-    <script type="text/javascript">
-            window.onload = function () {
-                alert("@TempData["Message"]");
-            };
-    </script>
-}

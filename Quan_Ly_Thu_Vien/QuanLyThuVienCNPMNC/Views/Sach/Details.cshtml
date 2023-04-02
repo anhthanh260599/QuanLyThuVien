@@ -12,6 +12,13 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.DAUSACH.TenSach)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DAUSACH.TenSach)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.MaSach)
         </dt>
 
@@ -41,7 +48,7 @@
                 {
                     @Html.Raw("Hỏng");
                 }
-               
+
             }
             @*@Html.DisplayFor(model => model.TinhTrang)*@
         </dd>

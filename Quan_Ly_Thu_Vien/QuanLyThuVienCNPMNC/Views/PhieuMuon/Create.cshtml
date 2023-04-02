@@ -11,8 +11,28 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
+<script type="text/javascript">
+    $(function () {
+        $('.search-selectlist').select2();
+       
 
+    })
+</script>
+<script type="text/javascript">
+    function validateData() {
 
+        if ($("#ngaymuon").val() == "") {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Vui lòng chọn ngày mượn'
+            });
+            return false;
+        } 
+        else {
+            return true;
+        }
+    }
+</script>
 <script>
     //Lay thoi han tra
     $(document).ready(function () {
@@ -57,7 +77,7 @@
                 dropdownWrapper.append(label);
 
                 // Tạo một DropDownList mới và thêm vào thẻ div trên
-                var dropdown = $('<select class="form-control" id="masach-' + i + '" name="masach"></select>');
+                var dropdown = $('<select class="form-control search-selectlist" id="masach-' + i + '" name="masach"></select>');
                 dropdownWrapper.append(dropdown);
 
                 // Giá trị hiển thị mặc định của dropdown list
@@ -67,7 +87,6 @@
                         dropdown.append($('<option></option>').attr('value', option.Value).text(option.Text));
 
                 });
-
                 // Thêm thẻ div mới vào container
                 dropdownListContainer.append(dropdownWrapper);
             }
@@ -152,7 +171,7 @@
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Thêm mới" class="btn" style="background-color: #210cae; color:#fff;" />
+            <input type="submit" value="Thêm mới" class="btn" style="background-color: #210cae; color:#fff;" onclick="return validateData()" />
         </div>
     </div>
 </div>
@@ -167,20 +186,3 @@
         $('.search-selectlist').chosen();
     })
 </script>
-
-@if (ViewBag.Message != null)
-{
-    <script type="text/javascript">
-            window.onload = function () {
-                alert("@ViewBag.Message");
-            };
-    </script>
-}
-@if (TempData["Message"] != null)
-{
-    <script type="text/javascript">
-            window.onload = function () {
-                alert("@TempData["Message"]");
-            };
-    </script>
-}

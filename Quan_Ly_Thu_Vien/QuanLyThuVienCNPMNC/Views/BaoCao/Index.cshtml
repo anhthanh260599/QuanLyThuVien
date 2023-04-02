@@ -27,7 +27,7 @@
                 @Html.DisplayNameFor(model => model.MaNhanVien)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NgayLapBaoCao)
+                @Html.DisplayNameFor(model => model.NgayLapBaoCaoFormatted)
             </th>
 
             <th>
@@ -51,7 +51,7 @@
                 </td>
 
                 <td>
-                    @Html.DisplayFor(modelItem => item.NgayLapBaoCao)
+                    @Html.DisplayFor(modelItem => item.NgayLapBaoCaoFormatted)
                 </td>
                 <td>
                     @*@Html.ActionLink("Details", "Details", new { id = item.MaDS })*@
@@ -75,16 +75,26 @@
 @if (ViewBag.Message != null)
 {
     <script type="text/javascript">
-            window.onload = function () {
-                alert("@ViewBag.Message");
-            };
+               document.addEventListener('DOMContentLoaded', function () {
+                    Swal.fire({
+                    title: 'Thành công',
+                    text: '@ViewBag.Message',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                    });
+                    });
     </script>
 }
 @if (TempData["Message"] != null)
 {
     <script type="text/javascript">
-            window.onload = function () {
-                alert("@TempData["Message"]");
-            };
+               document.addEventListener('DOMContentLoaded', function () {
+                Swal.fire({
+                title: 'Thành công',
+                text: '@TempData["Message"]',
+                icon: 'success',
+                confirmButtonText: 'OK'
+                });
+                });
     </script>
 }
