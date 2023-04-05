@@ -38,7 +38,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             else
             {
 
-                return View(databases.PHIEUMUONSACHes.ToList().OrderByDescending(s => s.NgayMuonFormatted));
+                return View(databases.PHIEUMUONSACHes.ToList());
             }
 
         }

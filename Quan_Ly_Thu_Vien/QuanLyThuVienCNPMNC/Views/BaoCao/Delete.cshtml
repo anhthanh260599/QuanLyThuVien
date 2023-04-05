@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Xóa</h2>
+<h2>Xóa báo cáo</h2>
 
 <p class="alert alert-danger" role="alert"><strong>Bạn có chắc muốn xóa nội dung này?</strong></p>
 <div>
@@ -13,27 +13,33 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Ten)
+            Tiêu đề
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Ten)
+            @Html.DisplayFor(model => model.Tieude)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Description)
+            Nội dung
         </dt>
 
         <dd>
             @Html.Raw(Model.Description)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.NgayLapBaoCaoFormatted)
+            Người lập báo cáo
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NHANVIEN.TenNV)
+        </dd>
+        <dt>
+            Ngày lập báo cáo
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NgayLapBaoCaoFormatted)
+            @* @Html.DisplayFor(model => model.NgayLapBaoCao)*@
+            @Convert.ToDateTime(Model.NgayLapBaoCao).ToString("dd/mm/yyyy")
         </dd>
     </dl>
 

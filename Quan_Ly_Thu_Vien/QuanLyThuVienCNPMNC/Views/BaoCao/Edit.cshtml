@@ -9,65 +9,84 @@
 <script src="~/Scripts/ckeditor/ckeditor.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<h2>Edit</h2>
+<h2>Chỉnh sửa báo cáo</h2>
 
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
+@Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>BAOCAO</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
+<div class="form-horizontal">
+    <h4>BAOCAO</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Ten, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Ten, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Ten, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @*Trình soạn thảo văn bản (CKEditor)*@
-                @Html.TextAreaFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @id = "Description" } })
-                <script type="text/javascript" lang="javascript">
-                    CKEDITOR.replace("Description")
-                </script>
-                @*@Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })*@
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Người lập báo cáo</label>
+        <div class="col-md-10">
+            @{
+                    //Gọi session
+                    var user = (QuanLyThuVienCNPMNC.Models.NHANVIEN)HttpContext.Current.Session["user"];
+                <span class="form-control">
+                    @user.TenNV
+                </span>
+            }
         </div>
     </div>
+    <div class="form-group">
+        @*@Html.LabelFor(model => model.Ten, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        <label class="control-label col-md-2">Tiêu đề</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Tieude, new { htmlAttributes = new { @class = "form-control", @name = "tieude" } })
+            @Html.ValidationMessageFor(model => model.Tieude, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Nội dung</label>
+        <div class="col-md-10">
+            @*Trình soạn thảo văn bản (CKEditor)*@
+            @Html.TextAreaFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @id = "Description", @name = "noidung" } })
+            <script type="text/javascript" lang="javascript">
+                CKEDITOR.replace("Description")
+            </script>
+            @*@Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })*@
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Ngày chỉnh sửa báo cáo</label>
+        <div class="col-md-10">
+            @Convert.ToDateTime(DateTime.Now).ToString("dd/MM/yyyy")
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </div>
+</div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 
 @if (ViewBag.Message != null)
 {
-    <script type="text/javascript">
+<script type="text/javascript">
             window.onload = function () {
                 alert("@ViewBag.Message");
             };
-    </script>
+</script>
 }
 @if (TempData["Message"] != null)
 {
-    <script type="text/javascript">
+<script type="text/javascript">
             window.onload = function () {
                 alert("@TempData["Message"]");
             };
-    </script>
+</script>
 }

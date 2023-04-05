@@ -39,12 +39,11 @@ namespace QuanLyThuVienCNPMNC.Controllers
 
         [ValidateInput(false)]
         [HttpPost]
-        public ActionResult Create( BAOCAO baocao)
+        public ActionResult Create(BAOCAO baocao)
         {
             NHANVIEN nvSession = (NHANVIEN)Session["user"];
 
             baocao.MaNhanVien = nvSession.MaNV;
-            baocao.Ten = nvSession.TenNV;
             if (ModelState.IsValid)
             {
                 try
@@ -95,19 +94,40 @@ namespace QuanLyThuVienCNPMNC.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-
-            var objProduct = databases.BAOCAOs.Where(n => n.Id == id).FirstOrDefault();
-            return View(objProduct);
+            NHANVIEN nvSession = (NHANVIEN)Session["user"];
+            BAOCAO bc = databases.BAOCAOs.Where(n => n.Id == id).FirstOrDefault();
+            if (bc.MaNhanVien == nvSession.MaNV)
+            {
+                return View(bc);
+            }
+            else
+            {
+                TempData["Permission"] = "Ban chua co quyen de chinh sua bao cao cua nguoi khac !!!";
+                return RedirectToAction("Index", "BaoCao");
+            }
         }
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Edit(BAOCAO objProduct)
+        public ActionResult Edit(int id, BAOCAO bc)
         {
-            databases.Entry(objProduct).State = EntityState.Modified;
-            databases.SaveChanges();
-            TempData["Message"] = "Chinh sua thanh cong !!!";
-            return RedirectToAction("Index");
+            try
+            {
+                NHANVIEN nvSession = (NHANVIEN)Session["user"];
+                bc.NgayLapBaoCao = DateTime.Now;
+                bc.MaNhanVien = nvSession.MaNV;
+
+                databases.Entry(bc).State = EntityState.Modified;
+                databases.SaveChanges();
+                TempData["Message"] = "Chinh sua thanh cong !!!";
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                TempData["Error"] = "Error !!!";
+                return RedirectToAction("Index");
+            }
+            
         }
     }
 }

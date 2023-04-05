@@ -17,21 +17,19 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Ten)
+                <label>Tiêu đề</label>
             </th>
             <th>
-
-                @Html.DisplayNameFor(model => model.Description)
+                <label>Mô tả</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MaNhanVien)
+                <label>Người lập báo cáo</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NgayLapBaoCaoFormatted)
+                <label>Ngày lập</label>
             </th>
-
             <th>
-                Hành động
+                <label>Hành động</label>
             </th>
         </tr>
     </thead>
@@ -40,19 +38,22 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Ten)
+                    @Html.DisplayFor(modelItem => item.Tieude)
                 </td>
                 <td>
                     @Html.Raw(item.Description)
                     @*@Html.DisplayFor(modelItem => item.Description)*@
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.MaNhanVien)
+                    @Html.DisplayFor(modelItem => item.NHANVIEN.TenNV)
                 </td>
 
                 <td>
-                    @Html.DisplayFor(modelItem => item.NgayLapBaoCaoFormatted)
+                    @*Định dạng ngày trên html*@
+                    @Convert.ToDateTime(item.NgayLapBaoCao).ToString("dd/MM/yyyy")
+
                 </td>
+
                 <td>
                     @*@Html.ActionLink("Details", "Details", new { id = item.MaDS })*@
                     <a href="@Url.Action("Details","BaoCao", new {id = item.Id})" class="action-item">
@@ -94,6 +95,32 @@
                 text: '@TempData["Message"]',
                 icon: 'success',
                 confirmButtonText: 'OK'
+                });
+                });
+    </script>
+}
+@if (TempData["Error"] != null)
+{
+    <script type="text/javascript">
+               document.addEventListener('DOMContentLoaded', function () {
+                Swal.fire({
+                title: 'Thất bại !',
+                text: '@TempData["Error"]',
+                icon: 'error',
+                confirmButtonText: 'OK'
+                });
+                });
+    </script>
+}
+@if (TempData["Permission"] != null)
+{
+    <script type="text/javascript">
+               document.addEventListener('DOMContentLoaded', function () {
+                Swal.fire({
+                    title: 'Thông báo !!',
+                     text: '@TempData["Permission"]',
+                    icon: 'info',
+                    confirmButtonText: 'OK'
                 });
                 });
     </script>

@@ -52,7 +52,6 @@ namespace QuanLyThuVienCNPMNC.Controllers
             }
             string newMaPms = "NV" + newNumber.ToString("000").TrimStart();
             return newMaPms;
-
         }
         //Thêm 
         [HttpGet]

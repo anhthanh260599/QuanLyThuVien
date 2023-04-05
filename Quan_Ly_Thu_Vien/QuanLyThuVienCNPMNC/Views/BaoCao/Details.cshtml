@@ -11,24 +11,18 @@
     <h4>Báo cáo</h4>
     <hr />
     <dl class="dl-horizontal">
+
         <dt>
-            @Html.DisplayNameFor(model => model.Ten)
+            @*            @Html.DisplayNameFor(model => model.MaNhanVien)*@
+            <label>Tiêu đề</label>
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Ten)
+            @Html.DisplayFor(model => model.Tieude)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.MaNhanVien)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MaNhanVien)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
+            @*      @Html.DisplayNameFor(model => model.Description)*@
+            <label>Nội dung</label>
         </dt>
 
         <dd>
@@ -36,11 +30,29 @@
             @*@Html.DisplayFor(model => model.Description)*@
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.NgayLapBaoCaoFormatted)
+            @* @Html.DisplayNameFor(model => model.Ten)*@
+            <label>Người lập phiếu</label>
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NgayLapBaoCaoFormatted)
+            @Html.DisplayFor(model => model.NHANVIEN.TenNV)
+        </dd>
+
+        <dt>
+            @*            @Html.DisplayNameFor(model => model.MaNhanVien)*@
+            <label>Mã người lập phiếu</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaNhanVien)
+        </dd>
+        <dt>
+            <label>Ngày lập phiếu</label>
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.NgayLapBaoCaoFormatted)*@
+            @Convert.ToDateTime(Model.NgayLapBaoCao).ToString("dd/MM/yyyy")
         </dd>
     </dl>
 </div>
@@ -48,10 +60,10 @@
 
     <button class="btn btn-primary">In báo cáo</button> |
     @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.Id }, new { @class = "btn btn-secondary" }) |
-    @Html.ActionLink("Trở về trang danh sách", "Index", null, new { @class = "btn btn-outline-dark" }) 
+    @Html.ActionLink("Trở về trang danh sách", "Index", null, new { @class = "btn btn-outline-dark" })
 
     @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")*@
+        @Html.ActionLink("Back to List", "Index")*@
 </p>
 
 

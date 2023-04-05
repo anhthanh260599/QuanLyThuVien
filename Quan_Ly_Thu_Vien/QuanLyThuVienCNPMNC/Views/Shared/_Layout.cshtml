@@ -276,9 +276,6 @@
                                 var controller = ViewContext.RouteData.Values["controller"] as string;
                                 var action = ViewContext.RouteData.Values["action"] as string;
                             }
-
-
-
                             @{
                                 var menuItems = new[] {
                                                 new { Text = "Đầu sách", Icon = "fa-book", Controller = "DauSach", Action = "Index", Roles = new[] { "Hiệu trưởng", "Thủ thư" } },
