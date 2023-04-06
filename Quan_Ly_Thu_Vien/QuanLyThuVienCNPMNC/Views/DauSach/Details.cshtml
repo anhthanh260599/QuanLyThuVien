@@ -5,33 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-<style>
-    .bill {
-        margin-top: 20px !important;
-        margin: auto;
-        padding: 10px 50px 50px 50px;
-        width: 500px;
-        background: white;
-        border-radius: 20px;
-        box-shadow: 6px 4px 8px;
-    }
-
-    .bill .dl-horizontal dt {
-        font-size: 20px;
-    }
-
-    .bill .dl-horizontal dd {
-        font-size: 16px;
-    }
-</style>
-
-<div class="bill">
-    <h2 style="text-align:center;">Chi tiết đầu sách</h2>
+<div class="bg_dt">
+    <h2 class="text-center text-uppercase text-bold">Chi tiết đầu sách</h2>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.MaDS)
+            Mã đầu sách
         </dt>
 
         <dd>
@@ -39,7 +18,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TenSach)
+            Tên đầu sách
         </dt>
 
         <dd>
@@ -47,7 +26,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Theloai)
+            Thể loại
         </dt>
 
         <dd>
@@ -55,7 +34,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NXB)
+            Nhà xuất bản
         </dt>
 
         <dd>
@@ -63,11 +42,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NgayXuatBanFormatted)
+            Ngày xuất bản
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NgayXuatBanFormatted)
+            @Convert.ToDateTime(Model.NgayXuatBan).ToString("dd/MM/yyyy")
         </dd>
 
         @*<dd>
@@ -79,7 +58,7 @@
 
 
         <dt>
-            @Html.DisplayNameFor(model => model.GhiChu)
+            Ghi chú thêm
         </dt>
 
         <dd>
@@ -91,8 +70,8 @@
     <p style="text-align:center; padding-top: 16px;">
 
 
-        @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MaDS }, new { @class = "btn btn-secondary" })
-        @Html.ActionLink("Trở về trang danh sách", "Index", null, new { @class = "btn btn-outline-dark" })
+        @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MaDS }, new { @class = "btn btn-secondary mr-2" })
+        @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-outline-dark" })
     </p>
 </div>
 

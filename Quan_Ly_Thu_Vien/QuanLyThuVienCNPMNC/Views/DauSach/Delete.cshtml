@@ -5,15 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Xóa</h2>
 
-<p class="alert alert-danger" role="alert"><strong>Bạn có chắc muốn xóa nội dung này?</strong></p>
-<div>
-    <h4>Đầu sách</h4>
+
+<div class="bg_dt">
+    
+    <p class="alert alert-danger mt-3" role="alert"><strong>Bạn có chắc muốn xóa đầu sách này?</strong></p>
     <hr />
-    <dl class="dl-horizontal">
+    <dl class="dl-horizontal ">
         <dt>
-            @Html.DisplayNameFor(model => model.TenSach)
+            Tên đầu sách
         </dt>
 
         <dd>
@@ -21,7 +21,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Theloai)
+            Thể loại
         </dt>
 
         <dd>
@@ -29,7 +29,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NXB)
+            Nhà xuất bản
         </dt>
 
         <dd>
@@ -37,15 +37,15 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NgayXuatBanFormatted)
+            Ngày xuất bản
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NgayXuatBanFormatted)
+            @Convert.ToDateTime(Model.NgayXuatBan).ToString("dd/MM/yyyy")
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.GhiChu)
+            Ghi chú
         </dt>
 
         <dd>
@@ -60,12 +60,12 @@
     {
         @Html.AntiForgeryToken()
 
-<div class="form-actions no-color">
-    @*<input type="submit" value="Xóa" class="btn btn-danger" id="btn-xoa"  />*@
-    <button class="btn btn-danger" id="btn-xoa" type="button">Xóa</button>
+        <div class="form-actions no-color text-center">
+            @*<input type="submit" value="Xóa" class="btn btn-danger" id="btn-xoa"  />*@
+            <button class="btn btn-danger mr-2" id="btn-xoa" type="button">Xóa</button>
 
-    @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-outline-dark" })
-</div>
+            @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-outline-dark" })
+        </div>
     }
 </div>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

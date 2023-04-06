@@ -51,148 +51,166 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
 
 
-</head>
 
-<style>
-    .dataTables_wrapper .dataTables_length select {
-        background-color: #fff;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        /* và các thuộc tính CSS khác */
-    }
 
-    .dataTables_wrapper .dataTables_filter input {
-        color: #64728c;
-        background-color: #fff;
-        border: 0.5px solid #dbdbdb;
-        border-radius: 12px;
-        outline: 0;
-        /* và các thuộc tính CSS khác */
-    }
-
-    .leftnav__icon {
-        margin-right: 6px;
-        width: 18px;
-    }
-
-    .leftnav__link {
-        display: flex;
-        align-items: center;
-    }
-
-        .leftnav__link p {
-            width: 120px;
+    <style>
+        .bg_dt {
+            margin-top: 20px !important;
+            margin: auto;
+            padding: 10px 50px 50px 50px;
+            width: 500px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 6px 4px 8px;
         }
 
-    /*    [class*=sidebar-light-] .nav-sidebar > .nav-item.menu-open > .nav-link, [class*=sidebar-light-] .nav-sidebar > .nav-item:hover > .nav-link {
-        background-color: #ffd4b6;
-        border-radius: 50px;
-    }*/
+            .bg_dt .dl-horizontal dt {
+                font-size: 20px;
+            }
 
-    [class*=sidebar-light-] .nav-sidebar > .nav-item.active > .nav-link {
-        background-image: linear-gradient(90deg,#4dc9e6,#210cae 90%);
-        border-radius: 50px;
-    }
+            .bg_dt .dl-horizontal dd {
+                font-size: 16px;
+            }
 
-    [class*=sidebar-light-] .nav-sidebar > .nav-item:not(.active):hover > .nav-link {
-        background-color: #4dc9e6;
-        border-radius: 50px;
-    }
-
-
-
-
-    /*    .nav-item.active {
-        background-image: linear-gradient(90deg,#FF920B,#F35C17 90%);
-        border-radius: 50px;
-    }*/
-    .nav-item.active .nav-link .leftnav__icon {
-        color: #fff;
-    }
-
-    .nav-item.active .nav-link p {
-        color: #fff;
-    }
-
-    .nav-item.non-hoverable:hover > .nav-link {
-        background-color: #4dc9e6;
-    }
-
-
-    table {
-        color: #64728c;
-        font-family: Nunito Sans;
-        font-size: 1.15rem;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -webkit-flex-direction: column;
-        -moz-box-orient: vertical;
-        -moz-box-direction: normal;
-        flex-direction: column;
-    }
-
-        table tbody tr td:first-child {
-            border-bottom-left-radius: 50px;
-            border-top-left-radius: 50px;
+        .dataTables_wrapper .dataTables_length select {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            /* và các thuộc tính CSS khác */
         }
 
-        table tbody tr td:last-child {
-            border-bottom-right-radius: 50px;
-            border-top-right-radius: 50px;
+        .dataTables_wrapper .dataTables_filter input {
+            color: #64728c;
+            background-color: #fff;
+            border: 0.5px solid #dbdbdb;
+            border-radius: 12px;
+            outline: 0;
+            /* và các thuộc tính CSS khác */
+        }
+
+        .leftnav__icon {
+            margin-right: 6px;
+            width: 18px;
+        }
+
+        .leftnav__link {
+            display: flex;
+            align-items: center;
+        }
+
+            .leftnav__link p {
+                width: 120px;
+            }
+
+        /*    [class*=sidebar-light-] .nav-sidebar > .nav-item.menu-open > .nav-link, [class*=sidebar-light-] .nav-sidebar > .nav-item:hover > .nav-link {
+            background-color: #ffd4b6;
+            border-radius: 50px;
+        }*/
+
+        [class*=sidebar-light-] .nav-sidebar > .nav-item.active > .nav-link {
+            background-image: linear-gradient(90deg,#4dc9e6,#210cae 90%);
+            border-radius: 50px;
+        }
+
+        [class*=sidebar-light-] .nav-sidebar > .nav-item:not(.active):hover > .nav-link {
+            background-color: #4dc9e6;
+            border-radius: 50px;
         }
 
 
 
-    .action-item {
-        position: relative;
-        text-decoration: none;
-        color: #fff;
-        width: 35px;
-        height: 35px;
-        display: inline-block;
-        border-radius: 50%;
-        background-color: rgba(100,114,140,.1);
-        margin: 0 2px;
-        font-size: 20px;
-    }
 
-    .action-icon {
-        color: #64728c;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-
-    .action-item:hover {
-        opacity: 0.8;
-    }
-
-    .add-item {
-        background-color: #59d102;
-        color: #fff;
-        width: 120px;
-        border-radius: 50px;
-        display: inline-block;
-        text-align: center;
-        padding: 6px 14px;
-        font-size: 18px;
-    }
-
-        .add-item:hover {
-            opacity: 0.8;
+        /*    .nav-item.active {
+            background-image: linear-gradient(90deg,#FF920B,#F35C17 90%);
+            border-radius: 50px;
+        }*/
+        .nav-item.active .nav-link .leftnav__icon {
             color: #fff;
         }
 
-    .user-panel .info {
-        display: block;
-    }
+        .nav-item.active .nav-link p {
+            color: #fff;
+        }
 
-    li.nav-item.user-dropdown__item:hover {
-        background-color: #fff !important;
-    }
-</style>
+        .nav-item.non-hoverable:hover > .nav-link {
+            background-color: #4dc9e6;
+        }
 
+
+        table {
+            color: #64728c;
+            font-family: Nunito Sans;
+            font-size: 1.15rem;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: column;
+            -moz-box-orient: vertical;
+            -moz-box-direction: normal;
+            flex-direction: column;
+        }
+
+            table tbody tr td:first-child {
+                border-bottom-left-radius: 50px;
+                border-top-left-radius: 50px;
+            }
+
+            table tbody tr td:last-child {
+                border-bottom-right-radius: 50px;
+                border-top-right-radius: 50px;
+            }
+
+
+
+        .action-item {
+            position: relative;
+            text-decoration: none;
+            color: #fff;
+            width: 35px;
+            height: 35px;
+            display: inline-block;
+            border-radius: 50%;
+            background-color: rgba(100,114,140,.1);
+            margin: 0 2px;
+            font-size: 20px;
+        }
+
+        .action-icon {
+            color: #64728c;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .action-item:hover {
+            opacity: 0.8;
+        }
+
+        .add-item {
+            background-color: #59d102;
+            color: #fff;
+            width: 120px;
+            border-radius: 50px;
+            display: inline-block;
+            text-align: center;
+            padding: 6px 14px;
+            font-size: 18px;
+        }
+
+            .add-item:hover {
+                opacity: 0.8;
+                color: #fff;
+            }
+
+        .user-panel .info {
+            display: block;
+        }
+
+        li.nav-item.user-dropdown__item:hover {
+            background-color: #fff !important;
+        }
+    </style>
+</head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 

@@ -42,7 +42,7 @@
                 title: 'Vui lòng chọn ngày xuất bản'
             });
             return false;
-        } else {          
+        } else {
             return true;
         }
     }
@@ -51,42 +51,40 @@
 
 
 
-<h2>Thêm mới đầu sách</h2>
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal" id="form-create">
-        <h4>Đầu sách</h4>
+    <div class="form-horizontal bg_dt " id="form-create">
+        <h2 class="text-center text-uppercase text-bold">Thêm mới đầu sách</h2>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.MaDS, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10 text-bold">
+            <label class="control-label col-md-10">Mã đầu sách</label>
+            <div class="col-md-10 text-bold text-red">
                 @ViewBag.newkey
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TenSach, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <label class="control-label col-md-10">Tên đầu sách</label>
+            <div class="col-md-12">
                 @Html.EditorFor(model => model.TenSach, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TenSach, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Theloai, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <label class="control-label col-md-10">Thể loại đầu sách</label>
+            <div class="col-md-12">
                 @Html.EditorFor(model => model.Theloai, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Theloai, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.NXB, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <label class="control-label col-md-10">Nhà xuất bản</label>
+            <div class="col-md-12">
                 @Html.DropDownListFor(model => model.NXB, ViewBag.ListNXB as SelectList, new { @class = "form-control list-nxb" })
 
                 @Html.ValidationMessageFor(model => model.NXB, "", new { @class = "text-danger" })
@@ -94,8 +92,8 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.NgayXuatBan, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <label class="control-label col-md-10">Ngày xuất bản</label>
+            <div class="col-md-12">
 
                 @Html.EditorFor(model => model.NgayXuatBan, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
                 @Html.ValidationMessageFor(model => model.NgayXuatBan, "", new { @class = "text-danger" })
@@ -103,25 +101,22 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.GhiChu, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <label class="control-label col-md-10">Ghi chú thêm</label>
+            <div class="col-md-12">
                 @Html.EditorFor(model => model.GhiChu, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.GhiChu, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Thêm mới" class="btn" style="background-color: #210cae; color:#fff;" onclick="return validateData()" />
+            <div class="col-md-offset-2 col-md-12 text-center">
+                <input type="submit" value="Thêm mới" class="btn" style="background-color: #210cae; color:#fff;" onclick="return validateData()" /> |
+                @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-outline-dark" })
             </div>
         </div>
+       
     </div>
 }
-
-<div>
-    @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-outline-dark" })
-</div>
-
 <script type="text/javascript">
     $(function () {
         $('#NXB').chosen();
