@@ -23,8 +23,6 @@
     }
 </style>
 
-<h2>Danh sách độc giả</h2>
-<hr />
 
 <p>
     <a href="@Url.Action("Create","DocGia")" class="add-item">
@@ -32,100 +30,104 @@
     </a>
 </p>
 
-<table id="myTable" class="display">
-    <thead>
-        <tr>
-            <th>
-                Mã hội viên
-            </th>
-            <th>
-                Tên hội viên
-            </th>
-            <th>
-                Số điện thoại
-            </th>
-            <th>
-                Ngày lập thẻ
-            </th>
-            <th>
-                Tình Trạng
-            </th>
-            <th>
-                Đang mượn
-            </th>
-            <th>
-                Trạng thái
-            </th>
-            <th>
-                Hành động
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+<div class="bg_dt_index">
+    <h1 class="text-center text-uppercase text-bold">Danh sách độc giả</h1>
+    <hr />
+    <table id="myTable" class="display">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MaHV)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TenHV)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SDT)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NgayLapTheFormatted)
-                </td>
-
-                <td style="">
-
-                    @if (item.TinhTrang == "Không sử dụng")
-                    {
-                        <div class="bg-gradient-danger tinhtrang__hethan text-center">@Html.DisplayFor(modelItem => item.TinhTrang)</div>
-                    }
-                    else
-                    {
-                        <div class="bg-gradient-success tinhtrang__conhan text-center">@Html.DisplayFor(modelItem => item.TinhTrang)</div>
-                    }
-
-                </td>
-                <td class="pl-4">
-                    @Html.DisplayFor(modelItem => item.DangMuon) Cuốn
-                </td>
-                <td>
-                    @if (item.TrangThai == 1)
-                    {
-                        <text> Khóa </text>
-                    }
-                    else if (item.TrangThai == 2)
-                    {
-                        <text> Bình thường </text>
-
-                    }
-                    else if (item.TinhTrang == null)
-                    {
-                        <text> Bình thường </text>
-                    }
-                </td>
-
-                <td>
-                    @*@Html.ActionLink("Details", "Details", new { id = item.MaDS })*@
-                    <a href="@Url.Action("Details","DocGia", new {id = item.MaHV})" class="action-item">
-                        <i class="fa-solid fa-book action-icon"></i>
-                    </a>
-                    @*@Html.ActionLink("Edit", "Edit", new { id = item.MaDS })*@
-                    <a href="@Url.Action("Edit","DocGia", new {id = item.MaHV})" class="action-item">
-                        <i class="fa-solid fa-pen-to-square action-icon"></i>
-                    </a>
-                    <a href="@Url.Action("Delete","DocGia", new {id = item.MaHV})" class="action-item">
-                        <i class="fa-solid fa-trash action-icon"></i>
-                    </a>
-                </td>
+                <th>
+                    Mã hội viên
+                </th>
+                <th>
+                    Tên hội viên
+                </th>
+                <th>
+                    Số điện thoại
+                </th>
+                <th>
+                    Ngày lập thẻ
+                </th>
+                <th>
+                    Tình Trạng
+                </th>
+                <th>
+                    Đang mượn
+                </th>
+                <th>
+                    Trạng thái
+                </th>
+                <th>
+                    Hành động
+                </th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaHV)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenHV)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SDT)
+                    </td>
+                    <td>
+                        @Convert.ToDateTime(item.NgayLapThe).ToString("dd/MM/yyyyy")
+                    </td>
+
+                    <td style="">
+
+                        @if (item.TinhTrang == "Không sử dụng")
+                        {
+                            <div class="bg-gradient-danger tinhtrang__hethan text-center">@Html.DisplayFor(modelItem => item.TinhTrang)</div>
+                        }
+                        else
+                        {
+                            <div class="bg-gradient-success tinhtrang__conhan text-center">@Html.DisplayFor(modelItem => item.TinhTrang)</div>
+                        }
+
+                    </td>
+                    <td class="pl-4">
+                        @Html.DisplayFor(modelItem => item.DangMuon) Cuốn
+                    </td>
+                    <td>
+                        @if (item.TrangThai == 1)
+                        {
+                            <text> Khóa </text>
+                        }
+                        else if (item.TrangThai == 2)
+                        {
+                            <text> Bình thường </text>
+
+                        }
+                        else if (item.TinhTrang == null)
+                        {
+                            <text> Bình thường </text>
+                        }
+                    </td>
+
+                    <td>
+                        @*@Html.ActionLink("Details", "Details", new { id = item.MaDS })*@
+                        <a href="@Url.Action("Details","DocGia", new {id = item.MaHV})" class="action-item">
+                            <i class="fa-solid fa-book action-icon"></i>
+                        </a>
+                        @*@Html.ActionLink("Edit", "Edit", new { id = item.MaDS })*@
+                        <a href="@Url.Action("Edit","DocGia", new {id = item.MaHV})" class="action-item">
+                            <i class="fa-solid fa-pen-to-square action-icon"></i>
+                        </a>
+                        <a href="@Url.Action("Delete","DocGia", new {id = item.MaHV})" class="action-item">
+                            <i class="fa-solid fa-trash action-icon"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
 @if (ViewBag.Message != null)
 {

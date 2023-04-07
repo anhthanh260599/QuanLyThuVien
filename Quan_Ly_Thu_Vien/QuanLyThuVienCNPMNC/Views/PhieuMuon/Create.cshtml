@@ -14,7 +14,7 @@
 <script type="text/javascript">
     $(function () {
         $('.search-selectlist').select2();
-       
+
 
     })
 </script>
@@ -27,7 +27,7 @@
                 title: 'Vui lòng chọn ngày mượn'
             });
             return false;
-        } 
+        }
         else {
             return true;
         }
@@ -73,7 +73,7 @@
                 var dropdownWrapper = $('<div class="form-group"></div>');
 
                 // Tạo một label mới và thêm vào thẻ div trên
-                var label = $('<label class="control-label col-md-2" for="masach-' + i + '">Mã sách ' + (i+1) + '</label>');
+                var label = $('<label class="control-label col-md-12" for="masach-' + i + '">Mã sách ' + (i+1) + '</label>');
                 dropdownWrapper.append(label);
 
                 // Tạo một DropDownList mới và thêm vào thẻ div trên
@@ -102,84 +102,80 @@
     });
 </script>
 
-<h2>Create</h2>
 @using (Html.BeginForm("Create", "PhieuMuon"))
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <h4>CHITIETPHIEUMUON</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.MaPhieu, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10 text-bold">
-            @ViewBag.newkey
-
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.HOIVIEN.TenHV, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("mahoivien", (List<SelectListItem>)ViewBag.mahoivien, htmlAttributes: new { @class = "form-control search-selectlist" })
-
-            @Html.ValidationMessageFor(model => model.HOIVIEN.TenHV, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.NgayMuon, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <input class="form-control" id="ngaymuon" name="ngaymuon" type="date" />
-            <span class="field-validation-valid text-danger" data-valmsg-for="ngaymuon" data-valmsg-replace="true"></span>
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.HiddenFor(model => model.NgayTra, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @*@Html.EditorFor(model => model.NgayTra, new { htmlAttributes = new { @class = "form-control", @type = "date" } })*@
-
-            @Html.HiddenFor(model => model.NgayTra)
-
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.ThoiHan, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <span class="form-control" style="color:red; font-weight:bold;" id="thoihan">dd/mm/yyyy</span><br>
-
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.SoLuong, htmlAttributes: new { @class = "control-label col-md-2", @for = "soluong" })
-        <div class="col-md-10">
-            <input class="form-control" id="soluong" name="soluong" type="number" min="0" max="3" />
-            <span class="field-validation-valid text-danger" data-valmsg-for="soluong" data-valmsg-replace="true"></span>
-        </div>
-    </div>
-    <div id="dropdownlist-container">
+    <div class="form-horizontal bg_dt w-50">
+        <h2 class="text-center text-uppercase text-bold">Tạo phiếu mượn sách</h2>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @*@Html.LabelFor(model => model.SACH.MaSach, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("masach", (List<SelectListItem>)ViewBag.sachdrop, "", htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.SACH.MaSach, "", new { @class = "text-danger" })
-                </div>*@
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Thêm mới" class="btn" style="background-color: #210cae; color:#fff;" onclick="return validateData()" />
-        </div>
-    </div>
-</div>
-}
+            <label class="control-label col-md-12">Mã phiếu mượn sách</label>
+            <div class="col-md-12 text-bold text-red">
+                @ViewBag.newkey
 
-<div>
-    @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-outline-dark" })
-</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-12">Hội viên mượn sách</label>
+            <div class="col-md-12">
+                @Html.DropDownList("mahoivien", (List<SelectListItem>)ViewBag.mahoivien, htmlAttributes: new { @class = "form-control search-selectlist" })
+
+                @Html.ValidationMessageFor(model => model.HOIVIEN.TenHV, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="control-label col-md-12">Ngày mượn sách</label>
+            <div class="col-md-12">
+                <input class="form-control" id="ngaymuon" name="ngaymuon" type="date" />
+                <span class="field-validation-valid text-danger" data-valmsg-for="ngaymuon" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.HiddenFor(model => model.NgayTra, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.NgayTra, new { htmlAttributes = new { @class = "form-control", @type = "date" } })*@
+
+                @Html.HiddenFor(model => model.NgayTra)
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-12">Ngày trả sách</label>
+            <div class="col-md-12">
+                <span class="form-control" style="color:red; font-weight:bold;" id="thoihan">dd/mm/yyyy</span><br>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-12">Số lượng sách mượn</label>
+            <div class="col-md-12">
+                <input class="form-control" id="soluong" name="soluong" type="number" min="0" max="3" />
+                <span class="field-validation-valid text-danger" data-valmsg-for="soluong" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+        <div id="dropdownlist-container">
+            <div class="form-group">
+                @*@Html.LabelFor(model => model.SACH.MaSach, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("masach", (List<SelectListItem>)ViewBag.sachdrop, "", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.SACH.MaSach, "", new { @class = "text-danger" })
+                    </div>*@
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-12 col-md-12 text-center">
+                <input type="submit" value="Thêm mới" class="btn mr-2" style="background-color: #210cae; color:#fff;" onclick="return validateData()" />
+                @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-outline-dark" })
+            </div>
+        </div>
+    </div>
+}
 
 <script type="text/javascript">
     $(function () {

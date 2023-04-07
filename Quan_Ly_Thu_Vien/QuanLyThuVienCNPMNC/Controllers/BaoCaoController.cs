@@ -12,6 +12,8 @@ namespace QuanLyThuVienCNPMNC.Controllers
     public class BaoCaoController : Controller
     {
         // GET: BaoCao
+
+       
         public object ListtoDataConverter { get; private set; }
         Quan_Ly_Thu_VienEntities databases = new Quan_Ly_Thu_VienEntities();
         public ActionResult Index()

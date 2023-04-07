@@ -5,14 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Chi tiết</h2>
-
-<div>
-    <h4>Phiếu mượn sách</h4>
+<div class="bg_dt">
+    <h2 class="text-center text-uppercase text-bold">thông tin<br /> phiếu mượn sách</h2>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.MaPhieu)
+            Mã phiếu mượn
         </dt>
 
         <dd>
@@ -20,7 +18,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MaHV)
+            Mã hội viên mượn
         </dt>
 
         <dd>
@@ -28,31 +26,37 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NgayMuonFormatted)
+            Ngày mượn sách
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NgayMuonFormatted)
+            @Convert.ToDateTime(Model.NgayMuon).ToString("dd/MM/yyyy")
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NgayTraFormatted)
+            Ngày trả sách
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NgayTraFormatted)
+            @if (Model.NgayTra != null)
+            {
+                @Convert.ToDateTime(Model.NgayTra).ToString("dd/MM/yyyy")
+            }
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ThoiHanFormatted)
+            Thời hạn
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ThoiHanFormatted)
+            @if (Model.ThoiHan != null)
+            {
+                @Convert.ToDateTime(Model.ThoiHan).ToString("dd/MM/yyyy")
+            }
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SoLuong)
+            Số lượng sách mượn
         </dt>
 
         <dd>
@@ -60,7 +64,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CHITIETPHIEUMUONs.First().SACH.DAUSACH.TenSach)
+            Các sách đang mượn
         </dt>
         @foreach (var item in @ViewBag.danhsachSach)
         {
@@ -70,15 +74,16 @@
         }
 
     </dl>
+    <p class="text-center">
+
+        @Html.ActionLink("Chỉnh sửa", "Edit", new { maphieu = Model.MaPhieu, mahoivien = Model.MaHV }, new { @class = "btn btn-secondary mr-2" })
+        @Html.ActionLink("Trở về trang danh sách", "Index", null, new { @class = "btn btn-outline-dark" })
+
+        @*@Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+            @Html.ActionLink("Back to List", "Index")*@
+    </p>
+
 </div>
-<p>
-
-    @Html.ActionLink("Chỉnh sửa", "Edit", new { maphieu = Model.MaPhieu, mahoivien = Model.MaHV }, new { @class = "btn btn-secondary" }) |
-    @Html.ActionLink("Trở về trang danh sách", "Index", null, new { @class = "btn btn-outline-dark" })
-
-    @*@Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")*@
-</p>
 
 @if (ViewBag.Message != null)
 {

@@ -54,23 +54,49 @@
 
 
     <style>
+        .bg_dt_index {
+            margin-top: 20px !important;
+            margin: auto;
+            padding: 20px 50px 60px 50px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 6px 4px 8px;
+        }
+
         .bg_dt {
             margin-top: 20px !important;
             margin: auto;
             padding: 10px 50px 50px 50px;
-            width: 500px;
+            width: 550px;
             background: white;
             border-radius: 20px;
             box-shadow: 6px 4px 8px;
         }
 
             .bg_dt .dl-horizontal dt {
-                font-size: 20px;
+                font-size: 22px;
             }
 
             .bg_dt .dl-horizontal dd {
-                font-size: 16px;
+                font-size: 18px;
             }
+
+        .dl-horizontal dd {
+            font-size: 18px;
+        }
+
+        .dl-horizontal dt {
+            font-size: 22px;
+        }
+
+        .col-md-12 {
+            font-size: 18px;
+        }
+
+        .form-group * {
+            font-size: 22px;
+        }
 
         .dataTables_wrapper .dataTables_length select {
             background-color: #fff;
@@ -189,12 +215,15 @@
         .add-item {
             background-color: #59d102;
             color: #fff;
-            width: 120px;
-            border-radius: 50px;
+            width: 135px;
+            border-radius: 24px;
             display: inline-block;
             text-align: center;
-            padding: 6px 14px;
+            padding: 8px;
             font-size: 18px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0px 0px 0px 5px;
         }
 
             .add-item:hover {
@@ -303,7 +332,7 @@
                                                 new { Text = "Báo cáo",Icon = "fa-newspaper", Controller = "BaoCao", Action = "Index", Roles = new[] { "Hiệu trưởng", "Thủ thư","Nhân viên quản lý", "Nhân viên hỗ trợ" } },
                                                 new { Text = "Bồi thường",Icon = "fa-money-bill", Controller = "BoiThuong", Action = "Index", Roles = new[] { "Hiệu trưởng", "Nhân viên hỗ trợ" } },
 
-                                                new { Text = "Cập nhật thông tin",Icon = "fa-user-pen", Controller = "ThongTinCaNhan", Action = "Index", Roles = new[] { $"{user.ChucVu}" } },
+                                                new { Text = "Thông tin cá nhân",Icon = "fa-user-pen", Controller = "ThongTinCaNhan", Action = "Detail", Roles = new[] { $"{user.ChucVu}" } },
 
                                                 new { Text = "Quản lý nhân viên",Icon = "fa-users", Controller = "NhanVien", Action = "Index", Roles = new[] { "Hiệu trưởng", "Quản trị web" } },
 
@@ -417,6 +446,8 @@
         </aside>
         <!-- /.control-sidebar -->
     </div>
+    @RenderSection("Scripts", required: false)
+
     <!-- ./wrapper -->
     <!-- jQuery -->
     <script src="~/Content/admin/plugins/jquery/jquery.min.js"></script>
@@ -496,9 +527,62 @@
         });
     });
     </script>
-
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" integrity="sha512-2bMhOkE/ACz21dJT8zBOMgMecNxx0d37NND803ExktKiKdSzdwn+L7i9fdccw/3V06gM/DBWKbYmQvKMdAA9Nw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    @*    Giu session*@
+    <script type="text/javascript">
+        //Có thể tác đoạn đầu này bỏ vào file .js sau đó load ra cũng được.
+        SessionUpdater = (function () {
+            var clientMovedSinceLastTimeout = false;
+            var keepSessionAliveUrl = null;
+            var timeout = 20 * 1000 * 60; // 5 phút xử lý load lại session 1 lần
+            function setupSessionUpdater(actionUrl) {
+                // store local value
+                keepSessionAliveUrl = actionUrl;
+                // setup handlers
+                listenForChanges();
+                // start timeout - it'll run after n minutes
+                checkToKeepSessionAlive();
+            }
+            function listenForChanges() {
+                $("body").one("mousemove keydown", function () {
+                    clientMovedSinceLastTimeout = true;
+                });
+            }
+            // fires every n minutes - if there's been movement ping server and restart timer
+            function checkToKeepSessionAlive() {
+                setTimeout(function () { keepSessionAlive(); }, timeout);
+            }
+            function keepSessionAlive() {
+                // if we've had any movement since last run, ping the server
+                if (clientMovedSinceLastTimeout && keepSessionAliveUrl != null) {
+                    $.ajax({
+                        type: "POST",
+                        url: keepSessionAliveUrl,
+                        success: function (data) {
+                            // reset movement flag
+                            clientMovedSinceLastTimeout = false;
+                            // start listening for changes again
+                            listenForChanges();
+                            // restart timeout to check again in n minutes
+                            checkToKeepSessionAlive();
+                        },
+                        error: function (data) {
+                            console.log("Error posting to " & keepSessionAliveUrl);
+                        }
+                    });
+                }
+            }
+            // export setup method
+            return {
+                Setup: setupSessionUpdater
+            };
+        })();
+    </script>
+
+    <script type="text/javascript">
+    // cài đặt update session KeepSessionAlive mỗi khi có người truy cập web, bạn thay controller Home bằng controller của bạn gắn mã.
+    SessionUpdater.Setup('@Url.Action("KeepSessionAlive","TrangChu")');
+    </script>
 </body>
 </html>
 

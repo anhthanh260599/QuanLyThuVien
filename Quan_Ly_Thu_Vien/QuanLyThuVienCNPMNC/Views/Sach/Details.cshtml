@@ -5,21 +5,19 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Chi tiết</h2>
-
-<div>
-    <h4>Sách</h4>
+<div class="bg_dt">
+    <h2 class="text-center text-uppercase text-bold">Chi tiết về sách</h2>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.DAUSACH.TenSach)
+            Tên sách
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.DAUSACH.TenSach)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.MaSach)
+            Mã sách
         </dt>
 
         <dd>
@@ -27,7 +25,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TinhTrang)
+            Tình trạng sách
         </dt>
 
         <dd>
@@ -54,7 +52,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MaDS)
+            Mã đầu sách
         </dt>
 
         <dd>
@@ -62,7 +60,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.GhiChu)
+            Ghi chú thêm
         </dt>
 
         <dd>
@@ -70,15 +68,13 @@
         </dd>
 
     </dl>
+    <p class="text-center">
+        @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MaSach }, new { @class = "btn btn-secondary mr-2" }) 
+        @Html.ActionLink("Trở về trang danh sách", "Index", null, new { @class = "btn btn-outline-dark" })
+        @*@Html.ActionLink("Edit", "Edit", new { id = Model.MaSach }) |
+            @Html.ActionLink("Back to List", "Index")*@
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MaSach }, new { @class = "btn btn-secondary" }) |
-    @Html.ActionLink("Trở về trang danh sách", "Index", null, new { @class = "btn btn-outline-dark" })
-
-
-    @*@Html.ActionLink("Edit", "Edit", new { id = Model.MaSach }) |
-    @Html.ActionLink("Back to List", "Index")*@
-</p>
 
 
 @if (ViewBag.Message != null)

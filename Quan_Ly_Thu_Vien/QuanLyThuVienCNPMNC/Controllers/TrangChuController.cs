@@ -12,6 +12,13 @@ namespace QuanLyThuVienCNPMNC.Controllers
     {
         Quan_Ly_Thu_VienEntities databases = new Quan_Ly_Thu_VienEntities();
         // GET: TrangChu
+
+        //Giu session
+        [HttpPost]
+        public JsonResult KeepSessionAlive()
+        {
+            return new JsonResult { Data = "Success" };
+        }
         public ActionResult Index()
         {
             // Đếm tổng số lượng sách trong database

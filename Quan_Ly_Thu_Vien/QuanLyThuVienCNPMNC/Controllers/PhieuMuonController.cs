@@ -43,6 +43,23 @@ namespace QuanLyThuVienCNPMNC.Controllers
 
         }
 
+        // GET: DocGiachuatrasach
+        public ActionResult ChuaTraSach()
+        {
+            NHANVIEN nvSession = (NHANVIEN)Session["user"];
+            var count = databases.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && s.MaChucNang == "CN03");
+            if (count == 0)
+            {
+                TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
+                return RedirectToAction("Index", "TrangChu");
+
+            }
+            else
+            {
+                return View(databases.PHIEUMUONSACHes.Where(s => s.NgayTra == null).ToList());
+            }
+
+        }
         //Hàm tự cập nhật mã 
         public string CapNhatKey()
         {

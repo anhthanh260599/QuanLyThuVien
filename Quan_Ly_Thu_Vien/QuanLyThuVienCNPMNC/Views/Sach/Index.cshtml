@@ -3,91 +3,91 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>Sách</h2>
-<hr />
 
 <p>
     <a href="@Url.Action("Create","Sach")" class="add-item">
         <i class="fa-solid fa-plus add-icon"></i> Thêm
     </a>
 </p>
-
-<table class="display" id="myTable">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().MaSach)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().TinhTrang)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().MaDS)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().GhiChu)
-            </th>
-            <th>
-                Hành động
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+<div class="bg_dt_index">
+    <h1 class="text-center text-uppercase text-bold">Danh mục sách</h1>
+    <hr />
+    <table class="display" id="myTable">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MaSach)
-                </td>
-
-                <td>
-                    @if (item.TinhTrang == 1)
-                    {
-                        <text> Còn </text>
-                    }
-                    else if (item.TinhTrang == 2)
-                    {
-                        <text> Cho mượn </text>
-                    }
-
-                    else if (item.TinhTrang == 3)
-                    {
-                        <text> Mất </text>
-                    }
-                    else if (item.TinhTrang == 4)
-                    {
-                        <text> Hỏng </text>
-                    }
-
-
-
-
-                    @*@Html.DisplayFor(modelItem => item.TinhTrang)*@
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DAUSACH.TenSach)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.GhiChu)
-                </td>
-                <td>
-                    @*@Html.ActionLink("Details", "Details", new { id = item.MaDS })*@
-                    <a href="@Url.Action("Details","Sach", new {id = item.MaSach})" class="action-item">
-                        <i class="fa-solid fa-book action-icon"></i>
-                    </a>
-                    @*@Html.ActionLink("Edit", "Edit", new { id = item.MaDS })*@
-                    <a href="@Url.Action("Edit","Sach", new {id = item.MaSach})" class="action-item">
-                        <i class="fa-solid fa-pen-to-square action-icon"></i>
-                    </a>
-                    <a href="@Url.Action("Delete","Sach", new {id = item.MaSach})" class="action-item">
-                        <i class="fa-solid fa-trash action-icon"></i>
-                    </a>
-                </td>
+                <th>
+                    Mã sách
+                </th>
+                <th>
+                    Tình trạng
+                </th>
+                <th>
+                    Mã đầu sách
+                </th>
+                <th>
+                    Ghi chú thêm
+                </th>
+                <th>
+                    Hành động
+                </th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaSach)
+                    </td>
 
+                    <td>
+                        @if (item.TinhTrang == 1)
+                        {
+                            <text> Còn </text>
+                        }
+                        else if (item.TinhTrang == 2)
+                        {
+                            <text> Cho mượn </text>
+                        }
+
+                        else if (item.TinhTrang == 3)
+                        {
+                            <text> Mất </text>
+                        }
+                        else if (item.TinhTrang == 4)
+                        {
+                            <text> Hỏng </text>
+                        }
+
+
+
+
+                        @*@Html.DisplayFor(modelItem => item.TinhTrang)*@
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DAUSACH.TenSach)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GhiChu)
+                    </td>
+                    <td>
+                        @*@Html.ActionLink("Details", "Details", new { id = item.MaDS })*@
+                        <a href="@Url.Action("Details","Sach", new {id = item.MaSach})" class="action-item">
+                            <i class="fa-solid fa-book action-icon"></i>
+                        </a>
+                        @*@Html.ActionLink("Edit", "Edit", new { id = item.MaDS })*@
+                        <a href="@Url.Action("Edit","Sach", new {id = item.MaSach})" class="action-item">
+                            <i class="fa-solid fa-pen-to-square action-icon"></i>
+                        </a>
+                        <a href="@Url.Action("Delete","Sach", new {id = item.MaSach})" class="action-item">
+                            <i class="fa-solid fa-trash action-icon"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 @if (ViewBag.Message != null)
 {
     <script type="text/javascript">

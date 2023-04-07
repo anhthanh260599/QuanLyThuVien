@@ -5,76 +5,78 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Danh sách nhân viên</h2>
-<hr />
+
 
 <p>
     <a href="@Url.Action("Create","NhanVien")" class="add-item">
         <i class="fa-solid fa-plus add-icon"></i> Thêm
     </a>
 </p>
-<table class="display" id="myTable">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().MaNV)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().TenNV)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().ChucVu)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().MatKhau)
-            </th>
-            <th>
-                Hành động
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+<div class="bg_dt_index">
+    <h1 class="text-center text-uppercase text-bold">danh sách nhân viên</h1>
+    <hr />
+    <table class="display" id="myTable">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MaNV)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TenNV)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ChucVu)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @*@Html.DisplayFor(modelItem => item.MatKhau)*@
-                    @* Hiển thị dấu sao *@
-                    @Html.Raw(string.Concat(Enumerable.Repeat("*", item.MatKhau.Length)))
-                </td>
-                <td>
-                    @*@Html.ActionLink("Details", "Details", new { id = item.MaDS })*@
-                    <a href="@Url.Action("Details","NhanVien", new {id = item.MaNV})" class="action-item">
-                        <i class="fa-solid fa-book action-icon"></i>
-                    </a>
-                    @*@Html.ActionLink("Edit", "Edit", new { id = item.MaDS })*@
-                    <a href="@Url.Action("Edit","NhanVien", new {id = item.MaNV})" class="action-item">
-                        <i class="fa-solid fa-pen-to-square action-icon"></i>
-                    </a>
-                    <a href="@Url.Action("Delete","NhanVien", new {id = item.MaNV})" class="action-item">
-                        <i class="fa-solid fa-trash action-icon"></i>
-                    </a>
-                </td>
+                <th>
+                    Mã nhân viên
+                </th>
+                <th>
+                    Tên nhân viên
+                </th>
+                <th>
+                    Chức vụ
+                </th>
+                <th>
+                    Tài khoản Gmail
+                </th>
+                <th>
+                    Mật khẩu
+                </th>
+                <th>
+                    Hành động
+                </th>
             </tr>
-        }
-    </tbody>
-</table>
-
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaNV)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenNV)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ChucVu)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.MatKhau)*@
+                        @* Hiển thị dấu sao *@
+                        @Html.Raw(string.Concat(Enumerable.Repeat("*", item.MatKhau.Length)))
+                    </td>
+                    <td>
+                        @*@Html.ActionLink("Details", "Details", new { id = item.MaDS })*@
+                        <a href="@Url.Action("Details","NhanVien", new {id = item.MaNV})" class="action-item">
+                            <i class="fa-solid fa-book action-icon"></i>
+                        </a>
+                        @*@Html.ActionLink("Edit", "Edit", new { id = item.MaDS })*@
+                        <a href="@Url.Action("Edit","NhanVien", new {id = item.MaNV})" class="action-item">
+                            <i class="fa-solid fa-pen-to-square action-icon"></i>
+                        </a>
+                        <a href="@Url.Action("Delete","NhanVien", new {id = item.MaNV})" class="action-item">
+                            <i class="fa-solid fa-trash action-icon"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 @if (ViewBag.Message != null)
 {
     <script type="text/javascript">

@@ -5,11 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Xóa báo cáo</h2>
 
-<p class="alert alert-danger" role="alert"><strong>Bạn có chắc muốn xóa nội dung này?</strong></p>
-<div>
-    <h4>Báo cáo</h4>
+<div class="bg_dt">
+    <p class="alert alert-danger mt-3" role="alert"><strong>Bạn có muốn xóa báo cáo này?</strong></p>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -39,7 +37,7 @@
 
         <dd>
             @* @Html.DisplayFor(model => model.NgayLapBaoCao)*@
-            @Convert.ToDateTime(Model.NgayLapBaoCao).ToString("dd/mm/yyyy")
+            @Convert.ToDateTime(Model.NgayLapBaoCao).ToString("dd/MM/yyyy")
         </dd>
     </dl>
 
@@ -47,7 +45,7 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
+        <div class="form-actions no-color mr-2 text-center">
             <input type="submit" value="Xóa" class="btn btn-danger" />
             @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-outline-dark" })
         </div>

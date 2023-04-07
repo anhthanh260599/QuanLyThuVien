@@ -10,19 +10,18 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
-<h2>Thêm sách</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-
+<div class="form-horizontal bg_dt w-50">
+    <h2 class="text-center text-uppercase text-bold">Thêm sách mới</h2>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
-        @Html.LabelFor(model => model.MaSach, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10 text-bold">
+        <label class="control-label col-md-12">Mã sách</label>
+        <div class="col-md-12 text-bold text-red">
             @ViewBag.newkey
         </div>
     </div>
@@ -38,35 +37,31 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.MaDS, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
+        <label class="control-label col-md-12">Tên sách </label>
+        <div class="col-md-12">
             @Html.DropDownListFor(model => model.MaDS, ViewBag.ListMaDauSach as SelectList, new { @class = "form-control list-searchable" })
-
             @*@Html.EditorFor(model => model.MaDS, new { htmlAttributes = new { @class = "form-control" } })*@
             @Html.ValidationMessageFor(model => model.MaDS, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.GhiChu, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
+        <label class="control-label col-md-12">Ghi chú thêm</label>
+        <div class="col-md-12">
             @Html.EditorFor(model => model.GhiChu, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.GhiChu, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Thêm mới" class="btn" style="background-color: #210cae; color:#fff;" />
+        <div class="col-md-offset-2 col-md-12 text-center">
+            <input type="submit" value="Thêm mới" class="btn mr-2" style="background-color: #210cae; color:#fff;" />
+            @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-outline-dark" })
+
         </div>
     </div>
 </div>
 }
-
-<div>
-    @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-outline-dark" })
-</div>
-
 
 <script type="text/javascript">
     $(function () {

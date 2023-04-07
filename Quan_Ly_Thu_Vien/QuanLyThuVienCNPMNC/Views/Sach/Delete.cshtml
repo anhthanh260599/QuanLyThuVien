@@ -6,15 +6,12 @@
 }
 
 
-<h2>Xóa</h2>
-
-<p class="alert alert-danger" role="alert"><strong>Bạn có chắc muốn xóa nội dung này?</strong></p>
-<div>
-    <h4>SACH</h4>
+<div class="bg_dt">
+    <p class="alert alert-danger mt-3" role="alert"><strong>Bạn có chắc muốn xóa sách này?</strong></p>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.MaSach)
+            Mã sách
         </dt>
 
         <dd>
@@ -22,15 +19,33 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TinhTrang)
+            Tình trạng sách
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.TinhTrang)
+            @{
+                if (Model.TinhTrang == 1)
+                {
+                    @Html.Raw("Còn");
+                }
+                else if (Model.TinhTrang == 2)
+                {
+                    @Html.Raw("Cho mượn");
+                }
+                else if (Model.TinhTrang == 3)
+                {
+                    @Html.Raw("Mất");
+                }
+                else if (Model.TinhTrang == 4)
+                {
+                    @Html.Raw("Hỏng");
+                }
+
+            }
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MaDS)
+            Mã đầu sách
         </dt>
 
         <dd>
@@ -38,7 +53,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.GhiChu)
+            Ghi chú thêm
         </dt>
 
         <dd>
@@ -51,8 +66,8 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Xóa" class="btn btn-danger" />
+        <div class="form-actions no-color text-center">
+            <input type="submit" value="Xóa" class="btn btn-danger mr-2" />
             @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-outline-dark" })
         </div>
     }

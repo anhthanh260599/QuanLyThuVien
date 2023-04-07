@@ -5,10 +5,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Thông tin chi tiết</h2>
-
-<div>
-    <h4>Báo cáo</h4>
+<div class="bg_dt">
+    <h2 class="text-center text-uppercase text-bold">báo cáo chi tiết</h2>
     <hr />
     <dl class="dl-horizontal">
 
@@ -55,16 +53,16 @@
             @Convert.ToDateTime(Model.NgayLapBaoCao).ToString("dd/MM/yyyy")
         </dd>
     </dl>
+    <p class="text-center">
+
+       @* <button class="btn btn-primary">In báo cáo</button>     *@
+        @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.Id }, new { @class = "btn btn-secondary" }) 
+        @Html.ActionLink("Trở về trang danh sách", "Index", null, new { @class = "btn btn-outline-dark" })
+
+        @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("Back to List", "Index")*@
+    </p>
 </div>
-<p>
-
-    <button class="btn btn-primary">In báo cáo</button> |
-    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.Id }, new { @class = "btn btn-secondary" }) |
-    @Html.ActionLink("Trở về trang danh sách", "Index", null, new { @class = "btn btn-outline-dark" })
-
-    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")*@
-</p>
 
 
 @if (ViewBag.Message != null)

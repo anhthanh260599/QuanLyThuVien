@@ -31,7 +31,7 @@
                 title: 'Vui lòng nhập mật khẩu'
             });
             return false;
-        
+
         } else {
             return true;
         }
@@ -44,60 +44,55 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Nhân viên</h4>
+    <div class="form-horizontal bg_dt w-50">
+        <h2 class="text-center text-uppercase text-bold">Thêm nhân viên mới</h2>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.MaNV, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10 text-bold">
+            <label class="control-label col-md-12">Mã cấp cho nhân viên</label>
+            <div class="col-md-12 text-bold text-red">
                 @ViewBag.newkey
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TenNV, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <label class="control-label col-md-12">Tên nhân viên</label>
+            <div class="col-md-12">
                 @Html.EditorFor(model => model.TenNV, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TenNV, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ChucVu, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <label class="control-label col-md-12">Chức vụ </label>
+            <div class="col-md-12">
                 @Html.DropDownListFor(model => model.ChucVu, new SelectList(new[] { "Thủ thư", "Nhân viên quản lý", "Nhân viên hỗ trợ" }), new { @class = "form-control" })
-
                 @*@Html.EditorFor(model => model.ChucVu, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.ChucVu, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <label class="control-label col-md-12">Tài khoản Gmail</label>
+            <div class="col-md-12">
                 @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @type = "email" } })
                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.MatKhau, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <label class="control-label col-md-12">Mật khẩu</label>
+            <div class="col-md-12">
                 @Html.EditorFor(model => model.MatKhau, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+            <div class="col-md-offset-2 col-md-12 text-center">
                 <input type="submit" value="Thêm mới" class="btn" style="background-color: #210cae; color:#fff;" onclick="return validateData()" />
+                @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-outline-dark" })
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-outline-dark" })
-</div>
-

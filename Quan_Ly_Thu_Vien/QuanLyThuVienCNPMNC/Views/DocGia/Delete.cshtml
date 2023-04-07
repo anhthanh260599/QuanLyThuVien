@@ -5,15 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Xóa</h2>
-
-<p class="alert alert-danger" role="alert"><strong>Bạn có chắc muốn xóa nội dung này?</strong></p>
-<div>
-    <h4>Hội viên</h4>
+<div class="bg_dt">
+    <p class="alert alert-danger mt-3" role="alert"><strong>Bạn có muốn xóa thẻ hội viên này?</strong></p>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.MaHV)
+            Mã hội viên
         </dt>
 
         <dd>
@@ -21,7 +18,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TenHV)
+            Tên hội viên
         </dt>
 
         <dd>
@@ -29,7 +26,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SDT)
+            Số điện thoại
         </dt>
 
         <dd>
@@ -37,24 +34,24 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NgayLapTheFormatted)
+            Ngày lập thẻ
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NgayLapTheFormatted)
+            @Convert.ToDateTime(Model.NgayLapThe).ToString("dd/MM/yyyy")
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NgayHetHanFormatted)
+            Ngày hết hạn
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NgayHetHanFormatted)
+            @Convert.ToDateTime(Model.NgayHetHan).ToString("dd/MM/yyyy")
         </dd>
 
 
         <dt>
-            @Html.DisplayNameFor(model => model.TinhTrang)
+            Tình trạng
         </dt>
 
         <dd>
@@ -62,15 +59,12 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DangMuon)
+            Số lượng sách đang mượn
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.DangMuon)
         </dd>
-
-
-
     </dl>
 
     @using (Html.BeginForm())
@@ -78,7 +72,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Xóa" class="btn btn-danger" />
+            <input type="submit" value="Xóa" class="btn btn-danger mr-2" />
             @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-outline-dark" })
         </div>
     }

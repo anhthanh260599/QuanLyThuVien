@@ -5,14 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Thông tin chi tiết</h2>
-
-<div>
-    <h4>Nhân viên</h4>
+<div class="bg_dt">
+    <h2 class="text-center text-uppercase text-bold">Thông tin nhân viên</h2>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.MaNV)
+            Mã nhân viên
         </dt>
 
         <dd>
@@ -20,7 +18,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TenNV)
+            Tên nhân viên
         </dt>
 
         <dd>
@@ -28,7 +26,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ChucVu)
+            Chức vụ
         </dt>
 
         <dd>
@@ -36,7 +34,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Email)
+            Tài khoản Gmail
         </dt>
 
         <dd>
@@ -44,24 +42,24 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MatKhau)
+            Mật khẩu
         </dt>
 
         <dd>
-            @Html.Raw(string.Concat(Enumerable.Repeat("*", Model.MatKhau.Length)))
+            @*  @Html.Raw(string.Concat(Enumerable.Repeat("*", Model.MatKhau.Length)))*@
 
-            @*@Html.DisplayFor(model => model.MatKhau)*@
+            @Html.DisplayFor(model => model.MatKhau)
         </dd>
 
     </dl>
-</div>
-<p>
-    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MaNV }, new { @class = "btn btn-secondary" }) |
-    @Html.ActionLink("Trở về trang danh sách", "Index", null, new { @class = "btn btn-outline-dark" })
+    <p class="text-center">
+        @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MaNV }, new { @class = "btn btn-secondary mr-2" }) 
+        @Html.ActionLink("Trở về trang danh sách", "Index", null, new { @class = "btn btn-outline-dark" })
 
-    @*@Html.ActionLink("Edit", "Edit", new { id = Model.MaNV }) |
-    @Html.ActionLink("Back to List", "Index")*@
-</p>
+        @*@Html.ActionLink("Edit", "Edit", new { id = Model.MaNV }) |
+            @Html.ActionLink("Back to List", "Index")*@
+    </p>
+</div>
 
 
 @if (ViewBag.Message != null)

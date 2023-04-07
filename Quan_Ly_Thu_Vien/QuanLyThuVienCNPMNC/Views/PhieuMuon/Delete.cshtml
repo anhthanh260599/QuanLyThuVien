@@ -5,15 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Xóa</h2>
-
-<p class="alert alert-danger" role="alert"><strong>Bạn có chắc muốn xóa nội dung này?</strong></p>
-<div>
-    <h4>Phiếu mượn sách</h4>
+<div class="bg_dt">
+    <p class="alert alert-danger mt-3" role="alert"><strong>Bạn có muốn xóa phiếu mượn này?</strong></p>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.MaPhieu)
+            Mã phiếu mượn
         </dt>
 
         <dd>
@@ -21,7 +18,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MaHV)
+            Mã hội viên mượn
         </dt>
 
         <dd>
@@ -29,62 +26,67 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NgayMuonFormatted)
+            Ngày mượn sách
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NgayMuonFormatted)
+            @Convert.ToDateTime(Model.NgayMuon).ToString("dd/MM/yyyy")
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NgayTraFormatted)
+            Ngày trả sách
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NgayTraFormatted)
+            @if (Model.NgayTra != null)
+            {
+                @Convert.ToDateTime(Model.NgayTra).ToString("dd/MM/yyyy")
+            }
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ThoiHan)
+            Thời hạn
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ThoiHan)
+            @if (Model.ThoiHan != null)
+            {
+                @Convert.ToDateTime(Model.ThoiHan).ToString("dd/MM/yyyy")
+            }
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SoLuong)
+            Số lượng sách mượn
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.SoLuong)
         </dd>
+
         <dt>
-            Tên sách
+            Các sách đang mượn
         </dt>
-        @foreach (var item in ViewBag.danhsachSach)
+        @foreach (var item in @ViewBag.danhsachSach)
         {
             <dd>
                 @item
             </dd>
         }
-
-
     </dl>
 
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Xóa" class="btn btn-danger" onclick="return confirm('Bạn có chắc là muốn xóa chứ ??')"/>
+        <div class="form-actions no-color text-center">
+            <input type="submit" value="Xóa" class="btn btn-danger" onclick="return confirm('Bạn có chắc là muốn xóa chứ ??')" />
             @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-outline-dark" })
         </div>
 
         @*<div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" onclick="return confirm('Bạn có chắc là muốn xóa chứ ??')" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>*@
+                <input type="submit" value="Delete" class="btn btn-default" onclick="return confirm('Bạn có chắc là muốn xóa chứ ??')" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>*@
     }
 </div>
 

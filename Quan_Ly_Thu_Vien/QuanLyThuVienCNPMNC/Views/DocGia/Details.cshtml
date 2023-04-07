@@ -5,14 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Thông tin chi tiết</h2>
 
-<div>
-    <h4>Hội viên</h4>
+<div class="bg_dt">
+    <h2 class="text-center text-uppercase text-bold">thông tin hội viên</h2>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.MaHV)
+            Mã hội viên
         </dt>
 
         <dd>
@@ -20,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TenHV)
+            Tên hội viên
         </dt>
 
         <dd>
@@ -28,7 +27,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SDT)
+            Số điện thoại
         </dt>
 
         <dd>
@@ -36,22 +35,22 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NgayLapTheFormatted)
+            Ngày lập thẻ
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NgayLapTheFormatted)
+            @Convert.ToDateTime(Model.NgayLapThe).ToString("dd/MM/yyyy")
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NgayHetHanFormatted)
+            Ngày hết hạn
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NgayHetHanFormatted)
+            @Convert.ToDateTime(Model.NgayHetHan).ToString("dd/MM/yyyy")
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.TinhTrang)
+            Tình trạng
         </dt>
 
         <dd>
@@ -65,7 +64,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DangMuon)
+            Số lượng sách đang mượn
         </dt>
 
         <dd>
@@ -73,7 +72,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TrangThai)
+            Trạng thái thẻ
         </dt>
 
         <dd>
@@ -92,19 +91,13 @@
                 }
             }
         </dd>
-
-
-
     </dl>
+    <p class="text-center">
+        @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MaHV }, new { @class = "btn btn-secondary mr-2" }) 
+        @Html.ActionLink("Trở về trang danh sách", "Index", null, new { @class = "btn btn-outline-dark" })
+    </p>
+
 </div>
-<p>
-    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MaHV }, new { @class = "btn btn-secondary" }) |
-    @Html.ActionLink("Trở về trang danh sách", "Index", null, new { @class = "btn btn-outline-dark" })
-
-
-    @*@Html.ActionLink("Edit", "Edit", new { id = Model.MaHV }) |
-    @Html.ActionLink("Back to List", "Index")*@
-</p>
 
 
 @if (ViewBag.Message != null)

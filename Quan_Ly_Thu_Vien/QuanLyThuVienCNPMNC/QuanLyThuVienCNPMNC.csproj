@@ -148,6 +148,7 @@
     <Compile Include="Controllers\PhieuMuonController.cs" />
     <Compile Include="Controllers\SachController.cs" />
     <Compile Include="Controllers\SweetController.cs" />
+    <Compile Include="Controllers\ThongTinCaNhanController.cs" />
     <Compile Include="Controllers\TrangChuController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2691,6 +2692,9 @@
     <Content Include="Views\BoiThuong\Details.cshtml" />
     <Content Include="Views\BoiThuong\Edit.cshtml" />
     <Content Include="Views\BoiThuong\Index.cshtml" />
+    <Content Include="Views\PhieuMuon\ChuaTraSach.cshtml" />
+    <Content Include="Views\ThongTinCaNhan\Detail.cshtml" />
+    <Content Include="Views\ThongTinCaNhan\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

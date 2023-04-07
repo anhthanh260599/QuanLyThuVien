@@ -241,10 +241,19 @@ namespace QuanLyThuVienCNPMNC.Controllers
         [ValidateInput(false)]
         public ActionResult Edit(SACH objProduct)
         {
-            databases.Entry(objProduct).State = EntityState.Modified;
-            databases.SaveChanges();
-            TempData["Message"] = "Chinh sua thanh cong !!!";
-            return RedirectToAction("Index");
+            try
+            {
+                databases.Entry(objProduct).State = EntityState.Modified;
+                databases.SaveChanges();
+                TempData["Message"] = "Chinh sua thanh cong !!!";
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                TempData["Error"] = "Error ...";
+                return RedirectToAction("Index");
+            }
+           
         }
     }
 }

@@ -105,26 +105,28 @@ namespace QuanLyThuVienCNPMNC.Controllers
         public ActionResult Create(HOIVIEN hoivien)
         {
 
-                try
-                {
-                    hoivien.MaHV = CapNhatKey();
-                    hoivien.DangMuon = 0;
-                    databases.HOIVIENs.Add(hoivien);
-                    databases.SaveChanges();
+            try
+            {
+                hoivien.MaHV = CapNhatKey();
+                hoivien.DangMuon = 0;
+                hoivien.NgayHetHan = hoivien.NgayLapThe.AddYears(4);
 
-                    using (var context1 = new Quan_Ly_Thu_VienEntities())
-                    {
-                        context1.sp_CapNhatTinhTrangTheHoiVien(hoivien.MaHV);
-                    }
+                databases.HOIVIENs.Add(hoivien);
+                databases.SaveChanges();
 
-                    TempData["Message"] = "Them thanh cong !!!";
-                    return RedirectToAction("Index");
-                }
-                catch
+                using (var context1 = new Quan_Ly_Thu_VienEntities())
                 {
-                    return View();
+                    context1.sp_CapNhatTinhTrangTheHoiVien(hoivien.MaHV);
                 }
-         
+
+                TempData["Message"] = "Them thanh cong !!!";
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+
         }
 
         // Xem chi tiết
@@ -202,7 +204,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             {
                 this.LoadData();
                 var objProduct = databases.HOIVIENs.Where(n => n.MaHV == id).FirstOrDefault();
-                
+
 
                 return View(objProduct);
             }

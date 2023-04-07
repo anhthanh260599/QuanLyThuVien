@@ -26,19 +26,17 @@
     }
 </script>
 
-<h2>Tạo báo cáo</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4>BAOCAO</h4>
+    <div class="form-horizontal bg_dt_index w-75">
+        <h2 class="text-center text-uppercase text-bold">Thêm báo cáo mới</h2>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            <label class="control-label col-md-2">Người lập báo cáo</label>
-            <div class="col-md-10">
+            <label class="control-label col-md-12">Người lập báo cáo</label>
+            <div class="col-md-12">
                 @{
                     //Gọi session
                     var user = (QuanLyThuVienCNPMNC.Models.NHANVIEN)HttpContext.Current.Session["user"];
@@ -50,16 +48,16 @@
         </div>
         <div class="form-group">
             @*@Html.LabelFor(model => model.Tieude, htmlAttributes: new { @class = "control-label col-md-2" })*@
-            <label class="control-label col-md-2">Tiêu đề</label>
-            <div class="col-md-10">
+            <label class="control-label col-md-12">Tiêu đề</label>
+            <div class="col-md-12">
                 @Html.EditorFor(model => model.Tieude, new { htmlAttributes = new { @class = "form-control", @type = "Text" } })
                 @Html.ValidationMessageFor(model => model.Tieude, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
             @* @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })*@
-            <label class="control-label col-md-2">Nội dung</label>
-            <div class="col-md-10">
+            <label class="control-label col-md-12">Nội dung</label>
+            <div class="col-md-12">
                 @*Trình soạn thảo văn bản (CKEditor)*@
                 @Html.TextAreaFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @id = "Description" } })
                 <script type="text/javascript" lang="javascript">
@@ -72,31 +70,27 @@
 
         <div class="form-group">
             @Html.HiddenFor(model => model.MaNhanVien, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-12">
                 @Html.HiddenFor(model => model.MaNhanVien, new { htmlAttributes = new { @class = "form-control", @placeholder = "VD: NV001", @name = "manhanvien" } })
             </div>
         </div>
 
         <div class="form-group">
             @*@Html.LabelFor(model => model.NgayLapBaoCao, htmlAttributes: new { @class = "control-label col-md-2" })*@
-            <label class="control-label col-md-2">Ngày lập báo cáo</label>
+            <label class="control-label col-md-12">Ngày lập báo cáo</label>
 
-            <div class="col-md-10">
+            <div class="col-md-12">
                 @Html.EditorFor(model => model.NgayLapBaoCao, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
                 @Html.ValidationMessageFor(model => model.NgayLapBaoCao, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Thêm mới" class="btn" style="background-color: #210cae; color:#fff;" onclick="return validateData()" />
-            </div>
-        </div>
-    </div>
+            <div class="col-md-offset-12 col-md-12 text-center">
+                <input type="submit" value="Thêm mới" class="btn mr-2" style="background-color: #210cae; color:#fff;" onclick="return validateData()" />
+                @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-outline-dark" })
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-outline-dark" })
+            </div>
         </div>
     </div>
 }
