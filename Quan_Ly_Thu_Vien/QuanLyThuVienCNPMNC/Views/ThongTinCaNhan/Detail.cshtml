@@ -51,9 +51,12 @@
     </dl>
     <p class="text-center">
         @*        @Html.ActionLink("Edit", "Edit", new { id = Model.MaNV }) |
-            @Html.ActionLink("Back to List", "Index")*@
+        @Html.ActionLink("Back to List", "Index")*@
 
-        @Html.ActionLink("Chỉnh sửa", "Edit", null, new { htmlAttributes = new { @class = "btn btn-secondary" }})
+        @Html.ActionLink("Chỉnh sửa", "Edit", null, new { @class = "btn btn-secondary mr-2" })
+        @Html.ActionLink("Đổi mật khẩu","ChangePass", null, new { @class = "btn btn-outline-info" })
+
+
     </p>
 </div>
 
@@ -65,6 +68,19 @@
                 title: 'Thất bại !',
                 text: '@TempData["Error"]',
                 icon: 'error',
+                confirmButtonText: 'OK'
+                });
+                });
+    </script>
+}
+@if (TempData["Message"] != null)
+{
+    <script type="text/javascript">
+               document.addEventListener('DOMContentLoaded', function () {
+                Swal.fire({
+                title: 'Thành công !',
+                text: '@TempData["Message"]',
+                icon: 'success',
                 confirmButtonText: 'OK'
                 });
                 });
