@@ -26,6 +26,7 @@ namespace QuanLyThuVienCNPMNC.Models
         public string ChucVu { get; set; }
         public string Email { get; set; }
         public string MatKhau { get; set; }
+        public string ImageAva { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BAOCAO> BAOCAOs { get; set; }

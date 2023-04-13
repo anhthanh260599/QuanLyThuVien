@@ -68,6 +68,7 @@
     <EntitySetMapping Name="NHANVIENs">
       <EntityTypeMapping TypeName="Quan_Ly_Thu_VienModel.NHANVIEN">
         <MappingFragment StoreEntitySet="NHANVIEN">
+          <ScalarProperty Name="ImageAva" ColumnName="ImageAva" />
           <ScalarProperty Name="MaNV" ColumnName="MaNV" />
           <ScalarProperty Name="TenNV" ColumnName="TenNV" />
           <ScalarProperty Name="ChucVu" ColumnName="ChucVu" />

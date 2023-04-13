@@ -74,6 +74,7 @@
           <Property Name="ChucVu" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="MatKhau" Type="char" MaxLength="16" Nullable="false" />
+          <Property Name="ImageAva" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="NhaXuatBan">
           <Key>
@@ -451,6 +452,7 @@
           <Property Name="MatKhau" Type="String" MaxLength="16" FixedLength="true" Unicode="false" Nullable="false" />
           <NavigationProperty Name="BAOCAOs" Relationship="Self.FK_BAOCAO_NHANVIEN" FromRole="NHANVIEN" ToRole="BAOCAO" />
           <NavigationProperty Name="PhanQuyens" Relationship="Self.FK_PhanQuyen_NHANVIEN" FromRole="NHANVIEN" ToRole="PhanQuyen" />
+          <Property Name="ImageAva" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="NhaXuatBan">
           <Key>
@@ -893,6 +895,7 @@
           <EntitySetMapping Name="NHANVIENs">
             <EntityTypeMapping TypeName="Quan_Ly_Thu_VienModel.NHANVIEN">
               <MappingFragment StoreEntitySet="NHANVIEN">
+                <ScalarProperty Name="ImageAva" ColumnName="ImageAva" />
                 <ScalarProperty Name="MaNV" ColumnName="MaNV" />
                 <ScalarProperty Name="TenNV" ColumnName="TenNV" />
                 <ScalarProperty Name="ChucVu" ColumnName="ChucVu" />

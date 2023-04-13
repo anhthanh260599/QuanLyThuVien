@@ -69,6 +69,7 @@
     <Property Name="ChucVu" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Email" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="MatKhau" Type="char" MaxLength="16" Nullable="false" />
+    <Property Name="ImageAva" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="NhaXuatBan">
     <Key>

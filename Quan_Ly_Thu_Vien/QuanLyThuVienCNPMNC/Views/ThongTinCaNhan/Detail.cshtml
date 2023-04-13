@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="bg_dt">
+<div class="bg_dt w-75">
     <h2 class="text-center text-uppercase text-bold">Thông tin cá nhân</h2>
     <hr />
     <dl class="dl-horizontal">
@@ -47,7 +47,14 @@
         <dd>
             @Html.HiddenFor(model => model.MatKhau)
         </dd>
+        <dt>
+            Avatar
+        </dt>
 
+        <dd>
+           @* @Html.DisplayFor(model => model.ImageAva)*@
+            <img src="~/Images/@Model.ImageAva" alt="Avatar"  style="width:180px; border-radius:100px;text-align:center; align-items:center" />
+        </dd>
     </dl>
     <p class="text-center">
         @*        @Html.ActionLink("Edit", "Edit", new { id = Model.MaNV }) |

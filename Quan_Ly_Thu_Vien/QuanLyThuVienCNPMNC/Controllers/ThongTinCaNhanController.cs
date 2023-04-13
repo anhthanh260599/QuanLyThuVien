@@ -1,9 +1,7 @@
 ﻿using QuanLyThuVienCNPMNC.Models;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
-using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 
@@ -28,10 +26,21 @@ namespace QuanLyThuVienCNPMNC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(NHANVIEN nv)
+        public ActionResult Edit(HttpPostedFileBase ImageAva, NHANVIEN nv)
         {
             try
             {
+                if (ImageAva != null)
+                {
+                    //Lấy tên file của hình được up lên
+                    var fileName = Path.GetFileName(ImageAva.FileName);
+                    //Tạo đường dẫn tới file
+                    var path = Path.Combine(Server.MapPath("~/Images"), fileName);
+                    //Lưu tên
+                    nv.ImageAva = fileName;
+                    //Save vào Images Folder
+                    ImageAva.SaveAs(path);
+                }
                 databases.Entry(nv).State = EntityState.Modified;
                 databases.SaveChanges();
                 TempData["Message"] = "Chinh sua thanh cong !!!";
@@ -55,16 +64,17 @@ namespace QuanLyThuVienCNPMNC.Controllers
         {
             NHANVIEN nvSession = (NHANVIEN)Session["user"];
             nv = databases.NHANVIENs.Where(s => s.MaNV == nvSession.MaNV).FirstOrDefault();
-                if (!mkCu.ToString().Equals(nv.MatKhau.Trim()))
-                {
-                    TempData["Error"] = "Ban da nhap sai mat khau cu !!";
-                    return RedirectToAction("ChangePass");
-                }
-                if (mkCu.Equals(mkMoi))
-                {
-                    TempData["Error"] = "Mat khau moi khong duoc trung voi mat khau cu !!";
-                    return RedirectToAction("ChangePass");
-                }                  
+            if (!mkCu.ToString().Equals(nv.MatKhau.Trim()))
+            {
+
+                TempData["Error"] = "Ban da nhap sai mat khau cu !!";
+                return RedirectToAction("ChangePass");
+            }
+            if (mkCu.Equals(mkMoi))
+            {
+                TempData["Error"] = "Mat khau moi khong duoc trung voi mat khau cu !!";
+                return RedirectToAction("ChangePass");
+            }
             nv.MatKhau = mkMoi;
             databases.Entry(nv).State = EntityState.Modified;
             databases.SaveChanges();

@@ -81,6 +81,7 @@
     <Property Name="MatKhau" Type="String" MaxLength="16" FixedLength="true" Unicode="false" Nullable="false" />
     <NavigationProperty Name="BAOCAOs" Relationship="Self.FK_BAOCAO_NHANVIEN" FromRole="NHANVIEN" ToRole="BAOCAO" />
     <NavigationProperty Name="PhanQuyens" Relationship="Self.FK_PhanQuyen_NHANVIEN" FromRole="NHANVIEN" ToRole="PhanQuyen" />
+    <Property Name="ImageAva" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="NhaXuatBan">
     <Key>

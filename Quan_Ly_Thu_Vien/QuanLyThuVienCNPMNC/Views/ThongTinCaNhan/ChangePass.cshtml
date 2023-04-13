@@ -67,17 +67,15 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+        <div class="form-group text-center">
+            <div class="col-md-offset-2 col-md-12">
+                <input type="submit" value="Save" id="btnSave" class="btn btn-default mr-2" />
+                @Html.ActionLink("Quay lại", "Detail",null, new { @class = "btn btn-outline-secondary" })
+
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 <script>
     $(document).ready(function () {
@@ -88,6 +86,11 @@
         checkMkInput.addEventListener("input", () => {
             if (mkMoiInput.value !== checkMkInput.value) {
                 checkMkError.text("Mật khẩu xác nhận không khớp");
+                document.getElementById("btnSave").setAttribute("disabled", true);
+            }
+            else {
+                checkMkError.text("");
+                document.getElementById("btnSave").removeAttribute("disabled");
             }
         });
     });

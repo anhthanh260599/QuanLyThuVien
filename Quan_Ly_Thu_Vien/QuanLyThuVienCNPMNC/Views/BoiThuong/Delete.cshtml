@@ -5,15 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>BOITHUONG</h4>
+<div class="bg_dt">
+    <p class="alert alert-danger mt-3" role="alert"><strong>Bạn có muốn xóa phiếu mượn này?</strong></p>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.GiaTien)
+            Số tiền phải trả
         </dt>
 
         <dd>
@@ -21,15 +19,22 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TinhTrang)
+            Tình trạng bồi thường
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.TinhTrang)
+            @if (Model.TinhTrang == 1)
+            {
+                <span>Chưa đóng phạt</span>
+            }
+            else
+            {
+                <span>Đã đóng phạt</span>
+            }
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.HOIVIEN.TenHV)
+            Tên hội viên
         </dt>
 
         <dd>
@@ -37,7 +42,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SACH.MaDS)
+            Mã đầu sách
         </dt>
 
         <dd>
@@ -46,11 +51,12 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+        <div class="form-actions no-color text-center">
+            <input type="submit" value="Delete" class="btn btn-default mr-2" /> |
             @Html.ActionLink("Back to List", "Index")
         </div>
     }

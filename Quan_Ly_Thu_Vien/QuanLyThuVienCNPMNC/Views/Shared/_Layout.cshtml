@@ -284,21 +284,20 @@
             <div class="sidebar" style="color: #64728c;">
                 <!-- Sidebar user panel (optional) -->
                 @*<div class="image">
-                        <img src="#" class="img-circle elevation-2" alt="User Image">
-                    </div>*@
+                <img src="#" class="img-circle elevation-2" alt="User Image">
+            </div>*@
                 <div class="user-panel">
 
                     <div class="info">
                         <div class="">
                             @{
                                 var user = (QuanLyThuVienCNPMNC.Models.NHANVIEN)HttpContext.Current.Session["user"];
-                                <img src="~/images/img_avatar.png" class="mt-2" alt="Avatar" style="width:80px; border-radius:50px;text-align:center; align-items:center">
+                                <img src="~/Images/@user.ImageAva" alt="Avatar" class="mt-2" style="width:80px; border-radius:50px;text-align:center; align-items:center">
                                 <span class="ml-1" style="color: #000;">
                                     @user.TenNV
                                 </span>
                                 <br />
-                                <span class="d-block mt-1 text-xl-center">@user.ChucVu</span>
-
+                                <span class="d-block mt-1 text-xl-center mt-3" style="border: 2px solid black;">Chức vụ: @user.ChucVu</span>
                             }
                         </div>
                     </div>
@@ -355,65 +354,67 @@
 
 
                             @*<li class="nav-item" onclick="activateNavItem(this)">
-                                    <a href="@Url.Action("Index","DauSach")" class="nav-link">
-                                        <i class="fa-solid fa-book leftnav__icon"></i>
-                                        <p>
-                                            Đầu sách
+                            <a href="@Url.Action("Index","DauSach")" class="nav-link">
+                                <i class="fa-solid fa-book leftnav__icon"></i>
+                                <p>
+                                    Đầu sách
 
-                                        </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item" onclick="activateNavItem(this)">
-                                    <a href="@Url.Action("Index","Sach")" class="nav-link">
-                                        <i class="fa-solid fa-book leftnav__icon"></i>
-                                        <p>
-                                            Sách
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item" onclick="activateNavItem(this)">
+                            <a href="@Url.Action("Index","Sach")" class="nav-link">
+                                <i class="fa-solid fa-book leftnav__icon"></i>
+                                <p>
+                                    Sách
 
-                                        </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Index","DocGia")" class="nav-link">
-                                        <i class="fa-solid fa-user leftnav__icon"></i>
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index","DocGia")" class="nav-link">
+                                <i class="fa-solid fa-user leftnav__icon"></i>
 
-                                        <p>
-                                            Độc giả
+                                <p>
+                                    Độc giả
 
-                                        </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Index","PhieuMuon")" class="nav-link">
-                                        <i class="fa-solid fa-file-lines leftnav__icon"></i>
-                                        <p>
-                                            Quản lý mượn trả
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index","PhieuMuon")" class="nav-link">
+                                <i class="fa-solid fa-file-lines leftnav__icon"></i>
+                                <p>
+                                    Quản lý mượn trả
 
-                                        </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Index","BaoCao")" class="nav-link">
-                                        <i class="fa-solid fa-newspaper leftnav__icon"></i>
-                                        <p>
-                                            Báo cáo
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index","BaoCao")" class="nav-link">
+                                <i class="fa-solid fa-newspaper leftnav__icon"></i>
+                                <p>
+                                    Báo cáo
 
-                                        </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Index","NhanVien")" class="nav-link">
-                                        <i class="fa-solid fa-users leftnav__icon"></i>
-                                        <p>
-                                            Quản lý nhân viên
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index","NhanVien")" class="nav-link">
+                                <i class="fa-solid fa-users leftnav__icon"></i>
+                                <p>
+                                    Quản lý nhân viên
 
-                                        </p>
-                                    </a>
-                                </li>*@
+                                </p>
+                            </a>
+                        </li>*@
                         </ul>
                     </nav>
                     <!-- /.sidebar-menu -->
                 </div>
-                <!-- /.sidebar -->
+            </div>
+
+            <!-- /.sidebar -->
         </aside>
 
 
@@ -526,62 +527,6 @@
             }
         });
     });
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" integrity="sha512-2bMhOkE/ACz21dJT8zBOMgMecNxx0d37NND803ExktKiKdSzdwn+L7i9fdccw/3V06gM/DBWKbYmQvKMdAA9Nw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    @*    Giu session*@
-    <script type="text/javascript">
-        //Có thể tác đoạn đầu này bỏ vào file .js sau đó load ra cũng được.
-        SessionUpdater = (function () {
-            var clientMovedSinceLastTimeout = false;
-            var keepSessionAliveUrl = null;
-            var timeout = 20 * 1000 * 60; // 5 phút xử lý load lại session 1 lần
-            function setupSessionUpdater(actionUrl) {
-                // store local value
-                keepSessionAliveUrl = actionUrl;
-                // setup handlers
-                listenForChanges();
-                // start timeout - it'll run after n minutes
-                checkToKeepSessionAlive();
-            }
-            function listenForChanges() {
-                $("body").one("mousemove keydown", function () {
-                    clientMovedSinceLastTimeout = true;
-                });
-            }
-            // fires every n minutes - if there's been movement ping server and restart timer
-            function checkToKeepSessionAlive() {
-                setTimeout(function () { keepSessionAlive(); }, timeout);
-            }
-            function keepSessionAlive() {
-                // if we've had any movement since last run, ping the server
-                if (clientMovedSinceLastTimeout && keepSessionAliveUrl != null) {
-                    $.ajax({
-                        type: "POST",
-                        url: keepSessionAliveUrl,
-                        success: function (data) {
-                            // reset movement flag
-                            clientMovedSinceLastTimeout = false;
-                            // start listening for changes again
-                            listenForChanges();
-                            // restart timeout to check again in n minutes
-                            checkToKeepSessionAlive();
-                        },
-                        error: function (data) {
-                            console.log("Error posting to " & keepSessionAliveUrl);
-                        }
-                    });
-                }
-            }
-            // export setup method
-            return {
-                Setup: setupSessionUpdater
-            };
-        })();
-    </script>
-
-    <script type="text/javascript">
-    // cài đặt update session KeepSessionAlive mỗi khi có người truy cập web, bạn thay controller Home bằng controller của bạn gắn mã.
-    SessionUpdater.Setup('@Url.Action("KeepSessionAlive","TrangChu")');
     </script>
 </body>
 </html>

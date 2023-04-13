@@ -22,13 +22,13 @@ namespace QuanLyThuVienCNPMNC.Controllers
         }
 
         // GET: BoiThuong/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(string id, string id1)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BOITHUONG bOITHUONG = db.BOITHUONGs.Find(id);
+            BOITHUONG bOITHUONG = db.BOITHUONGs.Where(s => s.MaHV == id && s.MaSach == id1).FirstOrDefault();
             if (bOITHUONG == null)
             {
                 return HttpNotFound();
@@ -41,6 +41,13 @@ namespace QuanLyThuVienCNPMNC.Controllers
         {
             ViewBag.MaHV = new SelectList(db.HOIVIENs, "MaHV", "TenHV");
             ViewBag.MaSach = new SelectList(db.SACHes, "MaSach", "MaDS");
+            var tinhtrangList = new List<SelectListItem>
+            {
+                    new SelectListItem { Value = "1", Text = "Chưa đóng phạt" },
+                    new SelectListItem { Value = "2", Text = "Đã đóng" }
+            };
+            ViewBag.tinhtrangthe = new SelectList(tinhtrangList, "Value", "Text");
+
             return View();
         }
 
@@ -55,28 +62,48 @@ namespace QuanLyThuVienCNPMNC.Controllers
             {
                 db.BOITHUONGs.Add(bOITHUONG);
                 db.SaveChanges();
+                using (var context1 = new Quan_Ly_Thu_VienEntities())
+                {
+                    context1.sp_CapNhatTinhTrangTheHoiVien(bOITHUONG.MaHV);
+                }
+                TempData["Message"] = "Them thanh cong !!!";
                 return RedirectToAction("Index");
             }
 
             ViewBag.MaHV = new SelectList(db.HOIVIENs, "MaHV", "TenHV", bOITHUONG.MaHV);
             ViewBag.MaSach = new SelectList(db.SACHes, "MaSach", "MaDS", bOITHUONG.MaSach);
+            var tinhtrangList = new List<SelectListItem>
+            {
+                    new SelectListItem { Value = "1", Text = "Chưa đóng phạt" },
+                    new SelectListItem { Value = "2", Text = "Đã đóng" }
+            };
+            ViewBag.tinhtrangthe = new SelectList(tinhtrangList, "Value", "Text", bOITHUONG.TinhTrang);
+
             return View(bOITHUONG);
         }
 
         // GET: BoiThuong/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(string id, string id1)
         {
-            if (id == null)
+
+            if (id == null || id1 == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BOITHUONG bOITHUONG = db.BOITHUONGs.Find(id);
+            BOITHUONG bOITHUONG = db.BOITHUONGs.Where(s => s.MaHV == id && s.MaSach == id1).FirstOrDefault();
             if (bOITHUONG == null)
             {
                 return HttpNotFound();
             }
+            var tinhtrangList = new List<SelectListItem>
+            {
+                    new SelectListItem { Value = "1", Text = "Chưa đóng phạt" },
+                    new SelectListItem { Value = "2", Text = "Đã đóng" }
+            };
             ViewBag.MaHV = new SelectList(db.HOIVIENs, "MaHV", "TenHV", bOITHUONG.MaHV);
             ViewBag.MaSach = new SelectList(db.SACHes, "MaSach", "MaDS", bOITHUONG.MaSach);
+            ViewBag.tinhtrangthe = new SelectList(tinhtrangList, "Value", "Text", bOITHUONG.TinhTrang);
+      
             return View(bOITHUONG);
         }
 
@@ -91,36 +118,55 @@ namespace QuanLyThuVienCNPMNC.Controllers
             {
                 db.Entry(bOITHUONG).State = EntityState.Modified;
                 db.SaveChanges();
+                using (var context1 = new Quan_Ly_Thu_VienEntities())
+                {
+                    context1.sp_CapNhatTinhTrangTheHoiVien(bOITHUONG.MaHV);
+                }
+                TempData["Message"] = "Cap nhat thanh cong !!!";
                 return RedirectToAction("Index");
             }
             ViewBag.MaHV = new SelectList(db.HOIVIENs, "MaHV", "TenHV", bOITHUONG.MaHV);
             ViewBag.MaSach = new SelectList(db.SACHes, "MaSach", "MaDS", bOITHUONG.MaSach);
+            var tinhtrangList = new List<SelectListItem>
+            {
+                    new SelectListItem { Value = "1", Text = "Chưa đóng phạt" },
+                    new SelectListItem { Value = "2", Text = "Đã đóng" }
+            };
+            ViewBag.tinhtrangthe = new SelectList(tinhtrangList, "Value", "Text", bOITHUONG.TinhTrang);
+
             return View(bOITHUONG);
         }
 
         // GET: BoiThuong/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(string id,string id1)
         {
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BOITHUONG bOITHUONG = db.BOITHUONGs.Find(id);
+            BOITHUONG bOITHUONG = db.BOITHUONGs.Where(s => s.MaHV == id && s.MaSach == id1).FirstOrDefault();
             if (bOITHUONG == null)
             {
                 return HttpNotFound();
             }
+
             return View(bOITHUONG);
         }
 
         // POST: BoiThuong/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(string id, string id1)
         {
-            BOITHUONG bOITHUONG = db.BOITHUONGs.Find(id);
+            BOITHUONG bOITHUONG = db.BOITHUONGs.Where(s => s.MaHV == id && s.MaSach == id1).FirstOrDefault();
             db.BOITHUONGs.Remove(bOITHUONG);
             db.SaveChanges();
+            using (var context1 = new Quan_Ly_Thu_VienEntities())
+            {
+                context1.sp_CapNhatTinhTrangTheHoiVien(bOITHUONG.MaHV);
+            }
+            TempData["Message"] = "Xoa thanh cong !!!";
             return RedirectToAction("Index");
         }
 

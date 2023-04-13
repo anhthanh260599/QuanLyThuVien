@@ -5,47 +5,61 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>BOITHUONG</h4>
+<div class="bg_dt">
+    <h2 class="text-center text-uppercase text-bold">thông tin<br /> phiếu bồi thường</h2>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.GiaTien)
+            Mã hội viên
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.GiaTien)
+            @Html.DisplayFor(model => model.HOIVIEN.MaHV)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.TinhTrang)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TinhTrang)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.HOIVIEN.TenHV)
+            Tên hội viên
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.HOIVIEN.TenHV)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.SACH.MaDS)
+            Mã sách
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.SACH.MaDS)
         </dd>
+        <dt>
+            Tên sách
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SACH.DAUSACH.TenSach)
+        </dd>
+        <dt>
+            Tình trạng
+        </dt>
 
+        <dd>
+            @if (Model.TinhTrang == 1)
+            {
+                <span>Chưa đóng phạt</span>
+            }
+            else
+            {
+                <span>Đã đóng phạt</span>
+            }
+        </dd>
+        <dt>
+            Số tiền cần trả 
+        </dt>
+        <dd>
+            @string.Format("{0:#,##0} vnđ", Convert.ToDouble(Model.GiaTien))
+        </dd>
     </dl>
+    <p class="text-center">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.MaHV, id1 = Model.MaSach }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
