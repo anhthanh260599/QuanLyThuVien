@@ -57,9 +57,13 @@
             @string.Format("{0:#,##0} vnđ", Convert.ToDouble(Model.GiaTien))
         </dd>
     </dl>
-    <p class="text-center">
-        @Html.ActionLink("Edit", "Edit", new { id = Model.MaHV, id1 = Model.MaSach }) |
-        @Html.ActionLink("Back to List", "Index")
+    <p class="text-center" style="text-align:center; padding-top: 16px;">
+        @*@Html.ActionLink("Edit", "Edit", new { id = Model.MaHV, id1 = Model.MaSach }) |
+        @Html.ActionLink("Back to List", "Index")*@
+
+        @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MaHV, id1 = Model.MaSach }, new { @class = "btn btn-secondary mr-2" })
+        @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-outline-dark" })
+
     </p>
 
 </div>

@@ -18,5 +18,6 @@ namespace QuanLyThuVienCNPMNC.Models
         public string ChucVu { get; set; }
         public string Email { get; set; }
         public string MatKhau { get; set; }
+        public string ImageAva { get; set; }
     }
 }

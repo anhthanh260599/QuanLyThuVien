@@ -32,12 +32,15 @@ namespace QuanLyThuVienCNPMNC.Controllers
             {
                 if (ImageAva != null)
                 {
+                    NHANVIEN nvSession = (NHANVIEN)Session["user"];
+
                     //Lấy tên file của hình được up lên
                     var fileName = Path.GetFileName(ImageAva.FileName);
                     //Tạo đường dẫn tới file
                     var path = Path.Combine(Server.MapPath("~/Images"), fileName);
                     //Lưu tên
-                    nv.ImageAva = fileName;
+                    nvSession.ImageAva = fileName;
+                    Session["user"] = nvSession;
                     //Save vào Images Folder
                     ImageAva.SaveAs(path);
                 }

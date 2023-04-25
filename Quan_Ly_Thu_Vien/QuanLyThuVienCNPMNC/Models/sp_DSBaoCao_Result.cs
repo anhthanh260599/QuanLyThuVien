@@ -14,7 +14,7 @@ namespace QuanLyThuVienCNPMNC.Models
     public partial class sp_DSBaoCao_Result
     {
         public int Id { get; set; }
-        public string Ten { get; set; }
+        public string Tieude { get; set; }
         public string Description { get; set; }
         public string MaNhanVien { get; set; }
         public Nullable<System.DateTime> NgayLapBaoCao { get; set; }

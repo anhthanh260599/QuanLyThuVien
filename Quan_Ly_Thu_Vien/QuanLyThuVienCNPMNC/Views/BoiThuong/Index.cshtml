@@ -81,9 +81,19 @@
                         }
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.MaHV, id1 = item.MaSach }) |
+                        @*@Html.ActionLink("Edit", "Edit", new { id = item.MaHV, id1 = item.MaSach }) |
                         @Html.ActionLink("Details", "Details", new { id = item.MaHV, id1 = item.MaSach }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.MaHV, id1 = item.MaSach })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.MaHV, id1 = item.MaSach })*@
+
+                        <a href="@Url.Action("Details","BoiThuong", new {id = item.MaHV,id1 = item.MaSach})" class="action-item">
+                            <i class="fa-solid fa-book action-icon"></i>
+                        </a>
+                        <a href="@Url.Action("Edit","BoiThuong", new {id = item.MaHV,id1 = item.MaSach})" class="action-item">
+                            <i class="fa-solid fa-pen-to-square action-icon"></i>
+                        </a>
+                        <a href="@Url.Action("Delete","BoiThuong", new {id = item.MaHV,id1 = item.MaSach})" class="action-item">
+                            <i class="fa-solid fa-trash action-icon"></i>
+                        </a>
                     </td>
                 </tr>
             }
