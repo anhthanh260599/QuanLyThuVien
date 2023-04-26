@@ -71,7 +71,7 @@
             <div class="inner">
                 <h3>@ViewBag.TotalMemberCount</h3>
 
-                <p>Tổng số hội viên</p>
+                <p>Tổng số độc giả</p>
             </div>
             <div class="icon">
                 <i class="ion ion-person-add"></i>
@@ -194,7 +194,7 @@
     var myChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: ['Tổng số lượng sách', 'Tổng số lượng hội viên', 'Tổng số phiếu mượn', 'Tổng số báo cáo'],
+            labels: ['Tổng số lượng sách', 'Tổng số lượng độc giả', 'Tổng số phiếu mượn', 'Tổng số báo cáo'],
             datasets: [{
                 label: 'Tỉ lệ',
                 data: [@ViewBag.TotalBookCountPercent, @ViewBag.TotalMemberCountPercent, @ViewBag.TotalPhieuMuonPercent, @ViewBag.TotalBaoCaoPercent],

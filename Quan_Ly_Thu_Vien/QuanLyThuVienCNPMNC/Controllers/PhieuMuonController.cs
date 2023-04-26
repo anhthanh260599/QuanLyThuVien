@@ -29,6 +29,8 @@ namespace QuanLyThuVienCNPMNC.Controllers
         {
             NHANVIEN nvSession = (NHANVIEN)Session["user"];
             var count = databases.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && s.MaChucNang == "CN03");
+
+            var pms = databases.PHIEUMUONSACHes.ToList();
             if (count == 0)
             {
                 TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
@@ -38,7 +40,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             else
             {
 
-                return View(databases.PHIEUMUONSACHes.ToList());
+                return View(pms);
             }
 
         }

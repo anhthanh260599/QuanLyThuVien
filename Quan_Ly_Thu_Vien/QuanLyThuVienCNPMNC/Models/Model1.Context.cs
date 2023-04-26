@@ -39,6 +39,7 @@ namespace QuanLyThuVienCNPMNC.Models
         public virtual DbSet<PHIEUMUONSACH> PHIEUMUONSACHes { get; set; }
         public virtual DbSet<SACH> SACHes { get; set; }
         public virtual DbSet<THAMSOQUYDINH> THAMSOQUYDINHs { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     
         public virtual int sp_BaoCao(string mABC, string tENBC, Nullable<System.DateTime> ngay, string mANV)
         {

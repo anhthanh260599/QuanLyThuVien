@@ -335,6 +335,7 @@
       <Parameter Name="ThoiHan" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="sp_LayThongTinNhanVien" ReturnType="Collection(Quan_Ly_Thu_VienModel.sp_LayThongTinNhanVien_Result)" />
+<<<<<<< Updated upstream
     <FunctionImport Name="sp_ThemNhanVien">
       <Parameter Name="MANV" Mode="In" Type="String" />
       <Parameter Name="TenNV" Mode="In" Type="String" />
@@ -414,6 +415,9 @@
       <Parameter Name="new_diagramname" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams1" />
+=======
+    <EntitySet Name="sysdiagrams" EntityType="Quan_Ly_Thu_VienModel.sysdiagram" />
+>>>>>>> Stashed changes
   </EntityContainer>
   <ComplexType Name="sp_DSBaoCao_Result">
     <Property Type="Int32" Name="Id" Nullable="false" />
@@ -451,4 +455,14 @@
     <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
     <Property Type="Int32" Name="OwnerID" Nullable="false" />
   </ComplexType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
 </Schema>
