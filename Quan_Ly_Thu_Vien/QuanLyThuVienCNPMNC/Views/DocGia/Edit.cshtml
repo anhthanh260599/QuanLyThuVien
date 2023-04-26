@@ -14,11 +14,11 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal bg_dt w-50">
-        <h2 class="text-center text-uppercase text-bold">chỉnh sửa thẻ hội viên</h2>
+        <h2 class="text-center text-uppercase text-bold">chỉnh sửa thẻ độc giả</h2>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            <label class="control-label col-md-12">Mã hội viên</label>
+            <label class="control-label col-md-12">Mã độc giả</label>
             <div class="col-md-12">
 
                 @*@Html.EditorFor(model => model.MaHV, new { htmlAttributes = new { @class = "form-control", @placeholder = "VD: HVS01", @readonly = "readonly" } })
@@ -29,7 +29,7 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label col-md-12">Tên hội viên</label>
+            <label class="control-label col-md-12">Tên độc giả</label>
             <div class="col-md-12">
 
                 @Html.EditorFor(model => model.TenHV, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
@@ -41,7 +41,7 @@
 
 
         <div class="form-group">
-            <label class="control-label col-md-12">Số điện thoại hội viên</label>
+            <label class="control-label col-md-12">Số điện thoại độc giả</label>
             <div class="col-md-12">
 
                 @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })

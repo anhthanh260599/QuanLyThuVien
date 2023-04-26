@@ -25,7 +25,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             int totalBookCount = databases.DAUSACHes.Count(); 
             ViewBag.TotalBookCount = totalBookCount;
 
-            // Đếm tổng số lượng hội viên trong database
+            // Đếm tổng số lượng độc giả trong database
             int totalMemberCount = databases.HOIVIENs.Count();
             ViewBag.TotalMemberCount = totalMemberCount;
 
