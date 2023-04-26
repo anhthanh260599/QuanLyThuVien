@@ -25,6 +25,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
                 Session["user"] = taikhoan;
                 NHANVIEN nvSession = (NHANVIEN)Session["user"];
                 return RedirectToAction("Index", "TrangChu");
+
                 /*var count1 = database.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && s.MaChucNang == "CN01");
                 var count2 = database.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && s.MaChucNang == "CN02");
                 var count3 = database.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && s.MaChucNang == "CN03");
