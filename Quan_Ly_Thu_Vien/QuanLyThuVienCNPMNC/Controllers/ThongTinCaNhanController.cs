@@ -55,7 +55,39 @@ namespace QuanLyThuVienCNPMNC.Controllers
                 return RedirectToAction("Detail");
             }
         }
+        [HttpPost]
+        public ActionResult EditAnh(HttpPostedFileBase ImageAva, NHANVIEN nv)
+        {
+            try
+            {
+                if (ImageAva != null)
+                {
+                    NHANVIEN nvSession = (NHANVIEN)Session["user"];
+                    nv = databases.NHANVIENs.Where(s => s.MaNV == nvSession.MaNV).FirstOrDefault();
 
+                    //Lấy tên file của hình được up lên
+                    var fileName = Path.GetFileName(ImageAva.FileName);
+                    //Tạo đường dẫn tới file
+                    var path = Path.Combine(Server.MapPath("~/Images"), fileName);
+                    //Lưu tên
+                    nv.ImageAva = fileName;
+                    //Cap nhat lai session
+                    nvSession.ImageAva = fileName;
+                    Session["user"] = nvSession;
+                    //Save vào Images Folder
+                    ImageAva.SaveAs(path);
+                }
+                databases.Entry(nv).State = EntityState.Modified;
+                databases.SaveChanges();
+                TempData["Message"] = "Chinh sua thanh cong !!!";
+                return RedirectToAction("Detail");
+            }
+            catch
+            {
+                TempData["Error"] = "Error... !!!";
+                return RedirectToAction("Detail");
+            }
+        }
         [HttpGet]
         public ActionResult ChangePass()
         {
