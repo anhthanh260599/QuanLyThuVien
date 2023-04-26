@@ -13,7 +13,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
         Quan_Ly_Thu_VienEntities databases = new Quan_Ly_Thu_VienEntities();
         // GET: TrangChu
 
-        //Giu session
+        //Session
         [HttpPost]
         public JsonResult KeepSessionAlive()
         {
