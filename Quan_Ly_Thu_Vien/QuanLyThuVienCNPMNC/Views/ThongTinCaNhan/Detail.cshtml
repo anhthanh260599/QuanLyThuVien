@@ -4,11 +4,112 @@
     ViewBag.Title = "Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        list-style: none;
+        font-family: 'Josefin Sans', sans-serif;
+    }
+        .profile .avatar-box {
+            width: 30%;
+            background: linear-gradient(to right,#01a9ac,#01dbdf);
+            padding: 12px 0;
+            border-radius:5px;
+            text-align: center;
+            color: #fff;
+            margin: 0 auto;
+        }
+
+            .profile .avatar-box img {
+                border-radius: 5px;
+                margin-bottom: 10px;
+            }
+
+            .profile .avatar-box h4 {
+                margin-bottom: 10px;
+            }
+
+            .profile .avatar-box p {
+                font-size: 12px;
+            }
+
+        .profile .detail {
+            width: 65%;
+            background: #fff;
+            padding: 30px 25px;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            margin: 0 auto;
+        }
+
+            .profile .detail .info,
+            .profile .detail .projects {
+                margin-bottom: 25px;
+            }
+
+                .profile .detail .info h3,
+                .profile .detail .projects h3 {
+                    margin-bottom: 15px;
+                    padding-bottom: 5px;
+                    border-bottom: 1px solid #e0e0e0;
+                    color: #353c4e;
+                    text-transform: uppercase;
+                    letter-spacing: 5px;
+                }
+
+            .profile .detail .info_data,
+            .profile .detail .projects_data {
+                display: flex;
+                justify-content: space-between;
+            }
+
+                .profile .detail .info_data .data,
+                .profile .detail .projects_data .data {
+                    width: 45%;
+                }
+
+                    .profile .detail .info_data .data h4,
+                    .profile .detail .projects_data .data h4 {
+                        color: #353c4e;
+                        margin-bottom: 5px;
+                    }
+
+                    .profile .detail .info_data .data p,
+                    .profile .detail .projects_data .data p {
+                        font-size: 13px;
+                        margin-bottom: 10px;
+                        color: #919aa3;
+                    }
+
+        .profile .social_media ul {
+            display: flex;
+        }
+
+            .profile .social_media ul li {
+                width: 45px;
+                height: 45px;
+                background: linear-gradient(to right,#01a9ac,#01dbdf);
+                margin-right: 10px;
+                border-radius: 5px;
+                text-align: center;
+                line-height: 45px;
+            }
+
+                .profile .social_media ul li a {
+                    color: #fff;
+                    display: block;
+                    font-size: 18px;
+                }
+</style>
 
 <div class="bg_dt w-75">
     <h2 class="text-center text-uppercase text-bold">Thông tin cá nhân</h2>
     <hr />
-    <dl class="dl-horizontal">
+    <!--<dl class="dl-horizontal">
         <dt>
             Mã nhân viên
         </dt>
@@ -51,17 +152,51 @@
             Avatar
         </dt>
 
-        <dd>
-           @* @Html.DisplayFor(model => model.ImageAva)*@
-            <img src="~/Images/@Model.ImageAva" alt="Avatar"  style="width:180px; border-radius:100px;text-align:center; align-items:center" />
+        <dd>-->
+    @*@Html.DisplayFor(model => model.ImageAva)*@
+    <!--<img src="~/Images/@Model.ImageAva" alt="Avatar"  style="width:180px; border-radius:100px;text-align:center; align-items:center" />
         </dd>
-    </dl>
+
+    </dl>-->
+
+    <div class="profile">
+        <div class="avatar-box">
+            <img src="~/Images/@Model.ImageAva" alt="user" width="100" style="border-radius:6px;">
+            <h4>@Html.DisplayFor(model=>model.TenNV)</h4>
+            <p>@Html.DisplayFor(model=>model.ChucVu)</p>
+        </div>
+        <div class="detail">
+            <div class="info">
+                <h3>Thông tin cá nhân</h3>
+                <div class="info_data">
+                    <div class="data">
+                        <h4>Họ và Tên</h4>
+                        <p>@Html.DisplayFor(model => model.TenNV)</p>
+                    </div>
+                    <div class="data">
+                        <h4>Mã nhân viên</h4>
+                        <p>@Html.DisplayFor(model => model.MaNV)</p>
+                    </div>
+                </div>
+                <div class="info_data">
+                    <div class="data">
+                        <h4>Chức vụ</h4>
+                        <p>@Html.DisplayFor(model => model.ChucVu)</p>
+                    </div>
+                    <div class="data">
+                        <h4>Email</h4>
+                        <p>@Html.DisplayFor(model => model.Email)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
     <p class="text-center">
         @*        @Html.ActionLink("Edit", "Edit", new { id = Model.MaNV }) |
-        @Html.ActionLink("Back to List", "Index")*@
+            @Html.ActionLink("Back to List", "Index")*@
 
         @Html.ActionLink("Chỉnh sửa", "Edit", null, new { @class = "btn btn-secondary mr-2" })
-        @Html.ActionLink("Đổi mật khẩu","ChangePass", null, new { @class = "btn btn-outline-info" })
+        @Html.ActionLink("Đổi mật khẩu", "ChangePass", null, new { @class = "btn btn-outline-info" })
 
 
     </p>

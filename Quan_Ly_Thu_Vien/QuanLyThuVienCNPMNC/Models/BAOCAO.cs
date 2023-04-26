@@ -15,10 +15,10 @@ namespace QuanLyThuVienCNPMNC.Models
     public partial class BAOCAO
     {
         public int Id { get; set; }
+        public string Tieude { get; set; }
         public string Description { get; set; }
         public string MaNhanVien { get; set; }
         public Nullable<System.DateTime> NgayLapBaoCao { get; set; }
-        public string Tieude { get; set; }
     
         public virtual NHANVIEN NHANVIEN { get; set; }
     }
