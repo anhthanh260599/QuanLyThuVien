@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Quan_Ly_Thu_VienModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Quan_Ly_Thu_VienModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BAOCAO">
           <Key>
             <PropertyRef Name="Id" />
@@ -329,8 +329,7 @@
             <End Role="SACH" EntitySet="SACH" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Quan_Ly_Thu_VienModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -653,14 +652,14 @@
             <Parameter Name="MANV" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_CapNhatSoLuongSachHoiVienMuon">
-            <Parameter Name="mahv" Mode="In" Type="String" />
+          <Parameter Name="mahv" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_CapNhatTinhTrangSach">
             <Parameter Name="maphieu" Mode="In" Type="String" />
             <Parameter Name="masach" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_CapNhatTinhTrangTheHoiVien">
-            <Parameter Name="mahoivien" Mode="In" Type="String" />
+          <Parameter Name="mahoivien" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_DoanhThu">
             <Parameter Name="Ngay" Mode="In" Type="DateTime" />
@@ -669,7 +668,7 @@
           </FunctionImport>
           <FunctionImport Name="sp_DSBaoCao" ReturnType="Collection(Quan_Ly_Thu_VienModel.sp_DSBaoCao_Result)" />
           <FunctionImport Name="sp_DSPhongHopTheoTinhTrang">
-            <Parameter Name="TinhTrang" Mode="In" Type="Int32" />
+          <Parameter Name="TinhTrang" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_GiaHan">
             <Parameter Name="MAPHIEU" Mode="In" Type="String" />

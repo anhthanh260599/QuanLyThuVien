@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Quản lý thư viện </title>
+    <title>Quản lý thư viện | Dashboard</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -44,12 +44,15 @@
     @*<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css">*@
     @* Vẽ sơ đồ *@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.min.css" />
-    <link rel="icon" type="image/x-icon" href="~/huflit.ico" />
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!--Sweet Alert-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+
+
+
+
     <style>
         .bg_dt_index {
             margin-top: 20px !important;
@@ -281,20 +284,19 @@
             <div class="sidebar" style="color: #64728c;">
                 <!-- Sidebar user panel (optional) -->
                 @*<div class="image">
-                <img src="#" class="img-circle elevation-2" alt="User Image">
-            </div>*@
+                        <img src="#" class="img-circle elevation-2" alt="User Image">
+                    </div>*@
                 <div class="user-panel">
 
                     <div class="info">
                         <div class="">
                             @{
                                 var user = (QuanLyThuVienCNPMNC.Models.NHANVIEN)HttpContext.Current.Session["user"];
-                                <img src="~/Images/@user.ImageAva" alt="Avatar" class="mt-2" style="width:80px; border-radius:50px;text-align:center; align-items:center">
-                                <span class="ml-1" style="color: #000;">
-                                    @user.TenNV
-                                </span>
-                                <br />
-                                <span class="d-block mt-1 text-xl-center mt-3" style="border: 2px solid black;">Chức vụ: @user.ChucVu</span>
+                                <div class="text-center">
+                                    <img src="~/Images/@user.ImageAva" alt="Avatar" class="m-auto" style="width:80px; border-radius:50px;text-align:center; align-items:center">
+                                </div>
+                                <span class="d-block text-xl-center mt-3" style="border: 0px solid black;"><strong>@user.TenNV</strong></span>
+                                <span class="d-block text-xl-center" style="border: 0px solid black;">Chức vụ: @user.ChucVu</span>
                             }
                         </div>
                     </div>
@@ -351,60 +353,60 @@
 
 
                             @*<li class="nav-item" onclick="activateNavItem(this)">
-                            <a href="@Url.Action("Index","DauSach")" class="nav-link">
-                                <i class="fa-solid fa-book leftnav__icon"></i>
-                                <p>
-                                    Đầu sách
+                                    <a href="@Url.Action("Index","DauSach")" class="nav-link">
+                                        <i class="fa-solid fa-book leftnav__icon"></i>
+                                        <p>
+                                            Đầu sách
 
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item" onclick="activateNavItem(this)">
-                            <a href="@Url.Action("Index","Sach")" class="nav-link">
-                                <i class="fa-solid fa-book leftnav__icon"></i>
-                                <p>
-                                    Sách
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item" onclick="activateNavItem(this)">
+                                    <a href="@Url.Action("Index","Sach")" class="nav-link">
+                                        <i class="fa-solid fa-book leftnav__icon"></i>
+                                        <p>
+                                            Sách
 
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("Index","DocGia")" class="nav-link">
-                                <i class="fa-solid fa-user leftnav__icon"></i>
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index","DocGia")" class="nav-link">
+                                        <i class="fa-solid fa-user leftnav__icon"></i>
 
-                                <p>
-                                    Độc giả
+                                        <p>
+                                            Độc giả
 
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("Index","PhieuMuon")" class="nav-link">
-                                <i class="fa-solid fa-file-lines leftnav__icon"></i>
-                                <p>
-                                    Quản lý mượn trả
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index","PhieuMuon")" class="nav-link">
+                                        <i class="fa-solid fa-file-lines leftnav__icon"></i>
+                                        <p>
+                                            Quản lý mượn trả
 
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("Index","BaoCao")" class="nav-link">
-                                <i class="fa-solid fa-newspaper leftnav__icon"></i>
-                                <p>
-                                    Báo cáo
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index","BaoCao")" class="nav-link">
+                                        <i class="fa-solid fa-newspaper leftnav__icon"></i>
+                                        <p>
+                                            Báo cáo
 
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("Index","NhanVien")" class="nav-link">
-                                <i class="fa-solid fa-users leftnav__icon"></i>
-                                <p>
-                                    Quản lý nhân viên
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index","NhanVien")" class="nav-link">
+                                        <i class="fa-solid fa-users leftnav__icon"></i>
+                                        <p>
+                                            Quản lý nhân viên
 
-                                </p>
-                            </a>
-                        </li>*@
+                                        </p>
+                                    </a>
+                                </li>*@
                         </ul>
                     </nav>
                     <!-- /.sidebar-menu -->
