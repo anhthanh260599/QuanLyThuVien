@@ -53,6 +53,27 @@ namespace QuanLyThuVienCNPMNC.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CapNhatTinhTrangSach", maphieuParameter, masachParameter);
         }
     
+        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
         public virtual int sp_BaoCao(string mABC, string tENBC, Nullable<System.DateTime> ngay, string mANV)
         {
             var mABCParameter = mABC != null ?
@@ -105,6 +126,27 @@ namespace QuanLyThuVienCNPMNC.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_CapNhatTinhTrangTheHoiVien", mahoivienParameter);
         }
     
+        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
         public virtual int sp_DoanhThu(Nullable<System.DateTime> ngay, string khoanTG, Nullable<int> tongTien)
         {
             var ngayParameter = ngay.HasValue ?
@@ -120,6 +162,19 @@ namespace QuanLyThuVienCNPMNC.Models
                 new ObjectParameter("TongTien", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_DoanhThu", ngayParameter, khoanTGParameter, tongTienParameter);
+        }
+    
+        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
         }
     
         public virtual ObjectResult<sp_DSBaoCao_Result> sp_DSBaoCao()
@@ -153,9 +208,82 @@ namespace QuanLyThuVienCNPMNC.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_GiaHan", mAPHIEUParameter, soNgayParameter, thoiHanParameter);
         }
     
+        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
+        }
+    
         public virtual ObjectResult<sp_LayThongTinNhanVien_Result> sp_LayThongTinNhanVien()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_LayThongTinNhanVien_Result>("sp_LayThongTinNhanVien");
+        }
+    
+        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var new_diagramnameParameter = new_diagramname != null ?
+                new ObjectParameter("new_diagramname", new_diagramname) :
+                new ObjectParameter("new_diagramname", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
+        }
+    
+        public virtual int sp_ThemNhanVien(string mANV, string tenNV, string cHUCVU, string email, string matkhau)
+        {
+            var mANVParameter = mANV != null ?
+                new ObjectParameter("MANV", mANV) :
+                new ObjectParameter("MANV", typeof(string));
+    
+            var tenNVParameter = tenNV != null ?
+                new ObjectParameter("TenNV", tenNV) :
+                new ObjectParameter("TenNV", typeof(string));
+    
+            var cHUCVUParameter = cHUCVU != null ?
+                new ObjectParameter("CHUCVU", cHUCVU) :
+                new ObjectParameter("CHUCVU", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            var matkhauParameter = matkhau != null ?
+                new ObjectParameter("Matkhau", matkhau) :
+                new ObjectParameter("Matkhau", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ThemNhanVien", mANVParameter, tenNVParameter, cHUCVUParameter, emailParameter, matkhauParameter);
+        }
+    
+        public virtual int sp_upgraddiagrams()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
     }
 }

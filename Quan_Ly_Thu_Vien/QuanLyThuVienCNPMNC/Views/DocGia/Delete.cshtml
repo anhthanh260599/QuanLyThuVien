@@ -39,6 +39,8 @@
 
         <dd>
             @Convert.ToDateTime(Model.NgayLapThe).ToString("dd/MM/yyyy")
+            @Html.HiddenFor(model => model.NgayLapThe)
+
         </dd>
 
         <dt>
@@ -47,6 +49,8 @@
 
         <dd>
             @Convert.ToDateTime(Model.NgayHetHan).ToString("dd/MM/yyyy")
+            @Html.HiddenFor(model => model.NgayHetHan)
+
         </dd>
 
 

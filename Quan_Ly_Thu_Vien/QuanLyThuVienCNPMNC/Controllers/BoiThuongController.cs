@@ -39,8 +39,11 @@ namespace QuanLyThuVienCNPMNC.Controllers
         // GET: BoiThuong/Create
         public ActionResult Create()
         {
-            ViewBag.MaHV = new SelectList(db.HOIVIENs, "MaHV", "TenHV");
-            ViewBag.MaSach = new SelectList(db.SACHes, "MaSach", "MaDS");
+            ViewBag.MaHV = db.HOIVIENs.Select(x => new SelectListItem { Text = x.MaHV + " - " + x.TenHV, Value = x.MaHV.ToString() }).ToList();
+            //ViewBag.MaHV = new SelectList(db.HOIVIENs, "MaHV", "TenHV");
+
+            ViewBag.MaSach = db.SACHes.Select(x => new SelectListItem { Text = x.MaSach + " - " + x.DAUSACH.TenSach, Value = x.MaSach.ToString() }).ToList();
+            //ViewBag.MaSach = new SelectList(db.SACHes, "MaSach", "MaDS");
             var tinhtrangList = new List<SelectListItem>
             {
                     new SelectListItem { Value = "1", Text = "Chưa đóng phạt" },

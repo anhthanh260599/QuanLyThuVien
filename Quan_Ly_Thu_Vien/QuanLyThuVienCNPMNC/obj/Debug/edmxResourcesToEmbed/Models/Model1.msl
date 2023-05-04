@@ -42,6 +42,7 @@
     <EntitySetMapping Name="DAUSACHes">
       <EntityTypeMapping TypeName="Quan_Ly_Thu_VienModel.DAUSACH">
         <MappingFragment StoreEntitySet="DAUSACH">
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
           <ScalarProperty Name="MaDS" ColumnName="MaDS" />
           <ScalarProperty Name="TenSach" ColumnName="TenSach" />
           <ScalarProperty Name="Theloai" ColumnName="Theloai" />
@@ -126,11 +127,14 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="CapNhatTinhTrangSach" FunctionName="Quan_Ly_Thu_VienModel.Store.CapNhatTinhTrangSach" />
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_alterdiagram" />
     <FunctionImportMapping FunctionImportName="sp_BaoCao" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_BaoCao" />
     <FunctionImportMapping FunctionImportName="sp_CapNhatSoLuongSachHoiVienMuon" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_CapNhatSoLuongSachHoiVienMuon" />
     <FunctionImportMapping FunctionImportName="sp_CapNhatTinhTrangSach" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_CapNhatTinhTrangSach" />
     <FunctionImportMapping FunctionImportName="sp_CapNhatTinhTrangTheHoiVien" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_CapNhatTinhTrangTheHoiVien" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_creatediagram" />
     <FunctionImportMapping FunctionImportName="sp_DoanhThu" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_DoanhThu" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_dropdiagram" />
     <FunctionImportMapping FunctionImportName="sp_DSBaoCao" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_DSBaoCao">
       <ResultMapping>
         <ComplexTypeMapping TypeName="Quan_Ly_Thu_VienModel.sp_DSBaoCao_Result">
@@ -144,6 +148,25 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_DSPhongHopTheoTinhTrang" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_DSPhongHopTheoTinhTrang" />
     <FunctionImportMapping FunctionImportName="sp_GiaHan" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_GiaHan" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Quan_Ly_Thu_VienModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Quan_Ly_Thu_VienModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_LayThongTinNhanVien" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_LayThongTinNhanVien">
       <ResultMapping>
         <ComplexTypeMapping TypeName="Quan_Ly_Thu_VienModel.sp_LayThongTinNhanVien_Result">
@@ -156,5 +179,8 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_ThemNhanVien" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_ThemNhanVien" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_upgraddiagrams" />
   </EntityContainerMapping>
 </Mapping>
