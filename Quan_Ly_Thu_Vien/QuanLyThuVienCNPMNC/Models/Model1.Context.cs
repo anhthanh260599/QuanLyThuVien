@@ -38,6 +38,7 @@ namespace QuanLyThuVienCNPMNC.Models
         public virtual DbSet<PhanQuyen> PhanQuyens { get; set; }
         public virtual DbSet<PHIEUMUONSACH> PHIEUMUONSACHes { get; set; }
         public virtual DbSet<SACH> SACHes { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<THAMSOQUYDINH> THAMSOQUYDINHs { get; set; }
     
         public virtual int CapNhatTinhTrangSach(string maphieu, string masach)
@@ -105,57 +106,34 @@ namespace QuanLyThuVienCNPMNC.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_CapNhatTinhTrangTheHoiVien", mahoivienParameter);
         }
     
-        public virtual int sp_DoanhThu(Nullable<System.DateTime> ngay, string khoanTG, Nullable<int> tongTien)
-        {
-            var ngayParameter = ngay.HasValue ?
-                new ObjectParameter("Ngay", ngay) :
-                new ObjectParameter("Ngay", typeof(System.DateTime));
-    
-            var khoanTGParameter = khoanTG != null ?
-                new ObjectParameter("KhoanTG", khoanTG) :
-                new ObjectParameter("KhoanTG", typeof(string));
-    
-            var tongTienParameter = tongTien.HasValue ?
-                new ObjectParameter("TongTien", tongTien) :
-                new ObjectParameter("TongTien", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_DoanhThu", ngayParameter, khoanTGParameter, tongTienParameter);
-        }
-    
-        public virtual ObjectResult<sp_DSBaoCao_Result> sp_DSBaoCao()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_DSBaoCao_Result>("sp_DSBaoCao");
-        }
-    
-        public virtual int sp_DSPhongHopTheoTinhTrang(Nullable<int> tinhTrang)
-        {
-            var tinhTrangParameter = tinhTrang.HasValue ?
-                new ObjectParameter("TinhTrang", tinhTrang) :
-                new ObjectParameter("TinhTrang", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_DSPhongHopTheoTinhTrang", tinhTrangParameter);
-        }
-    
-        public virtual int sp_GiaHan(string mAPHIEU, Nullable<int> soNgay, Nullable<System.DateTime> thoiHan)
-        {
-            var mAPHIEUParameter = mAPHIEU != null ?
-                new ObjectParameter("MAPHIEU", mAPHIEU) :
-                new ObjectParameter("MAPHIEU", typeof(string));
-    
-            var soNgayParameter = soNgay.HasValue ?
-                new ObjectParameter("SoNgay", soNgay) :
-                new ObjectParameter("SoNgay", typeof(int));
-    
-            var thoiHanParameter = thoiHan.HasValue ?
-                new ObjectParameter("ThoiHan", thoiHan) :
-                new ObjectParameter("ThoiHan", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_GiaHan", mAPHIEUParameter, soNgayParameter, thoiHanParameter);
-        }
-    
         public virtual ObjectResult<sp_LayThongTinNhanVien_Result> sp_LayThongTinNhanVien()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_LayThongTinNhanVien_Result>("sp_LayThongTinNhanVien");
+        }
+    
+        public virtual int sp_ThemNhanVien(string mANV, string tenNV, string cHUCVU, string email, string matkhau)
+        {
+            var mANVParameter = mANV != null ?
+                new ObjectParameter("MANV", mANV) :
+                new ObjectParameter("MANV", typeof(string));
+    
+            var tenNVParameter = tenNV != null ?
+                new ObjectParameter("TenNV", tenNV) :
+                new ObjectParameter("TenNV", typeof(string));
+    
+            var cHUCVUParameter = cHUCVU != null ?
+                new ObjectParameter("CHUCVU", cHUCVU) :
+                new ObjectParameter("CHUCVU", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            var matkhauParameter = matkhau != null ?
+                new ObjectParameter("Matkhau", matkhau) :
+                new ObjectParameter("Matkhau", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ThemNhanVien", mANVParameter, tenNVParameter, cHUCVUParameter, emailParameter, matkhauParameter);
         }
     }
 }

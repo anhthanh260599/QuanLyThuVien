@@ -4,19 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="674bb8bbaca843d2b717c0732d3d3b22" Name="Diagram1" ZoomLevel="73">
+      <Diagram DiagramId="4477d2ef35ca46279486d172540310bb" Name="Diagram1" ZoomLevel="64">
         <EntityTypeShape EntityType="Quan_Ly_Thu_VienModel.BAOCAO" Width="1.5" PointX="10" PointY="8.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Quan_Ly_Thu_VienModel.BOITHUONG" Width="1.5" PointX="7.5" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Quan_Ly_Thu_VienModel.CHITIETPHIEUMUON" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Quan_Ly_Thu_VienModel.ChucNang" Width="1.5" PointX="7.75" PointY="13" IsExpanded="true" />
-        <EntityTypeShape EntityType="Quan_Ly_Thu_VienModel.DAUSACH" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Quan_Ly_Thu_VienModel.DAUSACH" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Quan_Ly_Thu_VienModel.HOIVIEN" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
         <EntityTypeShape EntityType="Quan_Ly_Thu_VienModel.NHANVIEN" Width="1.5" PointX="7.75" PointY="8.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Quan_Ly_Thu_VienModel.NhaXuatBan" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="Quan_Ly_Thu_VienModel.PhanQuyen" Width="1.5" PointX="10" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Quan_Ly_Thu_VienModel.PHIEUMUONSACH" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Quan_Ly_Thu_VienModel.SACH" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Quan_Ly_Thu_VienModel.THAMSOQUYDINH" Width="1.5" PointX="9.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="Quan_Ly_Thu_VienModel.sysdiagram" Width="1.5" PointX="9.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="Quan_Ly_Thu_VienModel.THAMSOQUYDINH" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
         <AssociationConnector Association="Quan_Ly_Thu_VienModel.FK_BAOCAO_NHANVIEN" ManuallyRouted="false" />
         <AssociationConnector Association="Quan_Ly_Thu_VienModel.FK_BOITHUONG_HOIVIEN" ManuallyRouted="false" />
         <AssociationConnector Association="Quan_Ly_Thu_VienModel.FK_BOITHUONG_SACH" ManuallyRouted="false" />

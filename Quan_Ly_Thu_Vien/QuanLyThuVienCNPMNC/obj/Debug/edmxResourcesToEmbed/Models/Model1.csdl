@@ -52,6 +52,7 @@
     <Property Name="NXB" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
     <Property Name="NgayXuatBan" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="GhiChu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SoLuong" Type="Int32" />
     <NavigationProperty Name="NhaXuatBan" Relationship="Self.FK_DAUSACH" FromRole="DAUSACH" ToRole="NhaXuatBan" />
     <NavigationProperty Name="SACHes" Relationship="Self.FK_SACH" FromRole="DAUSACH" ToRole="SACH" />
   </EntityType>
@@ -126,6 +127,16 @@
     <NavigationProperty Name="BOITHUONGs" Relationship="Self.FK_BOITHUONG_SACH" FromRole="SACH" ToRole="BOITHUONG" />
     <NavigationProperty Name="CHITIETPHIEUMUONs" Relationship="Self.FK_CHITIETPHIEUMUON_SACH" FromRole="SACH" ToRole="CHITIETPHIEUMUON" />
     <NavigationProperty Name="DAUSACH" Relationship="Self.FK_SACH" FromRole="SACH" ToRole="DAUSACH" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="THAMSOQUYDINH">
     <Key>
@@ -267,6 +278,7 @@
     <EntitySet Name="PhanQuyens" EntityType="Self.PhanQuyen" />
     <EntitySet Name="PHIEUMUONSACHes" EntityType="Self.PHIEUMUONSACH" />
     <EntitySet Name="SACHes" EntityType="Self.SACH" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="THAMSOQUYDINHs" EntityType="Self.THAMSOQUYDINH" />
     <AssociationSet Name="FK_BAOCAO_NHANVIEN" Association="Self.FK_BAOCAO_NHANVIEN">
       <End Role="NHANVIEN" EntitySet="NHANVIENs" />
@@ -328,29 +340,15 @@
     <FunctionImport Name="sp_CapNhatTinhTrangTheHoiVien">
       <Parameter Name="mahoivien" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="sp_DoanhThu">
-      <Parameter Name="Ngay" Mode="In" Type="DateTime" />
-      <Parameter Name="KhoanTG" Mode="In" Type="String" />
-      <Parameter Name="TongTien" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_DSBaoCao" ReturnType="Collection(Quan_Ly_Thu_VienModel.sp_DSBaoCao_Result)" />
-    <FunctionImport Name="sp_DSPhongHopTheoTinhTrang">
-      <Parameter Name="TinhTrang" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_GiaHan">
-      <Parameter Name="MAPHIEU" Mode="In" Type="String" />
-      <Parameter Name="SoNgay" Mode="In" Type="Int32" />
-      <Parameter Name="ThoiHan" Mode="In" Type="DateTime" />
-    </FunctionImport>
     <FunctionImport Name="sp_LayThongTinNhanVien" ReturnType="Collection(Quan_Ly_Thu_VienModel.sp_LayThongTinNhanVien_Result)" />
+    <FunctionImport Name="sp_ThemNhanVien">
+      <Parameter Name="MANV" Mode="In" Type="String" />
+      <Parameter Name="TenNV" Mode="In" Type="String" />
+      <Parameter Name="CHUCVU" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Matkhau" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
-  <ComplexType Name="sp_DSBaoCao_Result">
-    <Property Type="Int32" Name="Id" Nullable="false" />
-    <Property Type="String" Name="Tieude" Nullable="false" />
-    <Property Type="String" Name="Description" Nullable="false" />
-    <Property Type="String" Name="MaNhanVien" Nullable="true" MaxLength="5" />
-    <Property Type="DateTime" Name="NgayLapBaoCao" Nullable="true" />
-  </ComplexType>
   <ComplexType Name="sp_LayThongTinNhanVien_Result">
     <Property Type="String" Name="MaNV" Nullable="false" MaxLength="5" />
     <Property Type="String" Name="TenNV" Nullable="false" MaxLength="30" />

@@ -176,16 +176,25 @@ namespace QuanLyThuVienCNPMNC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            HOIVIEN item = databases.HOIVIENs.Find(id);
-            databases.HOIVIENs.Remove(item);
-            databases.SaveChanges();
-            using (var context1 = new Quan_Ly_Thu_VienEntities())
+            try
             {
-                context1.sp_CapNhatSoLuongSachHoiVienMuon(id);
+                HOIVIEN item = databases.HOIVIENs.Where(s => s.MaHV == id).FirstOrDefault();
+                databases.HOIVIENs.Remove(item);
+                databases.SaveChanges();
+                using (var context1 = new Quan_Ly_Thu_VienEntities())
+                {
+                    context1.sp_CapNhatSoLuongSachHoiVienMuon(id);
+                }
+
+                TempData["Message"] = "Xoa thanh cong !!!";
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                TempData["Error"] = string.Format("Xoa khong thanh cong, moi kiem tra lai !!!");
+                return RedirectToAction("Index");
             }
 
-            TempData["Message"] = "Xoa thanh cong !!!";
-            return RedirectToAction("Index");
         }
 
         //Chỉnh sửa sản phẩm

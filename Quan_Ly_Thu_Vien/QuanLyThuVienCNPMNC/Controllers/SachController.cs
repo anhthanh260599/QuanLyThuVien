@@ -28,7 +28,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
 
             }
             else
-            {    
+            {
                 return View(databases.SACHes.ToList());
             }
 
@@ -70,7 +70,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             objProductType.Name = "Hỏng";
             lstProductType.Add(objProductType);
 
-          
+
 
 
 
@@ -86,9 +86,31 @@ namespace QuanLyThuVienCNPMNC.Controllers
         //@Html.DropDownListFor(model => model.TinhTrang, ViewBag.TinhTrang as SelectList, new { @class = "form-control list-searchable" })
 
         //Tu tao key
-        public string CapNhatKey()
-        {
+        /* public string CapNhatKey(soluongsach)
+         {
 
+             int newNumber = 1;
+             var list = databases.SACHes.OrderByDescending(s => s.MaSach);
+             if (list == null)
+             {
+                 newNumber = 1;
+             }
+             else
+             {
+                 string convertNewNumber = "SVH" + newNumber.ToString("00");
+                 while (databases.SACHes.Any(p => p.MaSach == convertNewNumber))
+                 {
+                     newNumber++;
+                     convertNewNumber = "SVH" + newNumber.ToString("00");
+                 }
+             }
+             string newMaPms = "SVH" + newNumber.ToString("00");
+             return newMaPms;
+
+         }*/
+        public List<string> CapNhatKey(int soluongsach)
+        {
+            List<string> newMaPmsList = new List<string>();
             int newNumber = 1;
             var list = databases.SACHes.OrderByDescending(s => s.MaSach);
             if (list == null)
@@ -97,17 +119,24 @@ namespace QuanLyThuVienCNPMNC.Controllers
             }
             else
             {
+                newNumber = int.Parse(list.First().MaSach.Substring(3)) + 1;
+            }
+
+            for (int i = 1; i <= soluongsach; i++)
+            {
                 string convertNewNumber = "SVH" + newNumber.ToString("00");
                 while (databases.SACHes.Any(p => p.MaSach == convertNewNumber))
                 {
                     newNumber++;
                     convertNewNumber = "SVH" + newNumber.ToString("00");
                 }
+                newMaPmsList.Add(convertNewNumber);
+                newNumber++;
             }
-            string newMaPms = "SVH" + newNumber.ToString("00");
-            return newMaPms;
 
+            return newMaPmsList;
         }
+
         //Thêm 
         [HttpGet]
         public ActionResult Create()
@@ -122,7 +151,6 @@ namespace QuanLyThuVienCNPMNC.Controllers
             }
             else
             {
-                ViewBag.newkey = CapNhatKey();
                 this.LoadData();
                 return View();
             }
@@ -131,15 +159,41 @@ namespace QuanLyThuVienCNPMNC.Controllers
 
         [ValidateInput(false)]
         [HttpPost]
-        public ActionResult Create(SACH sach)
+        public ActionResult Create(int soluongsach, SACH sach, DAUSACH ds)
         {
             this.LoadData();
             if (ModelState.IsValid)
             {
                 try
                 {
-                    sach.MaSach = CapNhatKey();
-                    databases.SACHes.Add(sach);
+                    ds = databases.DAUSACHes.Where(s => s.MaDS == sach.MaDS).FirstOrDefault();
+                    ds.SoLuong = soluongsach;
+                    List<SACH> danhSachSach = new List<SACH>(soluongsach);
+                    List<string> danhSachKey = new List<string>(soluongsach);
+                    danhSachKey = CapNhatKey(soluongsach);
+
+                    for (int i = 0; i < soluongsach; i++)
+                    {
+                        SACH sachMoi = new SACH();
+                        sachMoi.MaSach = danhSachKey[i];
+                        sachMoi.MaDS = sach.MaDS;
+                        sachMoi.TinhTrang = sach.TinhTrang;
+                        sachMoi.GhiChu = sach.GhiChu;
+
+                        danhSachSach.Add(sachMoi);
+                    }
+                    /*foreach (string item in danhSachKey)
+                    {
+
+
+                        sach.MaSach = item;
+                        danhSachSach.Add(sach);
+                    }*/
+
+                    foreach (var item in danhSachSach)
+                    {
+                        databases.SACHes.Add(item);
+                    }
                     databases.SaveChanges();
                     TempData["Message"] = "Them thanh cong !!!";
                     return RedirectToAction("Index");
@@ -253,7 +307,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
                 TempData["Error"] = "Error ...";
                 return RedirectToAction("Index");
             }
-           
+
         }
     }
 }

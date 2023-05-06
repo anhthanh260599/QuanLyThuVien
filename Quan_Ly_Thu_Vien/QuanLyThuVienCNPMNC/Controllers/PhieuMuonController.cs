@@ -173,6 +173,8 @@ namespace QuanLyThuVienCNPMNC.Controllers
                         context1.CapNhatTinhTrangSach(listCTPM[i].MaPhieu, masach[i]);
                     }
                     context1.sp_CapNhatSoLuongSachHoiVienMuon(mahoivien);
+                    context1.sp_CapNhatTinhTrangTheHoiVien(mahoivien);
+
                     TempData["Message"] = "Them thanh cong !!!";
                     return RedirectToAction("Index");
                 }
@@ -229,7 +231,6 @@ namespace QuanLyThuVienCNPMNC.Controllers
 
             databases.Entry(pms).State = EntityState.Modified;
 
-
             databases.SaveChanges();
             using (var context1 = new Quan_Ly_Thu_VienEntities())
             {
@@ -238,6 +239,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
                 {
                     context1.CapNhatTinhTrangSach(pms.MaPhieu, listCtpmMaSach[i]);
                 }
+                context1.sp_CapNhatTinhTrangTheHoiVien(pms.MaHV);
             }
             TempData["Message"] = "Cap nhat thanh cong !!!";
             return RedirectToAction("Index");
@@ -286,6 +288,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
                     {
                         context1.CapNhatTinhTrangSach(pms.MaPhieu, listCtpmMaSach[i]);
                     }
+                    context1.sp_CapNhatTinhTrangTheHoiVien(mahoivien);
                 }
                 TempData["Message"] = "Xoa thanh cong !!!";
                 return RedirectToAction("Index");

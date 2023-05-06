@@ -26,6 +26,7 @@ namespace QuanLyThuVienCNPMNC.Models
         public string NXB { get; set; }
         public System.DateTime NgayXuatBan { get; set; }
         public string GhiChu { get; set; }
+        public Nullable<int> SoLuong { get; set; }
     
         public virtual NhaXuatBan NhaXuatBan { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

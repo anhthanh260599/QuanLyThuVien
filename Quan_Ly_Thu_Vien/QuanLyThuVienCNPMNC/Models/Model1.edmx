@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Quan_Ly_Thu_VienModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Quan_Ly_Thu_VienModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BAOCAO">
           <Key>
             <PropertyRef Name="Id" />
@@ -51,6 +51,7 @@
           <Property Name="NXB" Type="char" MaxLength="5" Nullable="false" />
           <Property Name="NgayXuatBan" Type="date" Nullable="false" />
           <Property Name="GhiChu" Type="nvarchar" MaxLength="50" />
+          <Property Name="SoLuong" Type="int" />
         </EntityType>
         <EntityType Name="HOIVIEN">
           <Key>
@@ -111,6 +112,16 @@
           <Property Name="TinhTrang" Type="int" Nullable="false" />
           <Property Name="MaDS" Type="char" MaxLength="6" Nullable="false" />
           <Property Name="GhiChu" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="THAMSOQUYDINH">
           <Key>
@@ -260,21 +271,14 @@
         <Function Name="sp_CapNhatTinhTrangTheHoiVien" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="mahoivien" Type="char" Mode="In" />
         </Function>
-        <Function Name="sp_DoanhThu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Ngay" Type="date" Mode="In" />
-          <Parameter Name="KhoanTG" Type="nvarchar" Mode="In" />
-          <Parameter Name="TongTien" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_DSBaoCao" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="sp_DSPhongHopTheoTinhTrang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="TinhTrang" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_GiaHan" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MAPHIEU" Type="char" Mode="In" />
-          <Parameter Name="SoNgay" Type="int" Mode="In" />
-          <Parameter Name="ThoiHan" Type="date" Mode="In" />
-        </Function>
         <Function Name="sp_LayThongTinNhanVien" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_ThemNhanVien" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MANV" Type="char" Mode="In" />
+          <Parameter Name="TenNV" Type="char" Mode="In" />
+          <Parameter Name="CHUCVU" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="Matkhau" Type="char" Mode="In" />
+        </Function>
         <EntityContainer Name="Quan_Ly_Thu_VienModelStoreContainer">
           <EntitySet Name="BAOCAO" EntityType="Self.BAOCAO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BOITHUONG" EntityType="Self.BOITHUONG" Schema="dbo" store:Type="Tables" />
@@ -287,6 +291,7 @@
           <EntitySet Name="PhanQuyen" EntityType="Self.PhanQuyen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PHIEUMUONSACH" EntityType="Self.PHIEUMUONSACH" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SACH" EntityType="Self.SACH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="THAMSOQUYDINH" EntityType="Self.THAMSOQUYDINH" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_BAOCAO_NHANVIEN" Association="Self.FK_BAOCAO_NHANVIEN">
             <End Role="NHANVIEN" EntitySet="NHANVIEN" />
@@ -329,7 +334,8 @@
             <End Role="SACH" EntitySet="SACH" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Quan_Ly_Thu_VienModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -385,6 +391,7 @@
           <Property Name="NXB" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="NgayXuatBan" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="GhiChu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SoLuong" Type="Int32" />
           <NavigationProperty Name="NhaXuatBan" Relationship="Self.FK_DAUSACH" FromRole="DAUSACH" ToRole="NhaXuatBan" />
           <NavigationProperty Name="SACHes" Relationship="Self.FK_SACH" FromRole="DAUSACH" ToRole="SACH" />
         </EntityType>
@@ -459,6 +466,16 @@
           <NavigationProperty Name="BOITHUONGs" Relationship="Self.FK_BOITHUONG_SACH" FromRole="SACH" ToRole="BOITHUONG" />
           <NavigationProperty Name="CHITIETPHIEUMUONs" Relationship="Self.FK_CHITIETPHIEUMUON_SACH" FromRole="SACH" ToRole="CHITIETPHIEUMUON" />
           <NavigationProperty Name="DAUSACH" Relationship="Self.FK_SACH" FromRole="SACH" ToRole="DAUSACH" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="THAMSOQUYDINH">
           <Key>
@@ -600,6 +617,7 @@
           <EntitySet Name="PhanQuyens" EntityType="Self.PhanQuyen" />
           <EntitySet Name="PHIEUMUONSACHes" EntityType="Self.PHIEUMUONSACH" />
           <EntitySet Name="SACHes" EntityType="Self.SACH" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="THAMSOQUYDINHs" EntityType="Self.THAMSOQUYDINH" />
           <AssociationSet Name="FK_BAOCAO_NHANVIEN" Association="Self.FK_BAOCAO_NHANVIEN">
             <End Role="NHANVIEN" EntitySet="NHANVIENs" />
@@ -652,38 +670,24 @@
             <Parameter Name="MANV" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_CapNhatSoLuongSachHoiVienMuon">
-          <Parameter Name="mahv" Mode="In" Type="String" />
+            <Parameter Name="mahv" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_CapNhatTinhTrangSach">
             <Parameter Name="maphieu" Mode="In" Type="String" />
             <Parameter Name="masach" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_CapNhatTinhTrangTheHoiVien">
-          <Parameter Name="mahoivien" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_DoanhThu">
-            <Parameter Name="Ngay" Mode="In" Type="DateTime" />
-            <Parameter Name="KhoanTG" Mode="In" Type="String" />
-            <Parameter Name="TongTien" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_DSBaoCao" ReturnType="Collection(Quan_Ly_Thu_VienModel.sp_DSBaoCao_Result)" />
-          <FunctionImport Name="sp_DSPhongHopTheoTinhTrang">
-          <Parameter Name="TinhTrang" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_GiaHan">
-            <Parameter Name="MAPHIEU" Mode="In" Type="String" />
-            <Parameter Name="SoNgay" Mode="In" Type="Int32" />
-            <Parameter Name="ThoiHan" Mode="In" Type="DateTime" />
+            <Parameter Name="mahoivien" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_LayThongTinNhanVien" ReturnType="Collection(Quan_Ly_Thu_VienModel.sp_LayThongTinNhanVien_Result)" />
+          <FunctionImport Name="sp_ThemNhanVien">
+            <Parameter Name="MANV" Mode="In" Type="String" />
+            <Parameter Name="TenNV" Mode="In" Type="String" />
+            <Parameter Name="CHUCVU" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Matkhau" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
-        <ComplexType Name="sp_DSBaoCao_Result">
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="String" Name="Tieude" Nullable="false" />
-          <Property Type="String" Name="Description" Nullable="false" />
-          <Property Type="String" Name="MaNhanVien" Nullable="true" MaxLength="5" />
-          <Property Type="DateTime" Name="NgayLapBaoCao" Nullable="true" />
-        </ComplexType>
         <ComplexType Name="sp_LayThongTinNhanVien_Result">
           <Property Type="String" Name="MaNV" Nullable="false" MaxLength="5" />
           <Property Type="String" Name="TenNV" Nullable="false" MaxLength="30" />
@@ -745,6 +749,7 @@
                 <ScalarProperty Name="NXB" ColumnName="NXB" />
                 <ScalarProperty Name="NgayXuatBan" ColumnName="NgayXuatBan" />
                 <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -813,6 +818,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Quan_Ly_Thu_VienModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="THAMSOQUYDINHs">
             <EntityTypeMapping TypeName="Quan_Ly_Thu_VienModel.THAMSOQUYDINH">
               <MappingFragment StoreEntitySet="THAMSOQUYDINH">
@@ -827,20 +843,6 @@
           <FunctionImportMapping FunctionImportName="sp_CapNhatSoLuongSachHoiVienMuon" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_CapNhatSoLuongSachHoiVienMuon" />
           <FunctionImportMapping FunctionImportName="sp_CapNhatTinhTrangSach" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_CapNhatTinhTrangSach" />
           <FunctionImportMapping FunctionImportName="sp_CapNhatTinhTrangTheHoiVien" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_CapNhatTinhTrangTheHoiVien" />
-          <FunctionImportMapping FunctionImportName="sp_DoanhThu" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_DoanhThu" />
-          <FunctionImportMapping FunctionImportName="sp_DSBaoCao" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_DSBaoCao">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Quan_Ly_Thu_VienModel.sp_DSBaoCao_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Tieude" ColumnName="Tieude" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="MaNhanVien" ColumnName="MaNhanVien" />
-                <ScalarProperty Name="NgayLapBaoCao" ColumnName="NgayLapBaoCao" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_DSPhongHopTheoTinhTrang" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_DSPhongHopTheoTinhTrang" />
-          <FunctionImportMapping FunctionImportName="sp_GiaHan" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_GiaHan" />
           <FunctionImportMapping FunctionImportName="sp_LayThongTinNhanVien" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_LayThongTinNhanVien">
             <ResultMapping>
               <ComplexTypeMapping TypeName="Quan_Ly_Thu_VienModel.sp_LayThongTinNhanVien_Result">
@@ -853,6 +855,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ThemNhanVien" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_ThemNhanVien" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
