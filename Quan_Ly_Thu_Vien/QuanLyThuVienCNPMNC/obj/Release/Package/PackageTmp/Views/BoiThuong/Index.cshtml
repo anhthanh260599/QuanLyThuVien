@@ -1,0 +1,129 @@
+﻿@model IEnumerable<QuanLyThuVienCNPMNC.Models.BOITHUONG>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+<style>
+    .my_btn {
+        background-color: red;
+        color: white;
+        padding: 8px;
+        width: 100px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 18px;
+        margin: 0px 0px 0px 5px;
+        border-radius: 24px;
+    }
+</style>
+
+<p>
+    <a href="@Url.Action("Create","BoiThuong")" class="add-item">
+        <i class="fa-solid fa-plus add-icon"></i> Bồi thường
+    </a>
+</p>
+
+
+<div class="bg_dt_index">
+    <h1 class="text-center text-uppercase text-bold">Danh sách phiếu bồi thường</h1>
+    <hr />
+    <table id="myTable" class="display">
+        <thead>
+            <tr>
+                <th>
+                    Mã sách
+                </th>
+                <th>
+                    Tên độc giả
+                </th>
+                <th>
+                    Giá tiền
+                </th>
+                <th>
+                    Tình trạng
+                </th>
+                <th>
+                    Chức năng
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SACH.MaDS)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HOIVIEN.TenHV)
+                    </td>
+                    <td>
+                        @string.Format("{0:#,##0} vnđ", Convert.ToDouble(item.GiaTien))
+
+                    </td>
+                    <td>
+                        @if (item.TinhTrang == 1)
+                        {
+                            <span>Chưa đóng phạt</span>
+                        }
+                        else
+                        {
+                            <span>Đã đóng phạt</span>
+                        }
+                    </td>
+                    <td>
+                        @*@Html.ActionLink("Edit", "Edit", new { id = item.MaHV, id1 = item.MaSach }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.MaHV, id1 = item.MaSach }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.MaHV, id1 = item.MaSach })*@
+
+                        <a href="@Url.Action("Details","BoiThuong", new {id = item.MaHV,id1 = item.MaSach})" class="action-item">
+                            <i class="fa-solid fa-book action-icon"></i>
+                        </a>
+                        <a href="@Url.Action("Edit","BoiThuong", new {id = item.MaHV,id1 = item.MaSach})" class="action-item">
+                            <i class="fa-solid fa-pen-to-square action-icon"></i>
+                        </a>
+                        <a href="@Url.Action("Delete","BoiThuong", new {id = item.MaHV,id1 = item.MaSach})" class="action-item">
+                            <i class="fa-solid fa-trash action-icon"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+               document.addEventListener('DOMContentLoaded', function () {
+                    Swal.fire({
+                    title: 'Thành công',
+                    text: '@ViewBag.Message',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                    });
+                    });
+    </script>
+}
+@if (TempData["Message"] != null)
+{
+    <script type="text/javascript">
+               document.addEventListener('DOMContentLoaded', function () {
+                Swal.fire({
+                title: 'Thành công',
+                text: '@TempData["Message"]',
+                icon: 'success',
+                confirmButtonText: 'OK'
+                });
+                });
+    </script>
+}

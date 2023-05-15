@@ -1,0 +1,92 @@
+﻿@model QuanLyThuVienCNPMNC.Models.SACH
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="bg_dt">
+    <p class="alert alert-danger mt-3" role="alert"><strong>Bạn có chắc muốn xóa sách này?</strong></p>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Mã sách
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaSach)
+        </dd>
+
+        <dt>
+            Tình trạng sách
+        </dt>
+
+        <dd>
+            @{
+                if (Model.TinhTrang == 1)
+                {
+                    @Html.Raw("Còn");
+                }
+                else if (Model.TinhTrang == 2)
+                {
+                    @Html.Raw("Cho mượn");
+                }
+                else if (Model.TinhTrang == 3)
+                {
+                    @Html.Raw("Mất");
+                }
+                else if (Model.TinhTrang == 4)
+                {
+                    @Html.Raw("Hỏng");
+                }
+
+            }
+        </dd>
+
+        <dt>
+            Mã đầu sách
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaDS)
+        </dd>
+
+        <dt>
+            Ghi chú thêm
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GhiChu)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color text-center">
+            <input type="submit" value="Xóa" class="btn btn-danger mr-2" />
+            @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-outline-dark" })
+        </div>
+    }
+</div>
+
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>
+}
+@if (TempData["Message"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@TempData["Message"]");
+            };
+    </script>
+}

@@ -1,0 +1,95 @@
+﻿@model QuanLyThuVienCNPMNC.Models.DAUSACH
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="bg_dt">
+    <h2 class="text-center text-uppercase text-bold">Chi tiết đầu sách</h2>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Mã đầu sách
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaDS)
+        </dd>
+
+        <dt>
+            Tên đầu sách
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenSach)
+        </dd>
+
+        <dt>
+            Thể loại
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Theloai)
+        </dd>
+
+        <dt>
+            Nhà xuất bản
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NhaXuatBan.TenNXB)
+        </dd>
+
+        <dt>
+            Ngày xuất bản
+        </dt>
+
+        <dd>
+            @Convert.ToDateTime(Model.NgayXuatBan).ToString("dd/MM/yyyy")
+        </dd>
+
+        @*<dd>
+                @Html.DisplayFor(model => model.NgayXuatBan)
+            </dd>*@
+
+        @*<span>Ngày xuất bản: @ViewBag.NgayXuatBan</span>
+            <input type="text" name="NgayXuatBan" value="@ViewBag.NgayXuatBan" />*@
+
+
+        <dt>
+            Ghi chú thêm
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GhiChu)
+        </dd>
+
+    </dl>
+
+    <p style="text-align:center; padding-top: 16px;">
+
+
+        @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MaDS }, new { @class = "btn btn-secondary mr-2" })
+        @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-outline-dark" })
+    </p>
+</div>
+
+
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>
+}
+@if (TempData["Message"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@TempData["Message"]");
+            };
+    </script>
+}

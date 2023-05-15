@@ -23,7 +23,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             if (count == 0)
             {
                 TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
-                return RedirectToAction("Index", "TrangChu");
+                return RedirectToAction("Index", "DocGia");
 
             }
             else
@@ -90,8 +90,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             if (count == 0)
             {
                 TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
-                return RedirectToAction("Index", "TrangChu");
-
+                return RedirectToAction("Index", "DocGia");
             }
             else
             {
@@ -138,7 +137,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             if (count == 0)
             {
                 TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
-                return RedirectToAction("Index", "TrangChu");
+                return RedirectToAction("Index", "DocGia");
 
             }
             else
@@ -157,7 +156,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             if (count == 0)
             {
                 TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
-                return RedirectToAction("Index", "TrangChu");
+                return RedirectToAction("Index", "DocGia");
 
             }
             else
@@ -206,7 +205,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             if (count == 0)
             {
                 TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
-                return RedirectToAction("Index", "TrangChu");
+                return RedirectToAction("Index", "DocGia");
 
             }
             else

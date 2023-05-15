@@ -1,0 +1,170 @@
+﻿@model IEnumerable<QuanLyThuVienCNPMNC.Models.HOIVIEN>
+
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .tinhtrang__hethan,
+    .tinhtrang__conhan {
+        border-radius: 6px;
+        font-size: 16px;
+    }
+
+    .tinhtrang__hethan {
+        padding: 4px;
+    }
+
+    .tinhtrang__conhan {
+        padding: 4px 2px;
+    }
+</style>
+
+
+<p>
+    <a href="@Url.Action("Create","DocGia")" class="add-item">
+        <i class="fa-solid fa-plus add-icon"></i> Thêm
+    </a>
+</p>
+
+<div class="bg_dt_index">
+    <h1 class="text-center text-uppercase text-bold">Danh sách độc giả</h1>
+    <hr />
+    <table id="myTable" class="display">
+        <thead>
+            <tr>
+                <th>
+                    Mã độc giả
+                </th>
+                <th>
+                    Tên độc giả
+                </th>
+                <th>
+                    Số điện thoại
+                </th>
+                <th>
+                    Ngày lập thẻ
+                </th>
+                <th>
+                    Tình Trạng
+                </th>
+                <th>
+                    Đang mượn
+                </th>
+                <th>
+                    Trạng thái
+                </th>
+                <th>
+                    Hành động
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaHV)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenHV)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SDT)
+                    </td>
+                    <td>
+                        @Convert.ToDateTime(item.NgayLapThe).ToString("dd/MM/yyyy")
+                    </td>
+
+                    <td style="">
+
+                        @if (item.TinhTrang == "Không sử dụng")
+                        {
+                            <div class="bg-gradient-danger tinhtrang__hethan text-center">@Html.DisplayFor(modelItem => item.TinhTrang)</div>
+                        }
+                        else
+                        {
+                            <div class="bg-gradient-success tinhtrang__conhan text-center">@Html.DisplayFor(modelItem => item.TinhTrang)</div>
+                        }
+
+                    </td>
+                    <td class="pl-4">
+                        @Html.DisplayFor(modelItem => item.DangMuon) Cuốn
+                    </td>
+                    <td>
+                        @if (item.TrangThai == 1)
+                        {
+                            <text> Khóa </text>
+                        }
+                        else if (item.TrangThai == 2)
+                        {
+                            <text> Bình thường </text>
+
+                        }
+                        else if (item.TinhTrang == null)
+                        {
+                            <text> Bình thường </text>
+                        }
+                    </td>
+
+                    <td>
+                        @*@Html.ActionLink("Details", "Details", new { id = item.MaDS })*@
+                        <a href="@Url.Action("Details","DocGia", new {id = item.MaHV})" class="action-item">
+                            <i class="fa-solid fa-book action-icon"></i>
+                        </a>
+                        @*@Html.ActionLink("Edit", "Edit", new { id = item.MaDS })*@
+                        <a href="@Url.Action("Edit","DocGia", new {id = item.MaHV})" class="action-item">
+                            <i class="fa-solid fa-pen-to-square action-icon"></i>
+                        </a>
+                        <a href="@Url.Action("Delete","DocGia", new {id = item.MaHV})" class="action-item">
+                            <i class="fa-solid fa-trash action-icon"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+               document.addEventListener('DOMContentLoaded', function () {
+                    Swal.fire({
+                    title: 'Thành công',
+                    text: '@ViewBag.Message',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                    });
+                    });
+    </script>
+}
+@if (TempData["Message"] != null)
+{
+    <script type="text/javascript">
+               document.addEventListener('DOMContentLoaded', function () {
+                Swal.fire({
+                title: 'Thành công',
+                text: '@TempData["Message"]',
+                icon: 'success',
+                confirmButtonText: 'OK'
+                });
+                });
+    </script>
+}
+@if (TempData["Error"] != null)
+{
+    <script type="text/javascript">
+               document.addEventListener('DOMContentLoaded', function () {
+                Swal.fire({
+                title: 'That bai',
+                text: '@TempData["Error"]',
+                icon: 'error',
+                confirmButtonText: 'OK'
+                });
+                });
+    </script>
+}

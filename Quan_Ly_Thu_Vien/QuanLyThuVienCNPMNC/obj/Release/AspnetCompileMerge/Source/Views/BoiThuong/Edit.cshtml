@@ -1,0 +1,44 @@
+﻿@model QuanLyThuVienCNPMNC.Models.BOITHUONG
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal bg_dt w-50">
+        <h2 class="text-center text-uppercase text-bold">chỉnh sửa thông tin <br />bồi thường</h2>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.MaHV)
+
+        @Html.HiddenFor(model => model.MaSach)
+
+        <div class="form-group">
+            <label class="control-label col-md-12">Giá tiền</label>
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.GiaTien, new { htmlAttributes = new { @class = "form-control", @type="number" , @min =0} })
+                @Html.ValidationMessageFor(model => model.GiaTien, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group ">
+            <label class="control-label col-md-12">Tình trạng</label>
+            <div class="col-md-12">
+                @Html.DropDownList("TinhTrang", ViewBag.tinhtrangthe as SelectList, "--- Chọn tình trạng ---", new { @class = "form-control search-selectlist" })
+                @Html.ValidationMessageFor(model => model.TinhTrang, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-12 col-md-12 text-center">
+                <input type="submit" value="Lưu" class="btn mr-2" style="background-color: #210cae; color:#fff;" />
+                @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-outline-dark" })
+
+            </div>
+        </div>
+    </div>
+}

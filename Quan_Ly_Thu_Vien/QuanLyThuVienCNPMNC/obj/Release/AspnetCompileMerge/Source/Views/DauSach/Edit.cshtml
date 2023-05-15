@@ -1,0 +1,117 @@
+﻿    @model QuanLyThuVienCNPMNC.Models.DAUSACH
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.list-nxb').select2({
+
+        })
+    });
+</script>
+
+<script type="text/javascript">
+    function validateData() {
+
+        if ($("#TenSach").val() == "") {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Vui lòng nhập tên sách'
+            });
+            return false;
+        } else if ($("#Theloai").val() == "") {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Vui lòng nhập thể loại'
+            });
+            return false;
+        } else {
+            return true;
+        }
+    }
+</script>
+
+@using (Html.BeginForm("Edit", "DAUSACH", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal bg_dt w-50">
+    <h2 class="text-center text-uppercase text-bold">chỉnh sửa đầu sách</h2>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        <label class="control-label col-md-12">Mã đầu sách</label>
+        <div class="col-md-12">
+            @Html.EditorFor(model => model.MaDS, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.MaDS, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-12">Tên đầu sách</label>
+        <div class="col-md-12">
+            @Html.EditorFor(model => model.TenSach, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TenSach, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-12">Thể loại đầu sách</label>
+        <div class="col-md-12">
+            @Html.EditorFor(model => model.Theloai, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Theloai, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-12">Nhà xuất bản</label>
+        <div class="col-md-12">
+            @Html.DropDownListFor(model => model.NXB, ViewBag.ListNXB as SelectList, new { @class = "form-control list-nxb" })
+            @*@Html.EditorFor(model => model.NXB, new { htmlAttributes = new { @class = "form-control" } })*@
+            @Html.ValidationMessageFor(model => model.NXB, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-12">Ngày xuất bản</label>
+        <div class="col-md-12">
+            @Html.HiddenFor(model => model.NgayXuatBan, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Convert.ToDateTime(Model.NgayXuatBan).ToString("dd/MM/yyyy")
+            @Html.ValidationMessageFor(model => model.NgayXuatBan, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.GhiChu, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-12">
+            @Html.EditorFor(model => model.GhiChu, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.GhiChu, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group ">
+        <div class="col-md-offset-2 col-md-12 text-center">
+            <input type="submit" value="Lưu" class="btn mr-2" style="background-color: #210cae; color:#fff;" onclick="validateData()" /> 
+            @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-outline-secondary" })
+
+        </div>
+    </div>
+
+</div>
+}
+
+<script type="text/javascript">
+    $(function () {
+        $('#NXB').chosen();
+    })
+</script>
+

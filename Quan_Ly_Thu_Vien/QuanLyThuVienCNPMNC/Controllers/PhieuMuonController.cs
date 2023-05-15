@@ -32,7 +32,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             if (count == 0)
             {
                 TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
-                return RedirectToAction("Index", "TrangChu");
+                return RedirectToAction("Index", "PhieuMuon");
 
             }
             else
@@ -51,7 +51,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             if (count == 0)
             {
                 TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
-                return RedirectToAction("Index", "TrangChu");
+                return RedirectToAction("ChuaTraSach", "PhieuMuon");
 
             }
             else
@@ -94,18 +94,18 @@ namespace QuanLyThuVienCNPMNC.Controllers
             if (count == 0)
             {
                 TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
-                return RedirectToAction("Index", "TrangChu");
+                return RedirectToAction("Index", "PhieuMuon");
 
             }
-
-
             else
             {
                 //ViewBag.sachdrop = databases.SACHes.Select(x => new SelectListItem { Text = x.DAUSACH.TenSach, Value = x.MaSach.ToString() }).ToList();
 
                 // Nếu tình trạng = 1 (Còn) thì mới được cho phép mượn, còn lại thì không
-                ViewBag.sachdrop = databases.SACHes.Where(s => (s.TinhTrang == 1)).Select(x => new SelectListItem { Text = x.MaSach + " - " + x.DAUSACH.TenSach, Value = x.MaSach.ToString() }).ToList();
-                ViewBag.mahoivien = databases.HOIVIENs.Where(s => (s.TinhTrang == "Sử dụng được") && (s.DangMuon == 0)).Select(x => new SelectListItem { Text = x.MaHV + " - " + x.TenHV , Value = x.MaHV.ToString() }).ToList();
+                ViewBag.sachdrop = databases.SACHes.Where(s => (s.TinhTrang == 1)).Select(x => new SelectListItem 
+                                                                        { Text = x.MaSach + " - " + x.DAUSACH.TenSach, Value = x.MaSach.ToString() }).ToList();
+                ViewBag.mahoivien = databases.HOIVIENs.Where(s => (s.TinhTrang == "Sử dụng được") && (s.DangMuon == 0)).Select(x => new SelectListItem 
+                                                                        { Text = x.MaHV + " - " + x.TenHV , Value = x.MaHV.ToString() }).ToList();
                 ViewBag.newkey = CapNhatKey();
                 return View();
             }
@@ -192,7 +192,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             if (count == 0)
             {
                 TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
-                return RedirectToAction("Index", "TrangChu");
+                return RedirectToAction("Index", "PhieuMuon");
 
             }
             else
@@ -212,7 +212,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             if (count == 0)
             {
                 TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
-                return RedirectToAction("Index", "TrangChu");
+                return RedirectToAction("Index", "PhieuMuon");
 
             }
             ViewBag.danhsachSach = databases.CHITIETPHIEUMUONs.Where(s => s.MaPhieu == maphieu).Select(s => s.SACH.DAUSACH.TenSach).ToList();
@@ -252,7 +252,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             if (count == 0)
             {
                 TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
-                return RedirectToAction("Index", "TrangChu");
+                return RedirectToAction("Index", "PhieuMuon");
 
             }
             else
