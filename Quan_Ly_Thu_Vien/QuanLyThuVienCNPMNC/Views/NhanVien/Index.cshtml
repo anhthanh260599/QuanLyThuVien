@@ -9,7 +9,7 @@
 
 <p>
     <a href="@Url.Action("Create","NhanVien")" class="add-item">
-        <i class="fa-solid fa-plus add-icon"></i> Thêm
+        <i class="fa-solid fa-plus add-icon"></i> Nhân viên
     </a>
 </p>
 <div class="bg_dt_index">
@@ -75,6 +75,28 @@
                 </tr>
             }
         </tbody>
+        <tfoot>
+            <tr>
+                <th>
+                    Mã nhân viên
+                </th>
+                <th>
+                    Tên nhân viên
+                </th>
+                <th>
+                    Chức vụ
+                </th>
+                <th>
+                    Tài khoản Gmail
+                </th>
+                <th>
+                    Mật khẩu
+                </th>
+                <th>
+                    Hành động
+                </th>
+            </tr>
+        </tfoot>
     </table>
 </div>
 @if (ViewBag.Message != null)
