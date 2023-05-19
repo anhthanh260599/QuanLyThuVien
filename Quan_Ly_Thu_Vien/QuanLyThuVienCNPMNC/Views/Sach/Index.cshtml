@@ -6,7 +6,7 @@
 
 <p>
     <a href="@Url.Action("Create","Sach")" class="add-item">
-        <i class="fa-solid fa-plus add-icon"></i> Thêm
+        <i class="fa-solid fa-plus add-icon"></i> Sách
     </a>
 </p>
 <div class="bg_dt_index">
@@ -58,10 +58,6 @@
                         {
                             <text> Hỏng </text>
                         }
-
-
-
-
                         @*@Html.DisplayFor(modelItem => item.TinhTrang)*@
                     </td>
                     <td>
@@ -86,6 +82,25 @@
                 </tr>
             }
         </tbody>
+        <tfoot>
+            <tr>
+                <th>
+                    Mã sách
+                </th>
+                <th>
+                    Tình trạng
+                </th>
+                <th>
+                    Mã đầu sách
+                </th>
+                <th>
+                    Ghi chú thêm
+                </th>
+                <th>
+                    Hành động
+                </th>
+            </tr>
+        </tfoot>
     </table>
 </div>
 @if (ViewBag.Message != null)

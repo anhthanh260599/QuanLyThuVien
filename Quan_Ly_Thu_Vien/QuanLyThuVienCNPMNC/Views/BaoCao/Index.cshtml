@@ -7,7 +7,7 @@
 
 <p>
     <a href="@Url.Action("Create","BaoCao")" class="add-item">
-        <i class="fa-solid fa-plus add-icon"></i> Thêm
+        <i class="fa-solid fa-plus add-icon"></i> Báo cáo 
     </a>
 </p>
 <div class="bg_dt_index">
@@ -69,12 +69,31 @@
                 </tr>
             }
         </tbody>
+        <tfoot>
+            <tr>
+                <th>
+                    <label>Tiêu đề</label>
+                </th>
+                <th>
+                    <label>Mô tả</label>
+                </th>
+                <th>
+                    <label>Người lập báo cáo</label>
+                </th>
+                <th>
+                    <label>Ngày lập</label>
+                </th>
+                <th>
+                    <label>Hành động</label>
+                </th>
+            </tr>
+        </tfoot>
     </table>
 </div>
 
-    @if (ViewBag.Message != null)
-    {
-        <script type="text/javascript">
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
                document.addEventListener('DOMContentLoaded', function () {
                     Swal.fire({
                     title: 'Thành công',
@@ -83,11 +102,11 @@
                     confirmButtonText: 'OK'
                     });
                     });
-        </script>
-    }
-    @if (TempData["Message"] != null)
-    {
-        <script type="text/javascript">
+    </script>
+}
+@if (TempData["Message"] != null)
+{
+    <script type="text/javascript">
                document.addEventListener('DOMContentLoaded', function () {
                 Swal.fire({
                 title: 'Thành công',
@@ -96,11 +115,11 @@
                 confirmButtonText: 'OK'
                 });
                 });
-        </script>
-    }
-    @if (TempData["Error"] != null)
-    {
-        <script type="text/javascript">
+    </script>
+}
+@if (TempData["Error"] != null)
+{
+    <script type="text/javascript">
                document.addEventListener('DOMContentLoaded', function () {
                 Swal.fire({
                 title: 'Thất bại !',
@@ -109,11 +128,11 @@
                 confirmButtonText: 'OK'
                 });
                 });
-        </script>
-    }
-    @if (TempData["Permission"] != null)
-    {
-        <script type="text/javascript">
+    </script>
+}
+@if (TempData["Permission"] != null)
+{
+    <script type="text/javascript">
                document.addEventListener('DOMContentLoaded', function () {
                 Swal.fire({
                     title: 'Thông báo !!',
@@ -122,5 +141,5 @@
                     confirmButtonText: 'OK'
                 });
                 });
-        </script>
-    }
+    </script>
+}

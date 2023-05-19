@@ -2183,6 +2183,7 @@
     <Content Include="images\huflit-co-so-dao-tao.jpg" />
     <Content Include="images\huflit.png" />
     <Content Include="images\img_avatar.png" />
+    <Content Include="images\logo-HUFLIT.png" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
