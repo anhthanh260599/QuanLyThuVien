@@ -20,7 +20,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             var count = databases.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && s.MaChucNang == "CN04");
             if (count == 0)
             {
-                TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
+                TempData["MessageErRole"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
                 return RedirectToAction("Index", "NhanVien");
 
             }
@@ -61,7 +61,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             var count = databases.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && s.MaChucNang == "CN04");
             if (count == 0)
             {
-                TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
+                TempData["MessageErRole"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
                 return RedirectToAction("Index", "NhanVien");
 
             }
@@ -85,7 +85,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
                     nhanvien.MaNV = CapNhatKey();
                     databases.NHANVIENs.Add(nhanvien);
                     databases.SaveChanges();
-                    TempData["Message"] = "Them thanh cong !!!";
+                    TempData["MessageAdd"] = "Them thanh cong !!!";
                     return RedirectToAction("Index");
                 }
                 catch
@@ -104,7 +104,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             var count = databases.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && s.MaChucNang == "CN04");
             if (count == 0)
             {
-                TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
+                TempData["MessageErRole"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
                 return RedirectToAction("Index", "NhanVien");
 
             }
@@ -123,7 +123,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             var count = databases.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && s.MaChucNang == "CN04");
             if (count == 0)
             {
-                TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
+                TempData["MessageErRole"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
                 return RedirectToAction("Index", "NhanVien");
 
             }
@@ -146,7 +146,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             NHANVIEN item = databases.NHANVIENs.Find(id);
             databases.NHANVIENs.Remove(item);
             databases.SaveChanges();
-            TempData["Message"] = "Xoa thanh cong !!!";
+            TempData["MessageDelete"] = "Xoa thanh cong !!!";
             return RedirectToAction("Index");
         }
 
@@ -159,7 +159,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             var count = databases.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && s.MaChucNang == "CN04");
             if (count == 0)
             {
-                TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
+                TempData["MessageErRole"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
                 return RedirectToAction("Index", "NhanVien");
 
             }
@@ -177,7 +177,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
         {
             databases.Entry(objProduct).State = EntityState.Modified;
             databases.SaveChanges();
-            TempData["Message"] = "Chinh sua thanh cong !!!";
+            TempData["MessageEdit"] = "Chinh sua thanh cong !!!";
             return RedirectToAction("Index");
         }
     }

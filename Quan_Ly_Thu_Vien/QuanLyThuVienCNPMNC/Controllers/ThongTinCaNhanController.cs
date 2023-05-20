@@ -30,10 +30,9 @@ namespace QuanLyThuVienCNPMNC.Controllers
         {
             try
             {
+                NHANVIEN nvSession = (NHANVIEN)Session["user"];
                 if (ImageAva != null)
                 {
-                    NHANVIEN nvSession = (NHANVIEN)Session["user"];
-
                     //Lấy tên file của hình được up lên
                     var fileName = Path.GetFileName(ImageAva.FileName);
                     //Tạo đường dẫn tới file
@@ -44,6 +43,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
                     //Save vào Images Folder
                     ImageAva.SaveAs(path);
                 }
+                nv.ImageAva = nvSession.ImageAva;
                 databases.Entry(nv).State = EntityState.Modified;
                 databases.SaveChanges();
                 TempData["Message"] = "Chinh sua thanh cong !!!";
@@ -102,12 +102,12 @@ namespace QuanLyThuVienCNPMNC.Controllers
             if (!mkCu.ToString().Equals(nv.MatKhau.Trim()))
             {
 
-                TempData["Error"] = "Ban da nhap sai mat khau cu !!";
+                TempData["ErrorPassOld"] = "Ban da nhap sai mat khau cu !!";
                 return RedirectToAction("ChangePass");
             }
             if (mkCu.Equals(mkMoi))
             {
-                TempData["Error"] = "Mat khau moi khong duoc trung voi mat khau cu !!";
+                TempData["ErrorLikeOldPass"] = "Mat khau moi khong duoc trung voi mat khau cu !!";
                 return RedirectToAction("ChangePass");
             }
             nv.MatKhau = mkMoi;

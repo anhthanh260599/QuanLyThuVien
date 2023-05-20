@@ -46,12 +46,11 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color mr-2 text-center">
-            <input type="submit" value="Xóa" class="btn btn-danger mr-2" />
+            <button class="btn btn-danger mr-2" id="btn-xoa" type="button" onclick="return ConfirmXoa();"  >Xóa</button>
             @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-outline-dark" })
         </div>
     }
 </div>
-
 
 @if (ViewBag.Message != null)
 {

@@ -79,7 +79,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color text-center">
-            <input type="submit" value="Xóa" class="btn btn-danger mr-2" onclick="return confirm('Bạn có chắc là muốn xóa chứ ??')" />
+            <button class="btn btn-danger mr-2" id="btn-xoa" type="button" onclick="return ConfirmXoa();">Xóa</button>
             @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-outline-dark" })
         </div>
 
