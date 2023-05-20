@@ -82,8 +82,8 @@
                     </td>
                     <td>
                         @*@Html.ActionLink("Edit", "Edit", new { id = item.MaHV, id1 = item.MaSach }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.MaHV, id1 = item.MaSach }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.MaHV, id1 = item.MaSach })*@
+                            @Html.ActionLink("Details", "Details", new { id = item.MaHV, id1 = item.MaSach }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.MaHV, id1 = item.MaSach })*@
 
                         <a href="@Url.Action("Details","BoiThuong", new {id = item.MaHV,id1 = item.MaSach})" class="action-item">
                             <i class="fa-solid fa-book action-icon"></i>
@@ -133,16 +133,68 @@
                     });
     </script>
 }
-@if (TempData["Message"] != null)
+@if (TempData["MessageDelete"] != null)
 {
     <script type="text/javascript">
-               document.addEventListener('DOMContentLoaded', function () {
-                Swal.fire({
-                title: 'Thành công',
-                text: '@TempData["Message"]',
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                title: 'Success!!',
+                text: 'Xóa thành công!!',
                 icon: 'success',
                 confirmButtonText: 'OK'
-                });
-                });
+            });
+        });
+    </script>
+}
+@if (TempData["MessageErRole"] != null)
+{
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                title: 'Oops..',
+                text: 'Bạn không có quyền truy cập vào chức năng này!!',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        });
+    </script>
+}
+@if (TempData["MessageEdit"] != null)
+{
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                title: 'Success!!',
+                text: 'Chỉnh sửa thành côngg!!',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        });
+    </script>
+}
+@if (TempData["MessageAdd"] != null)
+{
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                title: 'Success!!',
+                text: 'Thêm thành côngg!!',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        });
+    </script>
+}
+@if (TempData["Error"] != null)
+{
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                title: 'Oops..',
+                text: 'Lỗi quan hệ khóa...',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        });
     </script>
 }

@@ -69,7 +69,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
                 {
                     context1.sp_CapNhatTinhTrangTheHoiVien(bOITHUONG.MaHV);
                 }
-                TempData["Message"] = "Them thanh cong !!!";
+                TempData["MessageAdd"] = "Them thanh cong !!!";
                 return RedirectToAction("Index");
             }
 
@@ -125,7 +125,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
                 {
                     context1.sp_CapNhatTinhTrangTheHoiVien(bOITHUONG.MaHV);
                 }
-                TempData["Message"] = "Cap nhat thanh cong !!!";
+                TempData["MessageEdit"] = "Cap nhat thanh cong !!!";
                 return RedirectToAction("Index");
             }
             ViewBag.MaHV = new SelectList(db.HOIVIENs, "MaHV", "TenHV", bOITHUONG.MaHV);
@@ -169,7 +169,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             {
                 context1.sp_CapNhatTinhTrangTheHoiVien(bOITHUONG.MaHV);
             }
-            TempData["Message"] = "Xoa thanh cong !!!";
+            TempData["MessageDelete"] = "Xoa thanh cong !!!";
             return RedirectToAction("Index");
         }
 

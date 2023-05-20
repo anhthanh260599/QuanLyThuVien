@@ -28,7 +28,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             var count = databases.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && s.MaChucNang == "CN01");
             if (count == 0)
             {
-                TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
+                TempData["MessageErRole"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
                 return RedirectToAction("Index", "DauSach");
 
             }
@@ -83,7 +83,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             var count = databases.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && s.MaChucNang == "CN01");
             if (count == 0)
             {
-                TempData["Message"] = "Bạn không có quyền truy cập chức năng này";
+                TempData["MessageErRole"] = "Bạn không có quyền truy cập chức năng này";
 
                 return RedirectToAction("Index", "DauSach");
 
@@ -112,7 +112,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             var count = databases.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && s.MaChucNang == "CN01");
             if (count == 0)
             {
-                TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
+                TempData["MessageErRole"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
                 return RedirectToAction("LichSuNhapHang");
 
             }
@@ -127,9 +127,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
                         databases.DAUSACHes.Add(dausach);
                         databases.SaveChanges();
 
-                        TempData["Message"] = "Tao dau sach thanh cong";
-
-
+                        TempData["MessageAdd"] = "Tao dau sach thanh cong";
                         return RedirectToAction("Index");
                     }
                     catch
@@ -162,7 +160,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             var count = databases.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && s.MaChucNang == "CN01");
             if (count == 0)
             {
-                TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
+                TempData["MessageErRole"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
                 return RedirectToAction("Index", "DauSach");
 
             }
@@ -187,7 +185,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             var count = databases.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && s.MaChucNang == "CN01");
             if (count == 0)
             {
-                TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
+                TempData["MessageErRole"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
                 return RedirectToAction("Index", "DauSach");
 
             }
@@ -212,7 +210,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
                 DAUSACH item = databases.DAUSACHes.Find(id);
                 databases.DAUSACHes.Remove(item);
                 databases.SaveChanges();
-                TempData["Message"] = "Xoa thanh cong";
+                TempData["MessageDelete"] = "Xoa thanh cong";
                 return RedirectToAction("Index");
             }
             catch
@@ -230,7 +228,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             var count = databases.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && s.MaChucNang == "CN01");
             if (count == 0)
             {
-                TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
+                TempData["MessageErRole"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
                 return RedirectToAction("Index", "DauSach");
 
             }
@@ -249,7 +247,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
         {
             databases.Entry(objProduct).State = EntityState.Modified;
             databases.SaveChanges();
-            TempData["Message"] = "";
+            TempData["MessageEdit"] = "";
             return RedirectToAction("Index");
         }
     }

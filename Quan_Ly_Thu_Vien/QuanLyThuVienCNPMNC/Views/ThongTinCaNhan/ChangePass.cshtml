@@ -54,7 +54,7 @@
         <div class="form-group">
             <label class="control-label col-md-12">Nhập mật khẩu mới </label>
             <div class="col-md-12">
-                <input class="form-control" id="mkMoi" name="mkMoi" type="password" required/>
+                <input class="form-control" id="mkMoi" name="mkMoi" type="password" required />
                 <span class="field-validation-valid text-danger" data-valmsg-for="mkMoi" data-valmsg-replace="true"></span>
 
             </div>
@@ -70,7 +70,7 @@
         <div class="form-group text-center">
             <div class="col-md-offset-2 col-md-12">
                 <input type="submit" value="Lưu" id="btnSave" class="btn mr-2" style="background-color: #210cae; color:#fff;" />
-                @Html.ActionLink("Quay lại", "Detail",null, new { @class = "btn btn-outline-secondary" })
+                @Html.ActionLink("Quay lại", "Detail", null, new { @class = "btn btn-outline-secondary" })
 
             </div>
         </div>
@@ -96,13 +96,27 @@
     });
 </script>
 
-@if (TempData["Error"] != null)
+@if (TempData["ErrorPassOld"] != null)
 {
     <script type="text/javascript">
                document.addEventListener('DOMContentLoaded', function () {
                    Swal.fire({
-                       title: 'Thất bại !',
-                       text: '@TempData["Error"]',
+                       title: 'Opps..!!',
+                       text: 'Bạn đã nhập sai mật khẩu cũ!!',
+                       icon: 'error',
+                       confirmButtonText: 'OK'
+                   });
+        });
+
+    </script>
+}
+@if (TempData["ErrorLikeOldPass"] != null)
+{
+    <script type="text/javascript">
+               document.addEventListener('DOMContentLoaded', function () {
+                   Swal.fire({
+                       title: 'Opps..!!',
+                       text: 'Mật khẩu mới không được giống mật khẩu cũ',
                        icon: 'error',
                        confirmButtonText: 'OK'
                    });
@@ -113,13 +127,13 @@
 @if (TempData["Message"] != null)
 {
     <script type="text/javascript">
-               document.addEventListener('DOMContentLoaded', function () {
-                Swal.fire({
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
                 title: 'Thành công !',
-                text: '@TempData["Message"]',
+                text: 'Đổi mật khẩu thành côngg!!',
                 icon: 'success',
                 confirmButtonText: 'OK'
-                });
-                });
+            });
+        });
     </script>
 }

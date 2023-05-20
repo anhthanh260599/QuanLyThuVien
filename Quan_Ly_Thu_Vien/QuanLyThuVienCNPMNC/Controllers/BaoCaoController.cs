@@ -13,7 +13,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
     {
         // GET: BaoCao
 
-       
+
         public object ListtoDataConverter { get; private set; }
         Quan_Ly_Thu_VienEntities databases = new Quan_Ly_Thu_VienEntities();
         public ActionResult Index()
@@ -52,7 +52,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
                 {
                     databases.BAOCAOs.Add(baocao);
                     databases.SaveChanges();
-                    TempData["Message"] = "Them thanh cong !!!";
+                    TempData["MessageAdd"] = "Them thanh cong !!!";
                     return RedirectToAction("Index");
                 }
                 catch
@@ -85,11 +85,19 @@ namespace QuanLyThuVienCNPMNC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            BAOCAO item = databases.BAOCAOs.Find(id);
-            databases.BAOCAOs.Remove(item);
-            databases.SaveChanges();
-            TempData["Message"] = "Xoa thanh cong !!!";
-            return RedirectToAction("Index");
+            try
+            {
+                BAOCAO item = databases.BAOCAOs.Find(id);
+                databases.BAOCAOs.Remove(item);
+                databases.SaveChanges();
+                TempData["MessageDelete"] = "Xoa thanh cong !!!";
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                TempData["Error"] = "Khong the xoa, do da ton tai sach thuoc dau sach nay";
+                return RedirectToAction("Index");
+            }
         }
 
         //Chỉnh sửa sản phẩm
@@ -104,7 +112,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             }
             else
             {
-                TempData["Permission"] = "Ban chua co quyen de chinh sua bao cao cua nguoi khac !!!";
+                TempData["MessageErRole"] = "Ban chua co quyen de chinh sua bao cao cua nguoi khac !!!";
                 return RedirectToAction("Index", "BaoCao");
             }
         }
@@ -121,7 +129,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
 
                 databases.Entry(bc).State = EntityState.Modified;
                 databases.SaveChanges();
-                TempData["Message"] = "Chinh sua thanh cong !!!";
+                TempData["MessageEdit"] = "Chinh sua thanh cong !!!";
                 return RedirectToAction("Index");
             }
             catch
@@ -129,7 +137,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
                 TempData["Error"] = "Error !!!";
                 return RedirectToAction("Index");
             }
-            
+
         }
     }
 }

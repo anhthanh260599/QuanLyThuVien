@@ -22,7 +22,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             var count = databases.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && (s.MaChucNang == "CN01" || s.MaChucNang == "CN02"));
             if (count == 0)
             {
-                TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
+                TempData["MessageErRole"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
                 return RedirectToAction("Index", "DocGia");
 
             }
@@ -89,7 +89,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             var count = databases.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && s.MaChucNang == "CN02");
             if (count == 0)
             {
-                TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
+                TempData["MessageErRole"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
                 return RedirectToAction("Index", "DocGia");
             }
             else
@@ -118,7 +118,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
                     context1.sp_CapNhatTinhTrangTheHoiVien(hoivien.MaHV);
                 }
 
-                TempData["Message"] = "Them thanh cong !!!";
+                TempData["MessageAdd"] = "Them thanh cong !!!";
                 return RedirectToAction("Index");
             }
             catch
@@ -136,7 +136,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             var count = databases.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && (s.MaChucNang == "CN01" || s.MaChucNang == "CN02"));
             if (count == 0)
             {
-                TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
+                TempData["MessageErRole"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
                 return RedirectToAction("Index", "DocGia");
 
             }
@@ -155,7 +155,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             var count = databases.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && s.MaChucNang == "CN02");
             if (count == 0)
             {
-                TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
+                TempData["MessageErRole"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
                 return RedirectToAction("Index", "DocGia");
 
             }
@@ -185,7 +185,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
                     context1.sp_CapNhatSoLuongSachHoiVienMuon(id);
                 }
 
-                TempData["Message"] = "Xoa thanh cong !!!";
+                TempData["MessageDelete"] = "Xoa thanh cong !!!";
                 return RedirectToAction("Index");
             }
             catch
@@ -204,7 +204,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             var count = databases.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && s.MaChucNang == "CN02");
             if (count == 0)
             {
-                TempData["Message"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
+                TempData["MessageErRole"] = "Ban khong co quyen truy cap vao chuc nang nay !!!";
                 return RedirectToAction("Index", "DocGia");
 
             }
@@ -230,7 +230,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             {
                 context1.sp_CapNhatTinhTrangTheHoiVien(objProduct.MaHV);
             }
-            TempData["Message"] = "Chinh sua thanh cong !!!";
+            TempData["MessageEdit"] = "Chinh sua thanh cong !!!";
             return RedirectToAction("Index");
         }
     }
