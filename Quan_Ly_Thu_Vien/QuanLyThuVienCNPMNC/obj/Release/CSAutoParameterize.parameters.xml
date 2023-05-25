@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<parameters>
-  <parameter name="Quan_Ly_Thu_VienEntities-Web.config Connection String" description="Quan_Ly_Thu_VienEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.Model1.csdl|res://*/Models.Model1.ssdl|res://*/Models.Model1.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=duythong\sqlexpress;initial catalog=Quan_Ly_Thu_Vien;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="E:\\BTnam3\\CongNghePhanMem-NC\\CongNghePhanMem-NC\\DeAn_QuanLyThuVien\\QuanLyThuVien\\Quan_Ly_Thu_Vien\\QuanLyThuVienCNPMNC\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Quan_Ly_Thu_VienEntities']/@connectionString" />
-  </parameter>
-</parameters>

@@ -25,7 +25,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
 
 
         // GET: DocGia
-        public ActionResult Index(/*string currentFilter, string SearchString, int? page*/)
+        public ActionResult Index()
         {
             NHANVIEN nvSession = (NHANVIEN)Session["user"];
             var count = databases.PhanQuyens.Count(s => s.MaNhanVien == nvSession.MaNV && s.MaChucNang == "CN03");
@@ -37,8 +37,22 @@ namespace QuanLyThuVienCNPMNC.Controllers
             }
             else
             {
+                var listPMS = databases.PHIEUMUONSACHes.Select(s => s.MaPhieu).ToList();
+                Dictionary<string, List<string>> danhSachSachDict = new Dictionary<string, List<string>>();
 
-                return View(databases.PHIEUMUONSACHes.ToList());
+                foreach (var maPhieu in listPMS)
+                {
+                    var danhSachSach = databases.CHITIETPHIEUMUONs
+                        .Where(s => s.MaPhieu == maPhieu)
+                        .Select(s => s.SACH.DAUSACH.TenSach)
+                        .ToList();
+
+                    danhSachSachDict.Add(maPhieu, danhSachSach);
+                }
+
+                ViewBag.danhSachSachDict = danhSachSachDict;
+                var phieuMuonSachList = databases.PHIEUMUONSACHes.ToList();
+                return View(phieuMuonSachList);
             }
 
         }
@@ -56,6 +70,20 @@ namespace QuanLyThuVienCNPMNC.Controllers
             }
             else
             {
+                var listPMS = databases.PHIEUMUONSACHes.Select(s => s.MaPhieu).ToList();
+                Dictionary<string, List<string>> danhSachSachDict = new Dictionary<string, List<string>>();
+
+                foreach (var maPhieu in listPMS)
+                {
+                    var danhSachSach = databases.CHITIETPHIEUMUONs
+                        .Where(s => s.MaPhieu == maPhieu)
+                        .Select(s => s.SACH.DAUSACH.TenSach)
+                        .ToList();
+
+                    danhSachSachDict.Add(maPhieu, danhSachSach);
+                }
+
+                ViewBag.danhSachSachDict = danhSachSachDict;
                 return View(databases.PHIEUMUONSACHes.Where(s => s.NgayTra == null).ToList());
             }
 
@@ -102,10 +130,10 @@ namespace QuanLyThuVienCNPMNC.Controllers
                 //ViewBag.sachdrop = databases.SACHes.Select(x => new SelectListItem { Text = x.DAUSACH.TenSach, Value = x.MaSach.ToString() }).ToList();
 
                 // Nếu tình trạng = 1 (Còn) thì mới được cho phép mượn, còn lại thì không
-                ViewBag.sachdrop = databases.SACHes.Where(s => (s.TinhTrang == 1)).Select(x => new SelectListItem 
-                                                                        { Text = x.MaSach + " - " + x.DAUSACH.TenSach, Value = x.MaSach.ToString() }).ToList();
-                ViewBag.mahoivien = databases.HOIVIENs.Where(s => (s.TinhTrang == "Sử dụng được") && (s.DangMuon == 0)).Select(x => new SelectListItem 
-                                                                        { Text = x.MaHV + " - " + x.TenHV , Value = x.MaHV.ToString() }).ToList();
+                ViewBag.sachdrop = databases.SACHes.Where(s => (s.TinhTrang == 1)).Select(x => new SelectListItem
+                { Text = x.MaSach + " - " + x.DAUSACH.TenSach, Value = x.MaSach.ToString() }).ToList();
+                ViewBag.mahoivien = databases.HOIVIENs.Where(s => (s.TinhTrang == "Sử dụng được") && (s.DangMuon == 0)).Select(x => new SelectListItem
+                { Text = x.MaHV + " - " + x.TenHV, Value = x.MaHV.ToString() }).ToList();
                 ViewBag.newkey = CapNhatKey();
                 return View();
             }
@@ -119,7 +147,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             ViewBag.mahoivien = databases.HOIVIENs.Where(s => (s.TinhTrang == "Sử dụng được") && (s.DangMuon == 0)).Select(x => new SelectListItem { Text = x.MaHV + " - " + x.TenHV, Value = x.MaHV.ToString() }).ToList();
 
             //ViewBag.sachdrop = databases.SACHes.Select(x => new SelectListItem { Text = x.DAUSACH.TenSach, Value = x.MaSach.ToString() }).ToList();
-            ViewBag.sachdrop = databases.SACHes.Where(s => (s.TinhTrang == 1)  ).Select(x => new SelectListItem { Text = x.MaSach + " - " + x.DAUSACH.TenSach, Value = x.MaSach.ToString() }).ToList();
+            ViewBag.sachdrop = databases.SACHes.Where(s => (s.TinhTrang == 1)).Select(x => new SelectListItem { Text = x.MaSach + " - " + x.DAUSACH.TenSach, Value = x.MaSach.ToString() }).ToList();
 
             //Kiem tra trong phieu muon hien tai co muon sach nay chua
             /*            int demPMS = databases.PHIEUMUONSACHes.Count(s => s.MaPhieu.ToLower() == maphieumuon.ToLower());
@@ -145,7 +173,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
 
 
                 List<CHITIETPHIEUMUON> listCTPM = new List<CHITIETPHIEUMUON>(soluong);
-                
+
 
                 for (int i = 0; i < soluong; i++)
                 {
@@ -168,7 +196,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
                     context1.SaveChanges();
 
                     //Gọi strore procedure phải gọi sau savechange
-                    for (int i = 0;i < soluong; i++)
+                    for (int i = 0; i < soluong; i++)
                     {
                         context1.CapNhatTinhTrangSach(listCTPM[i].MaPhieu, masach[i]);
                     }
@@ -216,7 +244,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
             return View(databases.PHIEUMUONSACHes.Where(s => s.MaPhieu == maphieu && s.MaHV == mahoivien).FirstOrDefault());
         }
         [HttpPost]
-        public ActionResult Edit(string maphieu, DateTime? ngaytra, DateTime thoihan ,PHIEUMUONSACH pms) //DateTime ? -> cho giá trị date == null
+        public ActionResult Edit(string maphieu, DateTime? ngaytra, DateTime thoihan, PHIEUMUONSACH pms) //DateTime ? -> cho giá trị date == null
         {
             pms = databases.PHIEUMUONSACHes.Where(s => s.MaPhieu == maphieu).FirstOrDefault();
             pms.NgayTra = ngaytra;

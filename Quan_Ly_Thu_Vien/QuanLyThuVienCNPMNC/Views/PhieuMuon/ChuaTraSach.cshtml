@@ -15,7 +15,7 @@
 <p>
     <a href="@Url.Action("Create","PhieuMuon")" class="btn add-item">
         <i class="fa-solid fa-plus add-icon"></i> Mượn sách
-    </a> 
+    </a>
     @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn my_btn" })
 
 </p>
@@ -42,10 +42,9 @@
                     Thời hạn
                 </th>
                 <th>
-                    Số lượng
+                    Tên sách
                 </th>
                 <th>
-                    Chức năng
                 </th>
             </tr>
         </thead>
@@ -76,7 +75,10 @@
 
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.SoLuong)
+                        @foreach (var tenSach in ViewBag.danhSachSachDict[item.MaPhieu])
+                        {
+                            @tenSach <br />
+                        }
                     </td>
                     <td>
 
@@ -99,6 +101,30 @@
                 </tr>
             }
         </tbody>
+        <tfoot>
+            <tr>
+                <th>
+                    Mã phiếu
+                </th>
+                <th>
+                    Tên độc giả
+                </th>
+                <th>
+                    Ngày mượn
+                </th>
+                <th>
+                    Ngày trả
+                </th>
+                <th>
+                    Thời hạn
+                </th>
+                <th>
+                    Tên sách
+                </th>
+                <th>
+                </th>
+            </tr>
+        </tfoot>
     </table>
 </div>
 

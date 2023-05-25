@@ -19,6 +19,10 @@
         <div class="form-group">
             <label class="control-label col-md-12">Tên nhân viên </label>
             <div class="col-md-12">
+                @{
+                    string tenNV = Model.TenNV ?? ""; // Lấy giá trị từ model và kiểm tra nếu là null thì gán giá trị mặc định là ""
+                }
+
                 @Html.EditorFor(model => model.TenNV, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TenNV, "", new { @class = "text-danger" })
             </div>
@@ -27,7 +31,7 @@
         <div class="form-group">
             <label class="control-label col-md-12">Chức vụ </label>
             <div class="col-md-12">
-                    @Html.EditorFor(model => model.ChucVu, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.EditorFor(model => model.ChucVu, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly",@required="required" } })
                     @Html.ValidationMessageFor(model => model.ChucVu, "", new { @class = "text-danger" })
                 </div>
         </div>
@@ -35,7 +39,7 @@
         <div class="form-group">
             <label class="control-label col-md-12">Tên tài khoản </label>
             <div class="col-md-12">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @type = "email" } })
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @type = "email",@required="required" } })
                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
             </div>
         </div>

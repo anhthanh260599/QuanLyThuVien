@@ -109,7 +109,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
                 hoivien.MaHV = CapNhatKey();
                 hoivien.DangMuon = 0;
                 hoivien.NgayHetHan = hoivien.NgayLapThe.AddYears(4);
-
+                hoivien.SDT.Trim();
                 databases.HOIVIENs.Add(hoivien);
                 databases.SaveChanges();
 
@@ -221,14 +221,16 @@ namespace QuanLyThuVienCNPMNC.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Edit(DateTime ngayhethan, HOIVIEN objProduct)
+        public ActionResult Edit(DateTime? ngayhethan, HOIVIEN hoivien)
         {
 
-            databases.Entry(objProduct).State = EntityState.Modified;
+            databases.Entry(hoivien).State = EntityState.Modified;
+            hoivien.NgayHetHan = hoivien.NgayLapThe.AddYears(4);
+
             databases.SaveChanges();
             using (var context1 = new Quan_Ly_Thu_VienEntities())
             {
-                context1.sp_CapNhatTinhTrangTheHoiVien(objProduct.MaHV);
+                context1.sp_CapNhatTinhTrangTheHoiVien(hoivien.MaHV);
             }
             TempData["MessageEdit"] = "Chinh sua thanh cong !!!";
             return RedirectToAction("Index");

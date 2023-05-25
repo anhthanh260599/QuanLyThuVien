@@ -50,7 +50,7 @@
             @*@Html.LabelFor(model => model.Tieude, htmlAttributes: new { @class = "control-label col-md-2" })*@
             <label class="control-label col-md-12">Tiêu đề</label>
             <div class="col-md-12">
-                @Html.EditorFor(model => model.Tieude, new { htmlAttributes = new { @class = "form-control", @type = "Text" } })
+                @Html.EditorFor(model => model.Tieude, new { htmlAttributes = new { @class = "form-control", @type = "Text", @required ="required" } })
                 @Html.ValidationMessageFor(model => model.Tieude, "", new { @class = "text-danger" })
             </div>
         </div>

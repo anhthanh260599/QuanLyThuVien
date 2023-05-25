@@ -69,7 +69,7 @@
         <div class="form-group">
             <label class="control-label col-md-10">Tên đầu sách</label>
             <div class="col-md-12">
-                @Html.EditorFor(model => model.TenSach, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.TenSach, new { htmlAttributes = new { @class = "form-control", @required= "required" } })
                 @Html.ValidationMessageFor(model => model.TenSach, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -77,7 +77,7 @@
         <div class="form-group">
             <label class="control-label col-md-10">Thể loại đầu sách</label>
             <div class="col-md-12">
-                @Html.EditorFor(model => model.Theloai, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Theloai, new { htmlAttributes = new { @class = "form-control", @required ="required" } })
                 @Html.ValidationMessageFor(model => model.Theloai, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -95,7 +95,7 @@
             <label class="control-label col-md-10">Ngày xuất bản</label>
             <div class="col-md-12">
 
-                @Html.EditorFor(model => model.NgayXuatBan, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                @Html.EditorFor(model => model.NgayXuatBan, new { htmlAttributes = new { @class = "form-control", @type = "date", @required = "required" } })
                 @Html.ValidationMessageFor(model => model.NgayXuatBan, "", new { @class = "text-danger" })
             </div>
         </div>

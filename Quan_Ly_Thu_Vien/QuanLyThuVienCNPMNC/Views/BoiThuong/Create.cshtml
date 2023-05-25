@@ -41,7 +41,7 @@
         <div class="form-group">
             <label class="control-label col-md-12">Số tiền phải trả </label>
             <div class="col-md-12">
-                @Html.EditorFor(model => model.GiaTien, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = 0 } })
+                @Html.EditorFor(model => model.GiaTien, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = 0 ,@required="required"} })
                 @Html.ValidationMessageFor(model => model.GiaTien, "", new { @class = "text-danger" })
             </div>
         </div>

@@ -18,7 +18,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
         [HttpPost]
         public ActionResult DangNhap(string userLogin, string passwordLogin)
         {
-            var taikhoan = database.NHANVIENs.FirstOrDefault(s => s.Email.ToLower() == userLogin.ToLower() && s.MatKhau == passwordLogin);
+            var taikhoan = database.NHANVIENs.Where(s => s.Email == userLogin && s.MatKhau == passwordLogin).FirstOrDefault();
 
             if (taikhoan != null)
             {

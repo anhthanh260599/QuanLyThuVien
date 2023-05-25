@@ -39,7 +39,7 @@
         <div class="form-group">
             <label class="control-label col-md-12">Ngày trả sách</label>
             <div class="col-md-12">
-                <input class="form-control" id="ngaytra" name="ngaytra" type="date" />
+                <input class="form-control" id="ngaytra" name="ngaytra" type="date" required />
                 <span class="field-validation-valid text-danger" data-valmsg-for="ngaytra" data-valmsg-replace="true"></span>
             </div>
         </div>
@@ -49,7 +49,7 @@
             <div class="col-md-12">
                 @*<input class="form-control" id="thoihan" name="thoihan" type="date" value="" />
                     <span class="field-validation-valid text-danger" data-valmsg-for="thoihan" data-valmsg-replace="true"></span>*@
-                @Html.EditorFor(model => model.ThoiHan, new { htmlAttributes = new { @class = "form-control", @name = "thoihan", @type = "date", @Value = Model.ThoiHan.ToString("yyyy-MM-dd") } })
+                @Html.EditorFor(model => model.ThoiHan, new { htmlAttributes = new { @class = "form-control", @name = "thoihan", @type = "date", @Value = Model.ThoiHan.ToString("yyyy-MM-dd"), @required="required" } })
                 @Html.ValidationMessageFor(model => model.ThoiHan, "", new { @class = "text-danger" })
             </div>
         </div>
