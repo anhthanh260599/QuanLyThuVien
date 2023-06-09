@@ -27,7 +27,7 @@ Username: <br>
   QuanLy@gmail.com<br>
   HoTro@gmail.com<br>
   Admin@gmail.com<br>
-          
+  HieuTruong.com<br> **This role use to designing**       
 **Software Architecture**
 
 Tool: Visual Studio 2022<br>
@@ -39,7 +39,7 @@ Programing languages: C#, CSHTML, CSS, JS<br>
 **INSTRUCTION**
 
 - Clone a project
-- Using Microsoft SQL Server to run database file QLTV-new.sql
+- Using Microsoft SQL Server to run database file QLTV-sql-new.sql
 - In VS2022, right click in model in solution Explorer view and select add ADO.net Entity Data Model 
 - Select EF Designer from the database and click on new connection then you select your QLTV just entered above
 - **You should enter the connection string as "Quan_Ly_Thu_VienEntities" so you don't have to adjust much in the code**
