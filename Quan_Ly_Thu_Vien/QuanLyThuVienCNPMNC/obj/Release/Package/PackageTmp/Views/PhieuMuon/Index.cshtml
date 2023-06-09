@@ -1,0 +1,231 @@
+﻿@model IEnumerable<QuanLyThuVienCNPMNC.Models.PHIEUMUONSACH>
+@*@using PagedList;
+    @using PagedList.Mvc;
+    @model PagedList.IPagedList<QuanLyThuVienCNPMNC.Models.PHIEUMUONSACH>*@
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+<p>
+    <a href="@Url.Action("Create","PhieuMuon")" class="btn add-item">
+        <i class="fa-solid fa-plus add-icon"></i> Mượn sách
+    </a>
+    @Html.ActionLink("Trả sách", "ChuaTraSach", null, new { @class = "btn my_btn" })
+</p>
+
+<div class="bg_dt_index">
+    <h1 class="text-center text-uppercase text-bold">Danh sách phiếu mượn</h1>
+    <hr />
+    <table id="myTable" class="display responsive nowrap">
+        <thead>
+            <tr>
+                <th>
+                    Mã phiếu
+                </th>
+                <th>
+                    Tên độc giả
+                </th>
+                <th>
+                    Ngày mượn
+                </th>
+                <th>
+                    Ngày trả
+                </th>
+                <th>
+                    Thời hạn
+                </th>
+                <th>
+                    Tên sách
+                </th>
+                <th>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <!--@section Scripts{
+                <script>
+                    myFunction() {
+                        // Get the checkbox
+                        var checkBox = document.getElementById("myChk");
+
+                        // If the checkbox is checked, display the output text
+                        if (checkBox.checked == true)
+                        {
+                                   };
+                    };
+                </script>
+            }-->
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaPhieu)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HOIVIEN.TenHV)
+                    </td>
+                    <td>
+                        @*                        @Html.DisplayFor(modelItem => item.NgayMuon)*@
+                        @Convert.ToDateTime(item.NgayMuon).ToString("dd/MM/yyyy")
+                    </td>
+                    <td>
+                        @*         @Html.DisplayFor(modelItem => item.NgayTra)*@
+                        @if (item.NgayTra != null)
+                        {
+                            @Convert.ToDateTime(item.NgayTra).ToString("dd/MM/yyyy")
+                        }
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.ThoiHan)*@
+                        @Convert.ToDateTime(item.ThoiHan).ToString("dd/MM/yyyy")
+
+                    </td>
+                    <td>
+                        @foreach (var tenSach in ViewBag.danhSachSachDict[item.MaPhieu])
+                        {
+                            @tenSach <br />
+                        }
+                    </td>
+                    <td>
+
+                        @*@Html.ActionLink("Details", "Details", new { id = item.MaDS })*@
+                        <a href="@Url.Action("Details", "PhieuMuon", new { maphieu = item.MaPhieu, mahoivien = item.MaHV })" class="action-item">
+                            <i class="fa-solid fa-book action-icon"></i>
+                        </a>
+                        @*@Html.ActionLink("Edit", "Edit", new { id = item.MaDS })*@
+                        <a href="@Url.Action("Edit", "PhieuMuon", new { maphieu = item.MaPhieu, mahoivien = item.MaHV })" class="action-item">
+                            <i class="fa-solid fa-pen-to-square action-icon"></i>
+                        </a>
+                        <a href="@Url.Action("Delete", "PhieuMuon", new { maphieu = item.MaPhieu, mahoivien = item.MaHV })" class="action-item">
+                            <i class="fa-solid fa-trash action-icon"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>
+                    Mã phiếu
+                </th>
+                <th>
+                    Tên độc giả
+                </th>
+                <th>
+                    Ngày mượn
+                </th>
+                <th>
+                    Ngày trả
+                </th>
+                <th>
+                    Thời hạn
+                </th>
+                <th>
+                    Tên sách
+                </th>
+                <th>
+                </th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+               document.addEventListener('DOMContentLoaded', function () {
+                    Swal.fire({
+                    title: 'Thành công',
+                    text: '@ViewBag.Message',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                    });
+                    });
+    </script>
+}
+@if (TempData["MessageDelete"] != null)
+{
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                title: 'Success!!',
+                text: 'Xóa thành công!!',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        });
+    </script>
+}
+@if (TempData["MessageErMuonSach"] != null)
+{
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                title: 'Oops..',
+                text: 'Bạn đã mượn trùng sách, hãy kiểm tra lại!!',
+                icon: 'info',
+                confirmButtonText: 'OK'
+            });
+        });
+    </script>
+}
+@if (TempData["MessageErRole"] != null)
+{
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                title: 'Oops..',
+                text: 'Bạn không có quyền truy cập vào chức năng này!!',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        });
+    </script>
+}
+@if (TempData["MessageEdit"] != null)
+{
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                title: 'Success!!',
+                text: 'Chỉnh sửa thành côngg!!',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        });
+    </script>
+}
+@if (TempData["MessageAdd"] != null)
+{
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                title: 'Success!!',
+                text: 'Thêm thành côngg!!',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        });
+    </script>
+}
+@if (TempData["Error"] != null)
+{
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                title: 'Oops..',
+                text: 'Lỗi quan hệ khóa...',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        });
+    </script>
+}

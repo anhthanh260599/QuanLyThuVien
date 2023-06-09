@@ -1,0 +1,101 @@
+﻿@model QuanLyThuVienCNPMNC.Models.HOIVIEN
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="bg_dt">
+    <p class="alert alert-danger mt-3" role="alert"><strong>Bạn có muốn xóa thẻ độc giả này?</strong></p>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Mã độc giả
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaHV)
+        </dd>
+
+        <dt>
+            Tên độc giả
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenHV)
+        </dd>
+
+        <dt>
+            Số điện thoại
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SDT)
+        </dd>
+
+        <dt>
+            Ngày lập thẻ
+        </dt>
+
+        <dd>
+            @Convert.ToDateTime(Model.NgayLapThe).ToString("dd/MM/yyyy")
+            @Html.HiddenFor(model => model.NgayLapThe)
+
+        </dd>
+
+        <dt>
+            Ngày hết hạn
+        </dt>
+
+        <dd>
+            @Convert.ToDateTime(Model.NgayHetHan).ToString("dd/MM/yyyy")
+            @Html.HiddenFor(model => model.NgayHetHan)
+
+        </dd>
+
+
+        <dt>
+            Tình trạng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TinhTrang)
+        </dd>
+
+        <dt>
+            Số lượng sách đang mượn
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DangMuon)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color text-center">
+            <button class="btn btn-danger mr-2" id="btn-xoa" type="button" onclick="return ConfirmXoa();">Xóa</button>
+            @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-outline-dark" })
+        </div>
+    }
+</div>
+
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>
+}
+@if (TempData["Message"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@TempData["Message"]");
+            };
+    </script>
+}

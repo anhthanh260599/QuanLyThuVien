@@ -3,6 +3,15 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    /* Tạo dấu 3 chấm khi vặn bản vượt độ dài qui định */
+    .truncate-text {
+        width: 300px;
+        white-space: nowrap; /*Khong cho xuong dong*/
+        overflow: hidden; /*An van ban vuot qua kich co*/
+        text-overflow: ellipsis;
+    }
+</style>
 
 <p>
     <a href="@Url.Action("Create","Sach")" class="add-item">
@@ -12,7 +21,7 @@
 <div class="bg_dt_index">
     <h1 class="text-center text-uppercase text-bold">Danh mục sách</h1>
     <hr />
-    <table class="display" id="myTable">
+    <table class="display responsive nowrap" id="myTable">
         <thead>
             <tr>
                 <th>
@@ -25,7 +34,7 @@
                     Mã đầu sách
                 </th>
                 <th>
-                    Ghi chú thêm
+                    Mô tả
                 </th>
                 <th>
                 </th>
@@ -63,7 +72,9 @@
                         @Html.DisplayFor(modelItem => item.DAUSACH.TenSach)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.GhiChu)
+                        <div class="truncate-text">
+                            @Html.DisplayFor(modelItem => item.MoTa)
+                        </div>
                     </td>
                     <td>
                         @*@Html.ActionLink("Details", "Details", new { id = item.MaDS })*@
@@ -93,10 +104,9 @@
                     Mã đầu sách
                 </th>
                 <th>
-                    Ghi chú thêm
+                    Mô tả
                 </th>
                 <th>
-                    Chức năng
                 </th>
             </tr>
         </tfoot>

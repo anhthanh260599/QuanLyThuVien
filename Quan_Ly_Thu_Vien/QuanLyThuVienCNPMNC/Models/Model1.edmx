@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Quan_Ly_Thu_VienModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Quan_Ly_Thu_VienModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BAOCAO">
           <Key>
             <PropertyRef Name="Id" />
@@ -66,6 +66,15 @@
           <Property Name="DangMuon" Type="int" Nullable="false" />
           <Property Name="TrangThai" Type="int" />
         </EntityType>
+        <EntityType Name="MyTodo_List">
+          <Key>
+            <PropertyRef Name="NgayTao" />
+            <PropertyRef Name="MaNV" />
+          </Key>
+          <Property Name="NgayTao" Type="datetime" Nullable="false" />
+          <Property Name="MaNV" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="MoTa" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
         <EntityType Name="NHANVIEN">
           <Key>
             <PropertyRef Name="MaNV" />
@@ -111,7 +120,7 @@
           <Property Name="MaSach" Type="char" MaxLength="5" Nullable="false" />
           <Property Name="TinhTrang" Type="int" Nullable="false" />
           <Property Name="MaDS" Type="char" MaxLength="6" Nullable="false" />
-          <Property Name="GhiChu" Type="nvarchar" MaxLength="50" />
+          <Property Name="MoTa" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -203,6 +212,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MyTodo_List_NHANVIEN">
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
+          <End Role="MyTodo_List" Type="Self.MyTodo_List" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MaNV" />
+            </Principal>
+            <Dependent Role="MyTodo_List">
+              <PropertyRef Name="MaNV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PhanQuyen_ChucNang">
           <End Role="ChucNang" Type="Self.ChucNang" Multiplicity="1" />
           <End Role="PhanQuyen" Type="Self.PhanQuyen" Multiplicity="*" />
@@ -286,6 +307,7 @@
           <EntitySet Name="ChucNang" EntityType="Self.ChucNang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DAUSACH" EntityType="Self.DAUSACH" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HOIVIEN" EntityType="Self.HOIVIEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MyTodo_List" EntityType="Self.MyTodo_List" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NhaXuatBan" EntityType="Self.NhaXuatBan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PhanQuyen" EntityType="Self.PhanQuyen" Schema="dbo" store:Type="Tables" />
@@ -317,6 +339,10 @@
             <End Role="NhaXuatBan" EntitySet="NhaXuatBan" />
             <End Role="DAUSACH" EntitySet="DAUSACH" />
           </AssociationSet>
+          <AssociationSet Name="FK_MyTodo_List_NHANVIEN" Association="Self.FK_MyTodo_List_NHANVIEN">
+            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+            <End Role="MyTodo_List" EntitySet="MyTodo_List" />
+          </AssociationSet>
           <AssociationSet Name="FK_PhanQuyen_ChucNang" Association="Self.FK_PhanQuyen_ChucNang">
             <End Role="ChucNang" EntitySet="ChucNang" />
             <End Role="PhanQuyen" EntitySet="PhanQuyen" />
@@ -334,8 +360,7 @@
             <End Role="SACH" EntitySet="SACH" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Quan_Ly_Thu_VienModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -422,6 +447,7 @@
           <Property Name="ImageAva" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BAOCAOs" Relationship="Self.FK_BAOCAO_NHANVIEN" FromRole="NHANVIEN" ToRole="BAOCAO" />
           <NavigationProperty Name="PhanQuyens" Relationship="Self.FK_PhanQuyen_NHANVIEN" FromRole="NHANVIEN" ToRole="PhanQuyen" />
+          <NavigationProperty Name="MyTodo_List" Relationship="Quan_Ly_Thu_VienModel.FK_MyTodo_List_NHANVIEN" FromRole="NHANVIEN" ToRole="MyTodo_List" />
         </EntityType>
         <EntityType Name="NhaXuatBan">
           <Key>
@@ -462,10 +488,10 @@
           <Property Name="MaSach" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="TinhTrang" Type="Int32" Nullable="false" />
           <Property Name="MaDS" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="GhiChu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BOITHUONGs" Relationship="Self.FK_BOITHUONG_SACH" FromRole="SACH" ToRole="BOITHUONG" />
           <NavigationProperty Name="CHITIETPHIEUMUONs" Relationship="Self.FK_CHITIETPHIEUMUON_SACH" FromRole="SACH" ToRole="CHITIETPHIEUMUON" />
           <NavigationProperty Name="DAUSACH" Relationship="Self.FK_SACH" FromRole="SACH" ToRole="DAUSACH" />
+          <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -670,14 +696,14 @@
             <Parameter Name="MANV" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_CapNhatSoLuongSachHoiVienMuon">
-            <Parameter Name="mahv" Mode="In" Type="String" />
+          <Parameter Name="mahv" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_CapNhatTinhTrangSach">
             <Parameter Name="maphieu" Mode="In" Type="String" />
             <Parameter Name="masach" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_CapNhatTinhTrangTheHoiVien">
-            <Parameter Name="mahoivien" Mode="In" Type="String" />
+          <Parameter Name="mahoivien" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_LayThongTinNhanVien" ReturnType="Collection(Quan_Ly_Thu_VienModel.sp_LayThongTinNhanVien_Result)" />
           <FunctionImport Name="sp_ThemNhanVien">
@@ -687,6 +713,11 @@
             <Parameter Name="Email" Mode="In" Type="String" />
             <Parameter Name="Matkhau" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="MyTodo_List" EntityType="Quan_Ly_Thu_VienModel.MyTodo_List" />
+          <AssociationSet Name="FK_MyTodo_List_NHANVIEN" Association="Quan_Ly_Thu_VienModel.FK_MyTodo_List_NHANVIEN">
+            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+            <End Role="MyTodo_List" EntitySet="MyTodo_List" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_LayThongTinNhanVien_Result">
           <Property Type="String" Name="MaNV" Nullable="false" MaxLength="5" />
@@ -696,6 +727,28 @@
           <Property Type="String" Name="MatKhau" Nullable="false" MaxLength="16" />
           <Property Type="String" Name="ImageAva" Nullable="true" />
         </ComplexType>
+        <EntityType Name="MyTodo_List">
+          <Key>
+            <PropertyRef Name="NgayTao" />
+            <PropertyRef Name="MaNV" />
+          </Key>
+          <Property Name="NgayTao" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MaNV" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="MoTa" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="NHANVIEN" Relationship="Quan_Ly_Thu_VienModel.FK_MyTodo_List_NHANVIEN" FromRole="MyTodo_List" ToRole="NHANVIEN" />
+        </EntityType>
+        <Association Name="FK_MyTodo_List_NHANVIEN">
+          <End Type="Quan_Ly_Thu_VienModel.NHANVIEN" Role="NHANVIEN" Multiplicity="1" />
+          <End Type="Quan_Ly_Thu_VienModel.MyTodo_List" Role="MyTodo_List" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MaNV" />
+            </Principal>
+            <Dependent Role="MyTodo_List">
+              <PropertyRef Name="MaNV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -811,10 +864,10 @@
           <EntitySetMapping Name="SACHes">
             <EntityTypeMapping TypeName="Quan_Ly_Thu_VienModel.SACH">
               <MappingFragment StoreEntitySet="SACH">
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
                 <ScalarProperty Name="MaSach" ColumnName="MaSach" />
                 <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
                 <ScalarProperty Name="MaDS" ColumnName="MaDS" />
-                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -856,6 +909,15 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_ThemNhanVien" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_ThemNhanVien" />
+          <EntitySetMapping Name="MyTodo_List">
+            <EntityTypeMapping TypeName="Quan_Ly_Thu_VienModel.MyTodo_List">
+              <MappingFragment StoreEntitySet="MyTodo_List">
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="MaNV" ColumnName="MaNV" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -33,7 +33,20 @@ namespace QuanLyThuVienCNPMNC.Controllers
             }
 
         }
+        //Lấy sách có thể được mượn
+        public ActionResult SachMuonDuoc()
+        {
+            return View(databases.SACHes.Where(s => s.TinhTrang == 1).ToList());
+        }
+        // Xem chi tiết sách có thể mượn được
+        [HttpGet]
+        public ActionResult DetailsSachMuonDuoc(string id)
+        {
 
+            var objProduct = databases.SACHes.Where(n => n.MaSach == id).FirstOrDefault();
+            return View(objProduct);
+
+        }
         void LoadData()
         {
 
@@ -177,7 +190,7 @@ namespace QuanLyThuVienCNPMNC.Controllers
                         sachMoi.MaSach = danhSachKey[i];
                         sachMoi.MaDS = sach.MaDS;
                         sachMoi.TinhTrang = sach.TinhTrang;
-                        sachMoi.GhiChu = sach.GhiChu;
+                        sachMoi.MoTa = sach.MoTa;
 
                         danhSachSach.Add(sachMoi);
                     }

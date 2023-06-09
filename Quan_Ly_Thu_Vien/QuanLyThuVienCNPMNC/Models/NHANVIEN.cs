@@ -19,6 +19,7 @@ namespace QuanLyThuVienCNPMNC.Models
         {
             this.BAOCAOs = new HashSet<BAOCAO>();
             this.PhanQuyens = new HashSet<PhanQuyen>();
+            this.MyTodo_List = new HashSet<MyTodo_List>();
         }
     
         public string MaNV { get; set; }
@@ -32,5 +33,7 @@ namespace QuanLyThuVienCNPMNC.Models
         public virtual ICollection<BAOCAO> BAOCAOs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhanQuyen> PhanQuyens { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MyTodo_List> MyTodo_List { get; set; }
     }
 }

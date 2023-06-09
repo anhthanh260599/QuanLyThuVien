@@ -1,0 +1,76 @@
+﻿@model QuanLyThuVienCNPMNC.Models.SACH
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutKhachHang.cshtml";
+}
+<style>
+    .bg_dt {
+        width: 100%;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        padding: 20px;
+    }
+</style>
+
+
+<div style="width:75%;margin-top:72px;" class="container bg_dt">
+    <div class="row">
+        <div class="col-sm-6">
+            <img style="width:60%;" id="img_sach" src="~/images/cover_not_found.jpg" />
+        </div>
+        <div class="col-sm-6">
+            <dl style="font-size:22px;" class="dl-horizontal">
+                <dt>
+                    Tên sách
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DAUSACH.TenSach)
+                </dd>
+                <dt>
+                    Mã sách
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.MaSach)
+                </dd>
+                <dt>
+                    Nhà xuất bản
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DAUSACH.NhaXuatBan.TenNXB)
+                </dd>
+                <dt>
+                    Ngày xuất bản
+                </dt>
+
+                <dd>
+                    @Convert.ToDateTime(Model.DAUSACH.NgayXuatBan).ToString("dd/MM/yyyy")
+                </dd>
+                <dt>
+                    Mô tả
+                </dt>
+
+                <dd>
+                    @{
+                        if (Model.MoTa == null)
+                        {
+
+
+                            <p>Hiện chưa có mô tả cho sách này !!!</p>
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(model => model.MoTa)
+                        }
+                    }
+                </dd>
+
+            </dl>
+        </div>
+    </div>
+</div>
+@*<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>*@

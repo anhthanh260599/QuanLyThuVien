@@ -143,71 +143,85 @@ namespace QuanLyThuVienCNPMNC.Controllers
         [HttpPost]
         public ActionResult Create(string[] masach, string mahoivien, DateTime ngaymuon, int soluong)
         {
-            //fix loi null dropdown list
-            ViewBag.mahoivien = databases.HOIVIENs.Where(s => (s.TinhTrang == "Sử dụng được") && (s.DangMuon == 0)).Select(x => new SelectListItem { Text = x.MaHV + " - " + x.TenHV, Value = x.MaHV.ToString() }).ToList();
-
-            //ViewBag.sachdrop = databases.SACHes.Select(x => new SelectListItem { Text = x.DAUSACH.TenSach, Value = x.MaSach.ToString() }).ToList();
-            ViewBag.sachdrop = databases.SACHes.Where(s => (s.TinhTrang == 1)).Select(x => new SelectListItem { Text = x.MaSach + " - " + x.DAUSACH.TenSach, Value = x.MaSach.ToString() }).ToList();
-
-            //Kiem tra trong phieu muon hien tai co muon sach nay chua
-            /*            int demPMS = databases.PHIEUMUONSACHes.Count(s => s.MaPhieu.ToLower() == maphieumuon.ToLower());
-             *            
-            */            //kiem tra trung key trong ctpm -- HashSet khong chua gia tri trung nhau
-            bool checkCTPMS = masach.Length != new HashSet<string>(masach).Count;
-            if (checkCTPMS)
+            try
             {
-                TempData["MessageErMuonSach"] = "";
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                PHIEUMUONSACH newPMS = new PHIEUMUONSACH
+
+
+                //fix loi null dropdown list
+                ViewBag.mahoivien = databases.HOIVIENs.Where(s => (s.TinhTrang == "Sử dụng được") && (s.DangMuon == 0)).Select(x => new SelectListItem { Text = x.MaHV + " - " + x.TenHV, Value = x.MaHV.ToString() }).ToList();
+
+                //ViewBag.sachdrop = databases.SACHes.Select(x => new SelectListItem { Text = x.DAUSACH.TenSach, Value = x.MaSach.ToString() }).ToList();
+                ViewBag.sachdrop = databases.SACHes.Where(s => (s.TinhTrang == 1)).Select(x => new SelectListItem { Text = x.MaSach + " - " + x.DAUSACH.TenSach, Value = x.MaSach.ToString() }).ToList();
+
+                //Kiem tra trong phieu muon hien tai co muon sach nay chua
+                /*            int demPMS = databases.PHIEUMUONSACHes.Count(s => s.MaPhieu.ToLower() == maphieumuon.ToLower());
+                 *            
+                */            //kiem tra trung key trong ctpm -- HashSet khong chua gia tri trung nhau
+                bool checkCTPMS = masach.Length != new HashSet<string>(masach).Count;
+                if(soluong > 3)
                 {
-                    MaPhieu = CapNhatKey(),
-                    MaHV = mahoivien,
-                    NgayMuon = ngaymuon,
-                    NgayTra = null,
-                    ThoiHan = ngaymuon.AddDays(14),
-                    SoLuong = soluong
-                };
-
-
-                List<CHITIETPHIEUMUON> listCTPM = new List<CHITIETPHIEUMUON>(soluong);
-
-
-                for (int i = 0; i < soluong; i++)
-                {
-                    CHITIETPHIEUMUON newCTPM = new CHITIETPHIEUMUON
-                    {
-                        MaPhieu = newPMS.MaPhieu,
-                        MaSach = masach[i],
-                        NgayLapPhieu = newPMS.NgayMuon
-                    };
-                    listCTPM.Add(newCTPM);
-                }
-                using (var context1 = new Quan_Ly_Thu_VienEntities())
-                {
-
-                    context1.PHIEUMUONSACHes.Add(newPMS);
-                    for (int i = 0; i < soluong; i++)
-                    {
-                        context1.CHITIETPHIEUMUONs.Add(listCTPM[i]);
-                    }
-                    context1.SaveChanges();
-
-                    //Gọi strore procedure phải gọi sau savechange
-                    for (int i = 0; i < soluong; i++)
-                    {
-                        context1.CapNhatTinhTrangSach(listCTPM[i].MaPhieu, masach[i]);
-                    }
-                    context1.sp_CapNhatSoLuongSachHoiVienMuon(mahoivien);
-                    context1.sp_CapNhatTinhTrangTheHoiVien(mahoivien);
-
-                    TempData["MessageAdd"] = "Them thanh cong !!!";
+                    TempData["ErrorSoLuong"] = "";
                     return RedirectToAction("Index");
                 }
-            }
+                if (checkCTPMS)
+                {
+                    TempData["MessageErMuonSach"] = "";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    PHIEUMUONSACH newPMS = new PHIEUMUONSACH
+                    {
+                        MaPhieu = CapNhatKey(),
+                        MaHV = mahoivien,
+                        NgayMuon = ngaymuon,
+                        NgayTra = null,
+                        ThoiHan = ngaymuon.AddDays(14),
+                        SoLuong = soluong
+                    };
 
+
+                    List<CHITIETPHIEUMUON> listCTPM = new List<CHITIETPHIEUMUON>(soluong);
+
+
+                    for (int i = 0; i < soluong; i++)
+                    {
+                        CHITIETPHIEUMUON newCTPM = new CHITIETPHIEUMUON
+                        {
+                            MaPhieu = newPMS.MaPhieu,
+                            MaSach = masach[i],
+                            NgayLapPhieu = newPMS.NgayMuon
+                        };
+                        listCTPM.Add(newCTPM);
+                    }
+                    using (var context1 = new Quan_Ly_Thu_VienEntities())
+                    {
+
+                        context1.PHIEUMUONSACHes.Add(newPMS);
+                        for (int i = 0; i < soluong; i++)
+                        {
+                            context1.CHITIETPHIEUMUONs.Add(listCTPM[i]);
+                        }
+                        context1.SaveChanges();
+
+                        //Gọi strore procedure phải gọi sau savechange
+                        for (int i = 0; i < soluong; i++)
+                        {
+                            context1.CapNhatTinhTrangSach(listCTPM[i].MaPhieu, masach[i]);
+                        }
+                        context1.sp_CapNhatSoLuongSachHoiVienMuon(mahoivien);
+                        context1.sp_CapNhatTinhTrangTheHoiVien(mahoivien);
+
+                        TempData["MessageAdd"] = "Them thanh cong !!!";
+                        return RedirectToAction("Index");
+                    }
+                }
+            }
+            catch
+            {
+                TempData["Error"] = "";
+                return RedirectToAction("Index");
+            }
         }
 
         public ActionResult Details(string maphieu)

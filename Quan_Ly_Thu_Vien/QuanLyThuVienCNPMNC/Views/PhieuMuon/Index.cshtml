@@ -23,7 +23,7 @@
 <div class="bg_dt_index">
     <h1 class="text-center text-uppercase text-bold">Danh sách phiếu mượn</h1>
     <hr />
-    <table id="myTable" class="display">
+    <table id="myTable" class="display responsive nowrap">
         <thead>
             <tr>
                 <th>
@@ -223,6 +223,19 @@
             Swal.fire({
                 title: 'Oops..',
                 text: 'Lỗi quan hệ khóa...',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        });
+    </script>
+}
+@if (TempData["ErrorSoLuong"] != null)
+{
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                title: 'Oops..',
+                text: 'Không được mượn quá 3 cuốn...',
                 icon: 'error',
                 confirmButtonText: 'OK'
             });

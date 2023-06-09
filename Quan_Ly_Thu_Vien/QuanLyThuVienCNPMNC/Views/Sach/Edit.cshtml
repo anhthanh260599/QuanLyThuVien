@@ -55,10 +55,10 @@
     </div>
 
     <div class="form-group">
-        <label class="control-label col-md-12">Ghi chú thêm</label>
+        <label class="control-label col-md-12">Mô tả</label>
         <div class="col-md-12">
-            @Html.EditorFor(model => model.GhiChu, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.GhiChu, "", new { @class = "text-danger" })
+            <textarea name="MoTa" id="MoTa" style="width:100%" rows="5" placeholder="Nhập mô tả..." required>@Model.MoTa</textarea>
+
         </div>
     </div>
 
@@ -77,7 +77,6 @@
         $('.list-searchable').chosen();
     })
 </script>
-
 
 @if (ViewBag.Message != null)
 {

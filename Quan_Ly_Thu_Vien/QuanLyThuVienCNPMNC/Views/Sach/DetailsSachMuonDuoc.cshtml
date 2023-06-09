@@ -1,0 +1,75 @@
+﻿@model QuanLyThuVienCNPMNC.Models.SACH
+
+@{
+    ViewBag.Title = "DetailsSachMuonDuoc";
+    Layout = "~/Views/Shared/_LayoutXemSachMuonDuoc.cshtml";
+}
+
+
+<div class="bg_dt">
+    <h2 class="text-center text-uppercase text-bold">Chi tiết về sách</h2>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên sách
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DAUSACH.TenSach)
+        </dd>
+        <dt>
+            Mã sách
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaSach)
+        </dd>
+
+        <dt>
+            Tình trạng sách
+        </dt>
+
+        <dd>
+            @{
+                if (Model.TinhTrang == 1)
+                {
+                    @Html.Raw("Còn");
+                }
+                else if (Model.TinhTrang == 2)
+                {
+                    @Html.Raw("Cho mượn");
+                }
+                else if (Model.TinhTrang == 3)
+                {
+                    @Html.Raw("Mất");
+                }
+                else if (Model.TinhTrang == 4)
+                {
+                    @Html.Raw("Hỏng");
+                }
+
+            }
+            @*@Html.DisplayFor(model => model.TinhTrang)*@
+        </dd>
+
+        <dt>
+            Mã đầu sách
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaDS)
+        </dd>
+
+        <dt>
+            Mô tả
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MoTa)
+        </dd>
+
+    </dl>
+    <p class="text-center">
+        @Html.ActionLink("Trở về trang danh sách", "SachMuonDuoc", null, new { @class = "btn btn-outline-dark" })
+    </p>
+</div>

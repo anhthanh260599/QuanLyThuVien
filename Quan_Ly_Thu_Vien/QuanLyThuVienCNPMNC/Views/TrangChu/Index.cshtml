@@ -1,4 +1,4 @@
-﻿@model QuanLyThuVienCNPMNC.Context.HomeModel
+﻿@model IEnumerable<QuanLyThuVienCNPMNC.Models.MyTodo_List>
 
 @{
     ViewBag.Title = "Index";
@@ -9,7 +9,7 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js'></script>
 
 <style>
-    .todo-form {
+  @*  .todo-form {
         display: flex;
         justify-content: space-between;
     }
@@ -33,7 +33,7 @@
         list-style-type: none;
         display: flex;
         justify-content: space-between;
-        
+
     }
 
         .todo-list > li > button {
@@ -44,8 +44,134 @@
             font-size: 16px;
             padding: 4px;
             width: 70px;
+        }*@
+
+
+
+    /* Remove margins and padding from the list */
+    #myUL_todo {
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Style the list items */
+    .li_todo {
+        cursor: pointer;
+        position: relative;
+        padding: 12px 8px 12px 40px;
+        list-style-type: none;
+        background: #eee;
+        font-size: 18px;
+        transition: 0.2s;
+        /* make the list items unselectable */
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+        /* Set all odd list items to a different color (zebra-stripes) */
+        .li_todo:nth-child(odd) {
+            background: #f9f9f9;
         }
+
+        /* Darker background-color on hover */
+        .li_todo:hover {
+            background: #ddd;
+        }
+
+        /* When clicked on, add a background color and strike out text */
+        .li_todo.checked {
+            background: #888;
+            color: #fff;
+            text-decoration: line-through;
+        }
+
+            /* Add a "checked" mark when clicked on */
+            .li_todo.checked::before {
+                content: '';
+                position: absolute;
+                border-color: #fff;
+                border-style: solid;
+                border-width: 0 2px 2px 0;
+                top: 10px;
+                left: 16px;
+                transform: rotate(45deg);
+                height: 15px;
+                width: 7px;
+            }
+
+
+    /* Style the close button */
+    .close_todo {
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 12px 16px 12px 16px;
+    }
+
+        .close_todo:hover {
+            background-color: #f44336;
+            color: white;
+        }
+
+    /* Style the header */
+    .header_todo {
+        background-color: #0798ba;
+        padding: 30px 40px;
+        color: white;
+        text-align: center;
+        border-radius: 20px;
+    }
+
+        /* Clear floats after the header */
+        .header_todo:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+    #myDIV:hover {
+        border: 0.1rem groove #0a89a7;
+    }
+    /* Style the input */
+    #input_todo {
+        margin: 0;
+        border: none;
+        border-radius: 0;
+        width: 76%;
+        padding: 10px;
+        float: left;
+        font-size: 16px;
+        transition: 0.3s;
+    }
+
+    #input_todo:hover {
+        border-radius: 10px;
+    }
+    /* Style the "Add" button */
+    .addBtn_todo {
+        position: absolute;
+        padding: 10px;
+        width: 15%;
+        background: #d9d9d9;
+        color: #555;
+        float: right;
+        text-align: center;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+        border-radius: 0;
+        margin-left: -10%;
+    }
+
+        .addBtn_todo:hover {
+            background-color: #bbb;
+            border-radius: 10px;
+        }
+
 </style>
+
 
 <h2>Thông số</h2>
 <hr />
@@ -120,72 +246,169 @@
     </div>
 
 
-    <div class="col-6 text-justify" id="todolist">
-        <h5>Mục tiêu hôm nay !!!</h5>
+    <!--<div class="col-6 text-justify" id="todolist">-->
+    @*<h5>Mục tiêu hôm nay !!!</h5>
         <form class="todo-form">
             <input class="todo-input" type="text" id="new-todo" placeholder="Thêm công việc....">
             <button type="button" class="btn btn-success todo-button" onclick="addTodo()">Thêm</button>
         </form>
-        <ul class="todo-list" id="todo-list"></ul>
-    </div>
+        <ul class="todo-list" id="todo-list"></ul>*@
+    <!--</div>-->
+    <div class="col-6 text-justify">
 
+        <div id="myDIV" class="header_todo">
+            <h2 style="margin:5px">My To Do List</h2>
+
+            @using (Html.BeginForm("CreateTodo", "TrangChu", FormMethod.Post, new { id = "todoForm", onsubmit = "newElement(); return false;" }))
+            {
+                <input type="text" id="input_todo" name="mota" placeholder="Nhập công việc...">
+
+                <button type="submit" class="addBtn_todo">Add</button>
+            }
+        </div>
+        <ul id="myUL_todo">
+            @foreach (var item in Model)
+            {
+               <li class="li_todo">
+                   @Html.DisplayFor(model => item.MoTa)
+                   <span onclick="deleteTodo(this)" class="close_todo" data-ngaytao="@item.NgayTao.ToString("hh:mm:ss")" data-manv="@item.MaNV">
+                       @Html.DisplayFor(model => item.NgayTao)
+                       
+                   </span>
+               </li>
+            }
+        </ul>
+    </div>
 
 
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
-    // Lấy các phần tử HTML cần thiết
-    const todoList = document.getElementById("todo-list");
-    const newTodoInput = document.getElementById("new-todo");
+@*    // Create a "close" button and append it to each list item
+    var myNodelist = document.getElementsByClassName("li_todo");
+    var i;
+    for (i = 0; i < myNodelist.length; i++) {
+        var span = document.createElement("SPAN");
+        var txt = document.createTextNode("\u00D7");
+        span.className = "close_todo";
+        span.appendChild(txt);
+        myNodelist[i].appendChild(span);
+    }*@
 
-    // Khởi tạo danh sách các mục
-    let todos = JSON.parse(localStorage.getItem("todos")) || [];
 
-    // Hàm để thêm mục mới
-    function addTodo() {
-        // Lấy giá trị của trường input
-        const newTodoText = newTodoInput.value;
+    // Click on a close button to delete the current list item
+        function deleteTodo(element) {
+            var ngaytao = element.getAttribute("data-ngaytao");
+            var manv = element.getAttribute("data-manv");
 
-        // Thêm mục mới vào danh sách nếu trường input không trống
-        if (newTodoText.trim() !== "") {
-            todos.push(newTodoText);
-            newTodoInput.value = "";
-            renderTodos();
-            saveTodos();
-        }
-    }
-
-    // Hàm để hiển thị các mục
-    function renderTodos() {
-        // Xóa danh sách các mục cũ
-        todoList.innerHTML = "";
-
-        // Thêm các mục mới vào danh sách
-        todos.forEach((todo, index) => {
-            const li = document.createElement("li");
-            li.innerText = todo;
-
-            // Tạo nút Xóa và thêm sự kiện click để xóa mục
-            const deleteButton = document.createElement("button");
-            deleteButton.innerText = "Xóa";
-            deleteButton.addEventListener("click", () => {
-                todos.splice(index, 1);
-                renderTodos();
-                saveTodos();
+            // Gửi yêu cầu POST đến controller bằng Ajax
+            $.ajax({
+                url: '@Url.Action("DeleteTodo", "TrangChu")',
+                type: "POST",
+                data: { ngaytao: ngaytao, manv: manv },
+                success: function (result) {
+                    // Xử lý kết quả nếu cần
+                }
             });
+            debugger;
+        }
 
-            li.appendChild(deleteButton);
-            todoList.appendChild(li);
-        });
+    // Add a "checked" symbol when clicking on a list item
+    var list = document.getElementById('myUL_todo');
+    list.addEventListener('click', function (ev) {
+        if (ev.target.classList.contains('li_todo')) {
+            ev.target.classList.toggle('checked');
+            saveTodoItemStatus(ev.target);
+
+        }
+    }, false);
+    //Lưu trạng thái
+    function saveTodoItemStatus() {
+        // Lấy danh sách các phần tử todo
+        var todoItems = document.querySelectorAll('.li_todo');
+
+        // Mảng để lưu trạng thái "checked"
+        var checkedItems = [];
+
+        // Lặp qua từng phần tử và kiểm tra trạng thái "checked"
+        for (var i = 0; i < todoItems.length; i++) {
+            var item = todoItems[i];
+            var isChecked = item.classList.contains('checked');
+
+            // Lưu trạng thái "checked" vào mảng
+            checkedItems.push(isChecked);
+        }
+
+        // Lưu mảng trạng thái "checked" vào localStorage
+        localStorage.setItem('todoItemsStatus', JSON.stringify(checkedItems));
+    }
+    // Khôi phục trạng thái "checked" từ localStorage
+    window.addEventListener('load', function () {
+        var checkedItems = JSON.parse(localStorage.getItem('todoItemsStatus')) || [];
+
+        var todoItems = document.querySelectorAll('.li_todo');
+        for (var i = 0; i < todoItems.length; i++) {
+            var item = todoItems[i];
+            var isChecked = checkedItems[i];
+
+            // Áp dụng trạng thái "checked" cho phần tử todo
+            if (isChecked) {
+                item.classList.add('checked');
+            }
+        }
+    });
+    // Create a new list item when clicking on the "Add" button
+    $(document).ready(function () {
+
+    function newElement() {
+    var inputValue = document.getElementById("input_todo").value;
+    if (inputValue === '') {
+        alert("You must write something!");
+        return;
     }
 
-    // Hàm để lưu danh sách các mục vào LocalStorage
-    function saveTodos() {
-        localStorage.setItem("todos", JSON.stringify(todos));
+    $.ajax({
+        url: '@Url.Action("CreateTodo", "TrangChu")',
+        type: 'POST',
+        data: { mota: inputValue },
+        success: function (response) {
+            // Xử lý phản hồi từ controller (nếu cần)
+            document.getElementById("myUL_todo").appendChild(createTodoItem(inputValue, false));
+            document.getElementById("input_todo").value = "";
+        },
+        error: function () {
+            // Xử lý lỗi (nếu cần)
+        }
+    });
+}
+});
+function createTodoItem(text, isChecked) {
+    var li = document.createElement("li");
+    li.classList.add("li_todo");
+    var t = document.createTextNode(text);
+    li.appendChild(t);
+
+    // Kiểm tra và thêm lớp "checked" nếu cần
+    if (isChecked) {
+        li.classList.add("checked");
     }
 
-    // Hiển thị danh sách các mục lần đầu tiên
-    renderTodos();
+    var span = document.createElement("SPAN");
+    var txt = document.createTextNode("\u00D7");
+    span.className = "close_todo";
+    span.appendChild(txt);
+    li.appendChild(span);
+
+    span.onclick = function () {
+        var div = this.parentElement;
+        div.style.display = "none";
+    };
+
+    return li;
+}
+
 </script>
 
 
@@ -238,3 +461,83 @@
     });
 
 </script>
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+               document.addEventListener('DOMContentLoaded', function () {
+                    Swal.fire({
+                    title: 'Thành công',
+                    text: '@ViewBag.Message',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                    });
+                    });
+    </script>
+}
+@if (TempData["MessageDelete"] != null)
+{
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                title: 'Success!!',
+                text: 'Xóa thành công!!',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        });
+    </script>
+}
+@if (TempData["MessageErRole"] != null)
+{
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                title: 'Oops..',
+                text: 'Bạn không có quyền truy cập vào   này!!',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        });
+    </script>
+}
+@if (TempData["MessageEdit"] != null)
+{
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                title: 'Success!!',
+                text: 'Chỉnh sửa thành côngg!!',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        });
+    </script>
+}
+@if (TempData["MessageAdd"] != null)
+{
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                title: 'Success!!',
+                text: 'Thêm thành côngg!!',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        });
+    </script>
+}
+@if (TempData["Error"] != null)
+{
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                title: 'Oops..',
+                text: 'Lỗi quan hệ khóa...',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        });
+    </script>
+}
+

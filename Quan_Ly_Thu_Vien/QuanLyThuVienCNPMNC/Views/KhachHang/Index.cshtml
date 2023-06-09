@@ -1,0 +1,49 @@
+﻿@model IEnumerable<QuanLyThuVienCNPMNC.Models.SACH>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutKhachHang.cshtml";
+}
+<style>
+   
+</style>
+
+<section class="home" id="home">
+</section>
+
+<div class="bg-text">
+
+</div>
+<div class="container mt-5">
+    <h1 class="text-center">Danh mục sách</h1>
+    <div class="mt-5 mb-5">
+        @using (Html.BeginForm("Index", "KhachHang", FormMethod.Get))
+        {
+            <div class="m-auto" style="width:70%;">
+                <div style="position: relative;">
+                    <input id="sreachInput_search" class="form-control" type="text" name="searchTerm" />
+                    <button id="btnSearch_search" class="btn btn-primary" type="submit">
+                        <i class="fas fa-search" style="font-size: 24px;"></i>
+                    </button>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="row">
+        @foreach (var pro in Model)
+        {
+
+            <div class="col-sm-12 col-sm-6 col-md-4 col-lg-3">
+                <a href="@Url.Action("Details", "KhachHang", new { mads = pro.MaDS })" class="text-decoration-none">
+                    <div class="box_img ">
+                        <img id="img_sach" src="~/images/cover_not_found.jpg" />
+                        <div class="box_des mt-5 text-center">
+                            <p class="Name_sach">@Html.DisplayFor(model => pro.DAUSACH.TenSach)</p>
+                            <p class="Cate_sach">@Html.DisplayFor(model => pro.DAUSACH.Theloai)</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+</div>

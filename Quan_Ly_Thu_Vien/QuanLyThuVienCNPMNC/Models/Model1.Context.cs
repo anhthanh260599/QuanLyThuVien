@@ -40,6 +40,7 @@ namespace QuanLyThuVienCNPMNC.Models
         public virtual DbSet<SACH> SACHes { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<THAMSOQUYDINH> THAMSOQUYDINHs { get; set; }
+        public virtual DbSet<MyTodo_List> MyTodo_List { get; set; }
     
         public virtual int CapNhatTinhTrangSach(string maphieu, string masach)
         {

@@ -110,10 +110,10 @@
     <EntitySetMapping Name="SACHes">
       <EntityTypeMapping TypeName="Quan_Ly_Thu_VienModel.SACH">
         <MappingFragment StoreEntitySet="SACH">
+          <ScalarProperty Name="MoTa" ColumnName="MoTa" />
           <ScalarProperty Name="MaSach" ColumnName="MaSach" />
           <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
           <ScalarProperty Name="MaDS" ColumnName="MaDS" />
-          <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -155,5 +155,14 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_ThemNhanVien" FunctionName="Quan_Ly_Thu_VienModel.Store.sp_ThemNhanVien" />
+    <EntitySetMapping Name="MyTodo_List">
+      <EntityTypeMapping TypeName="Quan_Ly_Thu_VienModel.MyTodo_List">
+        <MappingFragment StoreEntitySet="MyTodo_List">
+          <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+          <ScalarProperty Name="MaNV" ColumnName="MaNV" />
+          <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
