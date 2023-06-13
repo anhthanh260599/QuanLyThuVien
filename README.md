@@ -27,7 +27,8 @@ Username: <br>
   QuanLy@gmail.com<br>
   HoTro@gmail.com<br>
   Admin@gmail.com<br>
-  HieuTruong.com<br> **This role use to designing**       
+  HieuTruong.com **This function is used to design**
+  <br>
 **Software Architecture**
 
 Tool: Visual Studio 2022<br>
