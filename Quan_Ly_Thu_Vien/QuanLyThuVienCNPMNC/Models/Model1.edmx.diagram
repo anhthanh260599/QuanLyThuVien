@@ -28,6 +28,8 @@
         <AssociationConnector Association="Quan_Ly_Thu_VienModel.FK_SACH" ManuallyRouted="false" />
         <AssociationConnector Association="Quan_Ly_Thu_VienModel.FK_PHIEUMUONSACH" ManuallyRouted="false" />
         <AssociationConnector Association="Quan_Ly_Thu_VienModel.FK_PhanQuyen_NHANVIEN" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Quan_Ly_Thu_VienModel.MyTodo_List" Width="1.5" PointX="10" PointY="12" />
+        <AssociationConnector Association="Quan_Ly_Thu_VienModel.FK_MyTodo_List_NHANVIEN" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

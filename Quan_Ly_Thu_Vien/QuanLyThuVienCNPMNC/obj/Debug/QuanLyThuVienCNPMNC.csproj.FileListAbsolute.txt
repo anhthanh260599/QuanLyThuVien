@@ -955,3 +955,4 @@ E:\BTnam3\CongNghePhanMem-NC\CongNghePhanMem-NC\DeAn_QuanLyThuVien\QuanLyThuVien
 E:\BTnam3\CongNghePhanMem-NC\CongNghePhanMem-NC\DeAn_QuanLyThuVien\QuanLyThuVien\Quan_Ly_Thu_Vien\QuanLyThuVienCNPMNC\obj\Debug\QuanLyThuVienCNPMNC.csproj.CopyComplete
 E:\BTnam3\CongNghePhanMem-NC\CongNghePhanMem-NC\DeAn_QuanLyThuVien\QuanLyThuVien\Quan_Ly_Thu_Vien\QuanLyThuVienCNPMNC\obj\Debug\QuanLyThuVienCNPMNC.dll
 E:\BTnam3\CongNghePhanMem-NC\CongNghePhanMem-NC\DeAn_QuanLyThuVien\QuanLyThuVien\Quan_Ly_Thu_Vien\QuanLyThuVienCNPMNC\obj\Debug\QuanLyThuVienCNPMNC.pdb
+E:\BTnam3\CongNghePhanMem-NC\CongNghePhanMem-NC\DeAn_QuanLyThuVien\QuanLyThuVien\Quan_Ly_Thu_Vien\QuanLyThuVienCNPMNC\bin\FuzzySharp.dll

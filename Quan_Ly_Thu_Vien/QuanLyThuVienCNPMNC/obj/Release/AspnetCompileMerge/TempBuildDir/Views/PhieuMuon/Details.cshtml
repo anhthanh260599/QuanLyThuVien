@@ -1,0 +1,103 @@
+﻿@model QuanLyThuVienCNPMNC.Models.PHIEUMUONSACH
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="bg_dt">
+    <h2 class="text-center text-uppercase text-bold">thông tin<br /> phiếu mượn sách</h2>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Mã phiếu mượn
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaPhieu)
+        </dd>
+
+        <dt>
+            Mã độc giả mượn
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaHV)
+        </dd>
+
+        <dt>
+            Ngày mượn sách
+        </dt>
+
+        <dd>
+            @Convert.ToDateTime(Model.NgayMuon).ToString("dd/MM/yyyy")
+        </dd>
+
+        <dt>
+            Ngày trả sách
+        </dt>
+
+        <dd>
+            @if (Model.NgayTra != null)
+            {
+                @Convert.ToDateTime(Model.NgayTra).ToString("dd/MM/yyyy")
+            }
+        </dd>
+
+        <dt>
+            Thời hạn
+        </dt>
+
+        <dd>
+            @if (Model.ThoiHan != null)
+            {
+                @Convert.ToDateTime(Model.ThoiHan).ToString("dd/MM/yyyy")
+            }
+        </dd>
+
+        <dt>
+            Số lượng sách mượn
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoLuong)
+        </dd>
+
+        <dt>
+            Các sách đang mượn
+        </dt>
+        @foreach (var item in @ViewBag.danhsachSach)
+        {
+            <dd>
+                @item
+            </dd>
+        }
+
+    </dl>
+    <p class="text-center">
+
+        @Html.ActionLink("Chỉnh sửa", "Edit", new { maphieu = Model.MaPhieu, mahoivien = Model.MaHV }, new { @class = "btn btn-secondary mr-2" })
+        @Html.ActionLink("Trở về trang danh sách", "Index", null, new { @class = "btn btn-outline-dark" })
+
+        @*@Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+            @Html.ActionLink("Back to List", "Index")*@
+    </p>
+
+</div>
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>
+}
+@if (TempData["Message"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@TempData["Message"]");
+            };
+    </script>
+}

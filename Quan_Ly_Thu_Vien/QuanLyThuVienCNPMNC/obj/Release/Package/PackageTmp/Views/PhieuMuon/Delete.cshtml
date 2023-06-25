@@ -1,0 +1,109 @@
+﻿@model QuanLyThuVienCNPMNC.Models.PHIEUMUONSACH
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="bg_dt">
+    <p class="alert alert-danger mt-3" role="alert"><strong>Bạn có muốn xóa phiếu mượn này?</strong></p>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Mã phiếu mượn
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaPhieu)
+        </dd>
+
+        <dt>
+            Mã độc giả mượn
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaHV)
+        </dd>
+
+        <dt>
+            Ngày mượn sách
+        </dt>
+
+        <dd>
+            @Convert.ToDateTime(Model.NgayMuon).ToString("dd/MM/yyyy")
+        </dd>
+
+        <dt>
+            Ngày trả sách
+        </dt>
+
+        <dd>
+            @if (Model.NgayTra != null)
+            {
+                @Convert.ToDateTime(Model.NgayTra).ToString("dd/MM/yyyy")
+            }
+        </dd>
+
+        <dt>
+            Thời hạn
+        </dt>
+
+        <dd>
+            @if (Model.ThoiHan != null)
+            {
+                @Convert.ToDateTime(Model.ThoiHan).ToString("dd/MM/yyyy")
+            }
+        </dd>
+
+        <dt>
+            Số lượng sách mượn
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoLuong)
+        </dd>
+
+        <dt>
+            Các sách đang mượn
+        </dt>
+        @foreach (var item in @ViewBag.danhsachSach)
+        {
+            <dd>
+                @item
+            </dd>
+        }
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color text-center">
+            <button class="btn btn-danger mr-2" id="btn-xoa" type="button" onclick="return ConfirmXoa();">Xóa</button>
+            @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-outline-dark" })
+        </div>
+
+        @*<div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" onclick="return confirm('Bạn có chắc là muốn xóa chứ ??')" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>*@
+    }
+</div>
+
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>
+}
+@if (TempData["Message"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@TempData["Message"]");
+            };
+    </script>
+}

@@ -83,6 +83,7 @@
     <Property Name="ImageAva" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="BAOCAOs" Relationship="Self.FK_BAOCAO_NHANVIEN" FromRole="NHANVIEN" ToRole="BAOCAO" />
     <NavigationProperty Name="PhanQuyens" Relationship="Self.FK_PhanQuyen_NHANVIEN" FromRole="NHANVIEN" ToRole="PhanQuyen" />
+    <NavigationProperty Name="MyTodo_List" Relationship="Quan_Ly_Thu_VienModel.FK_MyTodo_List_NHANVIEN" FromRole="NHANVIEN" ToRole="MyTodo_List" />
   </EntityType>
   <EntityType Name="NhaXuatBan">
     <Key>
@@ -123,10 +124,10 @@
     <Property Name="MaSach" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
     <Property Name="TinhTrang" Type="Int32" Nullable="false" />
     <Property Name="MaDS" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
-    <Property Name="GhiChu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="BOITHUONGs" Relationship="Self.FK_BOITHUONG_SACH" FromRole="SACH" ToRole="BOITHUONG" />
     <NavigationProperty Name="CHITIETPHIEUMUONs" Relationship="Self.FK_CHITIETPHIEUMUON_SACH" FromRole="SACH" ToRole="CHITIETPHIEUMUON" />
     <NavigationProperty Name="DAUSACH" Relationship="Self.FK_SACH" FromRole="SACH" ToRole="DAUSACH" />
+    <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="sysdiagram">
     <Key>
@@ -348,6 +349,11 @@
       <Parameter Name="Email" Mode="In" Type="String" />
       <Parameter Name="Matkhau" Mode="In" Type="String" />
     </FunctionImport>
+    <EntitySet Name="MyTodo_List" EntityType="Quan_Ly_Thu_VienModel.MyTodo_List" />
+    <AssociationSet Name="FK_MyTodo_List_NHANVIEN" Association="Quan_Ly_Thu_VienModel.FK_MyTodo_List_NHANVIEN">
+      <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+      <End Role="MyTodo_List" EntitySet="MyTodo_List" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="sp_LayThongTinNhanVien_Result">
     <Property Type="String" Name="MaNV" Nullable="false" MaxLength="5" />
@@ -357,4 +363,26 @@
     <Property Type="String" Name="MatKhau" Nullable="false" MaxLength="16" />
     <Property Type="String" Name="ImageAva" Nullable="true" />
   </ComplexType>
+  <EntityType Name="MyTodo_List">
+    <Key>
+      <PropertyRef Name="NgayTao" />
+      <PropertyRef Name="MaNV" />
+    </Key>
+    <Property Name="NgayTao" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MaNV" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="MoTa" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="NHANVIEN" Relationship="Quan_Ly_Thu_VienModel.FK_MyTodo_List_NHANVIEN" FromRole="MyTodo_List" ToRole="NHANVIEN" />
+  </EntityType>
+  <Association Name="FK_MyTodo_List_NHANVIEN">
+    <End Type="Quan_Ly_Thu_VienModel.NHANVIEN" Role="NHANVIEN" Multiplicity="1" />
+    <End Type="Quan_Ly_Thu_VienModel.MyTodo_List" Role="MyTodo_List" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="MaNV" />
+      </Principal>
+      <Dependent Role="MyTodo_List">
+        <PropertyRef Name="MaNV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

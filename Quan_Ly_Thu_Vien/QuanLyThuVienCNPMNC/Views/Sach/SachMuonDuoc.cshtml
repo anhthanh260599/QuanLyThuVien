@@ -1,0 +1,104 @@
+﻿@model IEnumerable<QuanLyThuVienCNPMNC.Models.SACH>
+
+@{
+    ViewBag.Title = "SachMuonDuoc";
+    Layout = "~/Views/Shared/_LayoutXemSachMuonDuoc.cshtml";
+}
+
+<style>
+    /* Tạo dấu 3 chấm khi vặn bản vượt độ dài qui định */
+    .truncate-text {
+        width: 300px;
+        white-space: nowrap; /*Khong cho xuong dong*/
+        overflow: hidden; /*An van ban vuot qua kich co*/
+        text-overflow: ellipsis;
+    }
+</style>
+
+<div class="bg_dt_index">
+    <h1 class="text-center text-uppercase text-bold">Danh mục sách</h1>
+    <hr />
+    <table class="display responsive nowrap" id="myTable">
+        <thead>
+            <tr>
+                <th>
+                    Mã sách
+                </th>
+                <th>
+                    Tình trạng
+                </th>
+                <th>
+                    Mã đầu sách
+                </th>
+                <th>
+                    Mô tả
+                </th>
+                <th>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaSach)
+                    </td>
+
+                    <td>
+                        @if (item.TinhTrang == 1)
+                        {
+                            <text> Còn </text>
+                        }
+                        else if (item.TinhTrang == 2)
+                        {
+                            <text> Cho mượn </text>
+                        }
+
+                        else if (item.TinhTrang == 3)
+                        {
+                            <text> Mất </text>
+                        }
+                        else if (item.TinhTrang == 4)
+                        {
+                            <text> Hỏng </text>
+                        }
+                        @*@Html.DisplayFor(modelItem => item.TinhTrang)*@
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DAUSACH.TenSach)
+                    </td>
+                    <td>
+                        <div class="truncate-text">
+                            @Html.DisplayFor(modelItem => item.MoTa)
+                        </div>
+                    </td>
+                    <td>
+                        @*@Html.ActionLink("Details", "Details", new { id = item.MaDS })*@
+                        <a href="@Url.Action("DetailsSachMuonDuoc","Sach", new {id = item.MaSach})" class="action-item">
+                            <i class="fa-solid fa-book action-icon"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>
+                    Mã sách
+                </th>
+                <th>
+                    Tình trạng
+                </th>
+                <th>
+                    Mã đầu sách
+                </th>
+                <th>
+                    Mô tả
+                </th>
+                <th>
+                </th>
+            </tr>
+        </tfoot>
+    </table>
+</div>

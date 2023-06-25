@@ -61,6 +61,15 @@
     <Property Name="DangMuon" Type="int" Nullable="false" />
     <Property Name="TrangThai" Type="int" />
   </EntityType>
+  <EntityType Name="MyTodo_List">
+    <Key>
+      <PropertyRef Name="NgayTao" />
+      <PropertyRef Name="MaNV" />
+    </Key>
+    <Property Name="NgayTao" Type="datetime" Nullable="false" />
+    <Property Name="MaNV" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="MoTa" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
   <EntityType Name="NHANVIEN">
     <Key>
       <PropertyRef Name="MaNV" />
@@ -106,7 +115,7 @@
     <Property Name="MaSach" Type="char" MaxLength="5" Nullable="false" />
     <Property Name="TinhTrang" Type="int" Nullable="false" />
     <Property Name="MaDS" Type="char" MaxLength="6" Nullable="false" />
-    <Property Name="GhiChu" Type="nvarchar" MaxLength="50" />
+    <Property Name="MoTa" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -198,6 +207,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_MyTodo_List_NHANVIEN">
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
+    <End Role="MyTodo_List" Type="Self.MyTodo_List" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="MaNV" />
+      </Principal>
+      <Dependent Role="MyTodo_List">
+        <PropertyRef Name="MaNV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_PhanQuyen_ChucNang">
     <End Role="ChucNang" Type="Self.ChucNang" Multiplicity="1" />
     <End Role="PhanQuyen" Type="Self.PhanQuyen" Multiplicity="*" />
@@ -281,6 +302,7 @@
     <EntitySet Name="ChucNang" EntityType="Self.ChucNang" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DAUSACH" EntityType="Self.DAUSACH" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HOIVIEN" EntityType="Self.HOIVIEN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MyTodo_List" EntityType="Self.MyTodo_List" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NhaXuatBan" EntityType="Self.NhaXuatBan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PhanQuyen" EntityType="Self.PhanQuyen" Schema="dbo" store:Type="Tables" />
@@ -311,6 +333,10 @@
     <AssociationSet Name="FK_DAUSACH" Association="Self.FK_DAUSACH">
       <End Role="NhaXuatBan" EntitySet="NhaXuatBan" />
       <End Role="DAUSACH" EntitySet="DAUSACH" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MyTodo_List_NHANVIEN" Association="Self.FK_MyTodo_List_NHANVIEN">
+      <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+      <End Role="MyTodo_List" EntitySet="MyTodo_List" />
     </AssociationSet>
     <AssociationSet Name="FK_PhanQuyen_ChucNang" Association="Self.FK_PhanQuyen_ChucNang">
       <End Role="ChucNang" EntitySet="ChucNang" />

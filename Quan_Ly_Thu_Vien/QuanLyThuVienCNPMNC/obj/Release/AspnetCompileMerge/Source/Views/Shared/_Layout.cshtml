@@ -1,0 +1,755 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Phần mềm quản lý thư viện</title>
+    <link rel="icon" href="~/images/logo-HUFLIT.png" type="image/x-icon">
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!--Jquery + SweetAlert-->
+    @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@
+    @*<script src="~/Scripts/bootstrap.js"></script>
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+        <script src="~/Scripts/sweetalert.js"></script>
+        <link href="~/Content/sweetalert/sweet-alert.css" rel="stylesheet" />*@
+
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="~/Content/admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="~/Content/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="~/Content/admin/plugins/jqvmap/jqvmap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Content/admin/dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="~/Content/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="~/Content/admin/plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="~/Content/admin/plugins/summernote/summernote-bs4.min.css">
+    <!-- chosen-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.css" integrity="sha512-0nkKORjFgcyxv3HbE4rzFUlENUMNqic/EzDIeYCgsKa/nwqr2B91Vu/tNAu4Q0cBuG4Xe/D1f/freEci/7GDRA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link href="~/Content/admin/~/Content/admin/dist/css/adminlte.css" rel="stylesheet" />
+    <!-- table-->
+    <link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+    <link href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.dataTables.min.css" rel="stylesheet" />
+
+
+    <link href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+
+    @* Vẽ sơ đồ *@
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.min.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!--Sweet Alert-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+
+
+
+
+    <style>
+        .bg_dt_index {
+            margin-top: 20px !important;
+            margin: auto;
+            padding: 20px 50px 60px 50px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 6px 4px 8px;
+        }
+
+        #myTable {
+            width: 100%!important;
+        }
+
+        @@media only screen and (max-width: 800px) {
+            .form-horizontal {
+                width: 100% !important;
+            }
+        }
+
+        .bg_dt {
+            margin-top: 20px !important;
+            margin: auto;
+            padding: 10px 50px 50px 50px;
+            width: 550px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 6px 4px 8px;
+        }
+
+            .bg_dt .dl-horizontal dt {
+                font-size: 22px;
+            }
+
+            .bg_dt .dl-horizontal dd {
+                font-size: 18px;
+            }
+
+        .dl-horizontal dd {
+            font-size: 16px;
+        }
+
+        .dl-horizontal dt {
+            font-size: 20px;
+        }
+
+        .col-md-12 {
+            font-size: 16px;
+        }
+
+        .form-group * {
+            font-size: 20px;
+        }
+
+        .dataTables_wrapper .dataTables_length select {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            /* và các thuộc tính CSS khác */
+        }
+
+        .dataTables_wrapper .dataTables_filter input {
+            color: #64728c;
+            background-color: #fff;
+            border: 0.5px solid #dbdbdb;
+            border-radius: 12px;
+            outline: 0;
+            /* và các thuộc tính CSS khác */
+        }
+
+        .leftnav__icon {
+            margin-right: 6px;
+            width: 18px;
+        }
+
+        .leftnav__link {
+            display: flex;
+            align-items: center;
+        }
+
+            .leftnav__link p {
+                width: 120px;
+            }
+
+        /*    [class*=sidebar-light-] .nav-sidebar > .nav-item.menu-open > .nav-link, [class*=sidebar-light-] .nav-sidebar > .nav-item:hover > .nav-link {
+            background-color: #ffd4b6;
+            border-radius: 50px;
+        }*/
+
+        [class*=sidebar-light-] .nav-sidebar > .nav-item.active > .nav-link {
+            background-image: linear-gradient(90deg,#4dc9e6,#210cae 90%);
+            border-radius: 50px;
+        }
+
+        [class*=sidebar-light-] .nav-sidebar > .nav-item:not(.active):hover > .nav-link {
+            background-color: #4dc9e6;
+            border-radius: 50px;
+        }
+
+
+
+
+        /*    .nav-item.active {
+            background-image: linear-gradient(90deg,#FF920B,#F35C17 90%);
+            border-radius: 50px;
+        }*/
+        .nav-item.active .nav-link .leftnav__icon {
+            color: #fff;
+        }
+
+        .nav-item.active .nav-link p {
+            color: #fff;
+        }
+
+        .nav-item.non-hoverable:hover > .nav-link {
+            background-color: #4dc9e6;
+        }
+
+
+        table {
+            color: #64728c;
+            font-family: Nunito Sans;
+            font-size: 1.15rem;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: column;
+            -moz-box-orient: vertical;
+            -moz-box-direction: normal;
+            flex-direction: column;
+        }
+
+        th.sorting.sorting_asc, th.sorting.sorting_desc {
+            color: black;
+        }
+
+        th.sorting {
+            color: lightslategrey;
+            text-shadow: 0 0 antiquewhite;
+            text-align: center;
+        }
+
+        table.dataTable thead th, table.dataTable thead td, table.dataTable tfoot th, table.dataTable tfoot td {
+            text-align: left;
+        }
+
+        th.sorting::after {
+            color: black;
+        }
+
+        th.sorting::before {
+            color: black;
+        }
+
+        table tbody tr td:first-child {
+            border-bottom-left-radius: 50px;
+            border-top-left-radius: 50px;
+        }
+
+        table tbody tr td:last-child {
+            border-bottom-right-radius: 50px;
+            border-top-right-radius: 50px;
+        }
+
+        button.dt-button, div.dt-button, a.dt-button, input.dt-button {
+            /*display: inline-block;
+            box-sizing: border-box;
+            margin-left: .167em;
+            margin-right: .167em;
+            margin-bottom: .333em;
+            padding: .5em 1em;
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: .88em;
+            line-height: 1.6em;
+            color: black;
+            white-space: nowrap;
+            background-color: rgba(0, 0, 0, 0.1);
+            background: linear-gradient(to bottom, rgba(230, 230, 230, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%);
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            text-decoration: none;
+            outline: none;
+            text-overflow: ellipsis;
+            transition-duration: 0.4s;*/
+            background-color: white;
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            font-size: .90em;
+            color: black;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin-left: .167em;
+            margin-right: .167em;
+            margin-bottom: .333em;
+            padding: .5em 1em;
+            transition-duration: 0.4s;
+            cursor: pointer;
+            outline: none;
+            text-shadow: 0 1px 0 #c4def1;
+        }
+
+            button.dt-button:hover,
+            div.dt-button:hover,
+            a.dt-button:hover,
+            input.dt-button:hover {
+                background-color: #555555 !important;
+                color: white !important;
+                outline: none;
+                text-shadow: 0 1px 0 #555555;
+                font-size: .850em;
+            }
+
+
+            button.dt-button:focus:not(.disabled),
+            div.dt-button:focus:not(.disabled),
+            a.dt-button:focus:not(.disabled),
+            input.dt-button:focus:not(.disabled) {
+                background-color: #555555 !important;
+                background: none !important;
+                color: black !important;
+            }
+
+        .action-item {
+            position: relative;
+            text-decoration: none;
+            color: #fff;
+            width: 35px;
+            height: 35px;
+            display: inline-block;
+            border-radius: 50%;
+            background-color: rgb(0 2 5 / 10%);
+            margin: 0 2px;
+            font-size: 20px;
+        }
+
+        .action-icon {
+            color: #64728c;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .action-item:hover {
+            opacity: 0.8;
+        }
+
+        .add-item {
+            background-color: #4CAF50;
+            color: #fff;
+            width: 135px;
+            border-radius: 24px;
+            display: inline-block;
+            text-align: center;
+            padding: 8px;
+            font-size: 18px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 2px 0px 0px 5px;
+            transition-duration: 0.6s;
+        }
+
+        .my_btn {
+            background-color: #cf2f2f;
+            color: white;
+            padding: 8px;
+            width: 100px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 18px;
+            margin: 0px 0px 0px 2px;
+            border: 1px solid #cf2f2f;
+            border-radius: 24px;
+            transition-duration: 0.4s;
+        }
+
+        .add-item:hover {
+            color: black;
+            font-size: 17px;
+            width: 130px;
+        }
+
+        .my_btn:hover {
+            color: black;
+            font-size: 17px;
+            width: 95px;
+        }
+
+        .user-panel .info {
+            display: block;
+        }
+
+        li.nav-item.user-dropdown__item:hover {
+            background-color: #fff !important;
+        }
+    </style>
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+
+        <!-- Preloader -->
+        @*<div class="preloader flex-column justify-content-center align-items-center">
+                <img class="animation__shake" src="~/Content/admin/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+            </div>*@
+
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-light" style="background-image: linear-gradient(90deg,#4dc9e6,#210cae 90%); ">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav" style="color: #fff;">
+                <li class="nav-item" style="color: #fff;">
+                    <a style="color: #fff;" class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+                @*<li class="nav-item d-none d-sm-inline-block">
+                        <a href="index3.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item d-none d-sm-inline-block">
+                        <a href="#" class="nav-link">Contact</a>
+                    </li>*@
+            </ul>
+
+            <!-- Right navbar links -->
+            <span class="ml-auto">
+                <i class="fa-solid fa-right-from-bracket" style="color: #fff; font-size:16px;"></i>
+                <a class="sub-menu-item" style="color:#fff;" href="@Url.Action("DangXuat","DangNhap")" onclick="return ConfirmDangXuat();">
+                    Đăng xuất
+                </a>
+            </span>
+        </nav>
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-light-primary elevation-4" style="color: #64728c;">
+            <!-- Brand Logo -->
+            <a href="@Url.Action("Index","TrangChu")" class="brand-link">
+                @*<img src="#" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">*@
+                <span class="brand-text font-weight-light">Quản lý thư viện</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar" style="color: #64728c;">
+                <!-- Sidebar user panel (optional) -->
+                @*<div class="image">
+                        <img src="#" class="img-circle elevation-2" alt="User Image">
+                    </div>*@
+                <div class="user-panel">
+
+                    <div class="info">
+                        <div class="">
+                            @{
+                                var user = (QuanLyThuVienCNPMNC.Models.NHANVIEN)HttpContext.Current.Session["user"];
+                                <div class="text-center">
+                                    <a href="@Url.Action("Detail","ThongTinCaNhan")">
+                                        <img src="~/Images/@user.ImageAva" alt="Avatar" class="m-auto" style="width:80px; border-radius:50px;text-align:center; align-items:center">
+                                    </a>
+                                </div>
+                                <span class="d-block text-xl-center mt-3" style="border: 0px solid black;"><strong>@user.TenNV</strong></span>
+                                <span class="d-block text-xl-center" style="border: 0px solid black;">Chức vụ: @user.ChucVu</span>
+                            }
+                        </div>
+                    </div>
+
+
+                    <!-- Sidebar Menu -->
+                    <nav class="mt-2">
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                            <li class="nav-header">DANH MỤC</li>
+
+                            <li class="nav-item" onclick="activateNavItem(this)">
+                                <a href="@Url.Action("Index","TrangChu")" class="nav-link">
+                                    <i class="fa-solid fa-house leftnav__icon"></i>
+                                    <p>
+                                        Trang chủ
+                                    </p>
+                                </a>
+                            </li>
+
+                            <!-- Này là dùng để CSS, thêm cái class active-->
+                            @{
+                                var controller = ViewContext.RouteData.Values["controller"] as string;
+                                var action = ViewContext.RouteData.Values["action"] as string;
+                            }
+                            @{
+                                var menuItems = new[] {
+                                                new { Text = "Đầu sách", Icon = "fa-book", Controller = "DauSach", Action = "Index", Roles = new[] { "Hiệu trưởng", "Thủ thư" } },
+                                                new { Text = "Sách",Icon = "fa-book", Controller = "Sach", Action = "Index", Roles = new[] { "Hiệu trưởng", "Thủ thư", "Nhân viên quản lý" } },
+                                                new { Text = "Độc giả",Icon = "fa-user", Controller = "DocGia", Action = "Index", Roles = new[] { "Hiệu trưởng", "Thủ thư", "Nhân viên hỗ trợ" } },
+                                                new { Text = "Quản lý mượn trả",Icon = "fa-file-lines", Controller = "PhieuMuon", Action = "Index", Roles = new[] { "Hiệu trưởng", "Nhân viên quản lý" } },
+                                                new { Text = "Báo cáo",Icon = "fa-newspaper", Controller = "BaoCao", Action = "Index", Roles = new[] { "Hiệu trưởng", "Thủ thư","Nhân viên quản lý", "Nhân viên hỗ trợ" } },
+                                                new { Text = "Bồi thường",Icon = "fa-money-bill", Controller = "BoiThuong", Action = "Index", Roles = new[] { "Hiệu trưởng", "Nhân viên hỗ trợ" } },
+
+                                                new { Text = "Thông tin cá nhân",Icon = "fa-user-pen", Controller = "ThongTinCaNhan", Action = "Detail", Roles = new[] { $"{user.ChucVu}" } },
+
+                                                new { Text = "Quản lý nhân viên",Icon = "fa-users", Controller = "NhanVien", Action = "Index", Roles = new[] { "Hiệu trưởng", "Quản trị web" } },
+
+                                };
+
+
+                                foreach (var item in menuItems.Where(i => user.ChucVu == "Hiệu trưởng" || i.Roles.Contains(user.ChucVu)))
+                                {
+                                    <li class="nav-item" onclick="activateNavItem(this)">
+                                        <a href="@Url.Action(item.Action, item.Controller)" class="nav-link">
+                                            <i class="fa-solid @item.Icon leftnav__icon"></i>
+                                            <p>
+                                                @item.Text
+                                            </p>
+                                        </a>
+                                    </li>
+                                }
+                            }
+
+
+
+                            @*<li class="nav-item" onclick="activateNavItem(this)">
+                                    <a href="@Url.Action("Index","DauSach")" class="nav-link">
+                                        <i class="fa-solid fa-book leftnav__icon"></i>
+                                        <p>
+                                            Đầu sách
+
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item" onclick="activateNavItem(this)">
+                                    <a href="@Url.Action("Index","Sach")" class="nav-link">
+                                        <i class="fa-solid fa-book leftnav__icon"></i>
+                                        <p>
+                                            Sách
+
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index","DocGia")" class="nav-link">
+                                        <i class="fa-solid fa-user leftnav__icon"></i>
+
+                                        <p>
+                                            Độc giả
+
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index","PhieuMuon")" class="nav-link">
+                                        <i class="fa-solid fa-file-lines leftnav__icon"></i>
+                                        <p>
+                                            Quản lý mượn trả
+
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index","BaoCao")" class="nav-link">
+                                        <i class="fa-solid fa-newspaper leftnav__icon"></i>
+                                        <p>
+                                            Báo cáo
+
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index","NhanVien")" class="nav-link">
+                                        <i class="fa-solid fa-users leftnav__icon"></i>
+                                        <p>
+                                            Quản lý nhân viên
+
+                                        </p>
+                                    </a>
+                                </li>*@
+                        </ul>
+                    </nav>
+                    <!-- /.sidebar-menu -->
+                </div>
+            </div>
+
+            <!-- /.sidebar -->
+        </aside>
+
+
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-12">
+                            @RenderBody()
+
+                        </div><!-- /.col -->
+
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+        </div>
+
+
+
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+        </footer>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+    @RenderSection("Scripts", required: false)
+
+    <!-- ./wrapper -->
+    <!-- jQuery -->
+    <script src="~/Content/admin/plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="~/Content/admin/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>$.widget.bridge('uibutton', $.ui.button)</script>
+    <!-- Bootstrap 4 -->
+    <script src="~/Content/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- ChartJS -->
+    <script src="~/Content/admin/plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="~/Content/admin/plugins/sparklines/sparkline.js"></script>
+    <!-- JQVMap -->
+    <script src="~/Content/admin/plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="~/Content/admin/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="~/Content/admin/plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="~/Content/admin/plugins/moment/moment.min.js"></script>
+    <script src="~/Content/admin/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="~/Content/admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="~/Content/admin/plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="~/Content/admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Content/admin/dist/js/adminlte.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/Content/admin/dist/js/demo.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="~/Content/admin/dist/js/pages/dashboard.js"></script>
+    <!-- chosen-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.js" integrity="sha512-eSeh0V+8U3qoxFnK3KgBsM69hrMOGMBy3CNxq/T4BArsSQJfKVsKb5joMqIPrNMjRQSTl4xG8oJRpgU2o9I7HQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Table-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
+    <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
+
+
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
+
+
+    @*<script>
+            $(document).ready(function () {
+                $('#example').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
+            });
+        </script>*@
+
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable({
+                "language": {
+                    "paginate": {
+                        "first": "Đầu",
+                        "last": "Cuối",
+                        "next": "Tiếp",
+                        "previous": "Sau"
+                    },
+                    "search": "Tìm kiếm:",
+                    "lengthMenu": "Hiển thị _MENU_ mục",
+                    "info": "Hiển thị mục từ _START_ đến _END_ của tổng số _TOTAL_ mục",
+                    "infoEmpty": "Hiển thị mục từ 0 đến 0 của tổng số 0 mục",
+                    "infoFiltered": "(lọc từ tổng số _MAX_ mục)"
+                },
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'copy',
+                        text: 'Sao chép',
+                        className: 'btn-custom'
+                    },
+                    {
+                        extend: 'csv',
+                        text: 'Xuất CSV',
+                        className: 'btn-custom',
+                        filename: 'Document'
+
+                    },
+                    {
+                        extend: 'excel',
+                        text: 'Xuất Excel',
+                        className: 'btn-custom',
+                        filename: 'Document'
+
+                    },
+                    {
+                        extend: 'pdf',
+                        text: 'Xuất PDF',
+                        className: 'btn-custom',
+                        filename: 'Document'
+                    },
+                    {
+                        extend: 'print',
+                        text: 'In',
+                        className: 'btn-custom',
+                        filename: 'Document'
+                    }
+                ]
+            });
+        });
+    </script>
+    <script>
+         $(function() {
+        var currentController = '@(controller)';
+        var currentAction = '@(action)';
+
+        $(".nav-item").each(function() {
+            var href = $(this).find("a").attr("href");
+            var hrefArray = href.split("/");
+            var controllerName = hrefArray[hrefArray.length - 2];
+            var actionName = hrefArray[hrefArray.length - 1];
+
+            if (controllerName == currentController && actionName == currentAction) {
+                $(this).addClass("active");
+
+            }
+        });
+    });
+    </script>
+    <script>
+
+        function ConfirmDangXuat() {
+            Swal.fire({
+                title: 'Xác nhận đăng xuất !!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonColor: 'No, cancel!!',
+                confirmButtonText: 'Yes, let me out!!',
+                reverseButtons: true
+
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Người dùng đã nhấn chấp nhận
+                    window.location.href = "@Url.Action("DangXuat","DangNhap")";
+                }
+            });
+
+            return false; // Ngăn chặn hành vi mặc định của liên kết
+        }
+        function ConfirmXoa() {
+            document.getElementById("btn-xoa").addEventListener("click", function () {
+                Swal.fire({
+                    title: 'Xác nhận xóa !!',
+                    icon: 'warning',
+                    text: "Thông tin này sẽ không khôi phục lại được!!",
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: "Có, xóa",
+                    cancelButtonText: "Không, hủy bỏ",
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Hành động xóa được thực hiện
+                        document.forms[0].submit();
+                        return true;
+                    }
+                    return false;
+                });
+            });
+        }
+    </script>
+</body>
+</html>
+
