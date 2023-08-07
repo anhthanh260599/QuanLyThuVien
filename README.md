@@ -1,4 +1,4 @@
-**DESRIPTION**
+**DESCRIPTION**
 
 Hello, this project is in a final reporting course so there may be many mistakes <3 !!
 
